@@ -50,6 +50,7 @@
             </form>
             <section class="login-with-some">
                 <div><p class="login-with">Войти с помощью</p></div>
+                <a href="{{ route('fb.auth') }}">FB</a>
                 <img src="img/facebook.svg" class="facebook">
                 <img src="img/telegram.svg">
             </section>

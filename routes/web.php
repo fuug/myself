@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Main'], function () {
     Route::get('/', 'IndexController');
+});
+
+Route::group(['middleware' => 'guest'], function(){
+    Route::get('facebook/auth', 'SocialController@index')->name('fb.auth');
+    Route::get('facebook/auth/callback', 'SocialController@callback');
 });
 
 
