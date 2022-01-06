@@ -11,6 +11,8 @@ class SocialService
 {
     public function saveSocialData($user)
     {
+        $password = Hash::make('11111111');
+
         $isUser = User::where('email', $user->email)->first();
         if ($isUser) {
             Auth::login($isUser);
@@ -20,12 +22,12 @@ class SocialService
         $createUser = User::create([
             'name' => $user->name,
             'email' => $user->email,
-            'password' => encrypt('admin@123')
+            'password' => $password
         ]);
 
         Auth::login($createUser);
 
 
-        return true;
+        return redirect('Main');
     }
 }
