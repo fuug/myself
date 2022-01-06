@@ -1,0 +1,373 @@
+* {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.title {
+  font-size: 2.7rem;
+  width: 80%;
+}
+
+.title-section {
+  padding-bottom: 0.5rem;
+}
+.title-section h1 {
+  color: #F9A54B;
+  text-align: center;
+  font-size: 3.5rem;
+  font-family: "Yanone Kaffeesatz", sans-serif;
+}
+
+.more-text {
+  display: none;
+}
+
+.welcome-text {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.text2 {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 59px;
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}
+
+.offer {
+  margin-left: 14vw;
+  width: 45%;
+}
+.offer h1 {
+  font-family: "Yanone Kaffeesatz", sans-serif;
+  font-style: normal;
+  font-size: 64px;
+  color: #F9A54B;
+  margin-top: 102px;
+}
+.offer hr {
+  width: auto;
+  color: #0292A3;
+  background-color: #0292A3;
+  border: none;
+  margin: 20px 0 0 0;
+}
+
+.col-3 {
+  width: calc(33.3333333333% - 3.5rem);
+}
+
+.col-4 {
+  width: calc(25% - 3rem);
+}
+
+.col-2 {
+  width: calc(50% - 4rem);
+}
+
+.page-ellipse {
+  padding-top: 2.5rem;
+}
+
+.btn-primary {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 30px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-decoration: none;
+  background: linear-gradient(93.3deg, #0292A3 0%, #47B8C6 51.35%, #0292A3 100%);
+  filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.25)) drop-shadow(-10px -10px 15px rgba(2, 146, 163, 0.2));
+}
+
+.command-section .clear {
+  padding: 6rem;
+}
+
+.reviews-section hr {
+  width: 20%;
+}
+
+.carousel-review.d-flex {
+  align-items: center;
+  width: 90%;
+  margin: auto;
+}
+
+.carousel-container {
+  width: 89%;
+  margin: auto;
+  overflow: hidden;
+}
+
+.carousel-ul {
+  width: 9999px;
+  transition: 1s;
+}
+.carousel-ul li {
+  width: 40vw;
+  display: inline-block;
+  padding: 1rem 2rem;
+}
+
+.carousel-card-content .reviewer-name {
+  padding-bottom: 0.4rem;
+}
+.carousel-card-content .reviewer-name h1 {
+  font-weight: 600;
+  font-size: 2rem;
+  padding-bottom: 0.4rem;
+}
+.carousel-card-content .reviewer-name span {
+  font-weight: 400;
+  font-size: 1rem;
+}
+.carousel-card-content .d-flex {
+  align-items: start;
+}
+
+.img-block {
+  width: 80px;
+  height: 80px;
+}
+.img-block img {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}
+
+.review {
+  width: calc(100% - 80px - 1rem);
+  padding-left: 1rem;
+}
+
+.review-description {
+  padding-right: 3rem;
+}
+
+.review-article p {
+  font-size: 1.7rem;
+  font-weight: 400;
+}
+
+.review-title {
+  font-weight: 600;
+  font-size: 1.7rem;
+  padding-bottom: 10px;
+}
+
+.page-ellipse {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.active {
+  background-color: #0292A3;
+  height: 2rem !important;
+  width: 2rem !important;
+}
+
+.ellipse {
+  background-color: #4DCCDB;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 50%;
+  margin: 0 3px;
+}
+
+.block {
+  position: relative;
+  padding: 3rem;
+}
+
+.border {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.block:before,
+.block:after,
+.border:before,
+.border:after {
+  position: absolute;
+  width: 30%;
+  height: 30%;
+  content: "";
+  border-color: #0292A3;
+  border-style: solid;
+}
+
+.block:before {
+  left: 0;
+  top: 0;
+  border-width: 3px 0 0 3px;
+  border-radius: 20px 0 0 0;
+}
+
+.block:after {
+  right: 0;
+  top: 0;
+  border-width: 3px 3px 0 0;
+  border-radius: 0 20px 0 0;
+}
+
+.border:before {
+  right: 0;
+  bottom: 0;
+  border-width: 0 3px 3px 0;
+  border-radius: 0 0 20px 0;
+}
+
+.border:after {
+  left: 0;
+  bottom: 0;
+  border-width: 0 0 3px 3px;
+  border-radius: 0 0 0 20px;
+}
+
+footer {
+  padding: 3rem 0;
+  background: #F9A54B;
+  position: relative;
+}
+footer .title-section h1 {
+  color: #fff;
+}
+footer .d-flex {
+  justify-content: center;
+}
+footer h4 {
+  margin: 3.25rem 0;
+}
+footer .rec {
+  width: 3rem;
+  height: 24rem;
+  background: #0292A3;
+  position: absolute;
+  top: -30vh;
+  left: 6vw;
+  border-radius: 6px;
+}
+
+.contact-form {
+  padding: 0 10rem;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #ffffff;
+}
+.contact-form .btn-primary {
+  margin: 1.5rem 0 0 0;
+  padding: 1.5rem 0.5rem;
+  width: 60%;
+  border-radius: 60px;
+}
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contact-form form input {
+  color: #ffffff;
+  background: #F9A54B;
+  border: none;
+  border-radius: 10px;
+  padding: 1.3rem;
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.1), inset -10px -10px 10px rgba(255, 255, 255, 0.1);
+  width: 100%;
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+.contact-form form input::placeholder {
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+.contact-form form .input-form {
+  background: #F9A54B;
+  padding: 0.65rem;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1), -10px -10px 10px rgba(187, 187, 187, 0.1);
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.social {
+  justify-content: space-evenly;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #ffffff;
+}
+.social li {
+  margin: 2rem 0;
+}
+.social i {
+  margin-right: 1.5rem;
+  border-radius: 50%;
+  background-color: #0292A3;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 5rem;
+  height: 5rem;
+}
+.social a {
+  font-weight: normal;
+  text-decoration: none;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+}
+.social .social-icon {
+  padding: 1rem;
+  border-radius: 50%;
+  background: #0292A3;
+  width: 80px;
+  height: 80px;
+}
+.social .icon-instagram {
+  background-image: url("../img/social/instagram.png");
+}
+.social .icon-facebook {
+  background-image: url("../img/social/facebook.png");
+}
+.social .icon-telegram {
+  background-image: url("../img/social/telegram.png");
+}
+.social .icon-mail {
+  background-image: url("../img/social/mail.png");
+}
+
+@media only screen and (max-width: 1700px) {
+  .col-3.social {
+    width: calc(50% - 3rem);
+    padding-left: 3rem;
+  }
+
+  .contact-form {
+    padding: 0 5rem;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

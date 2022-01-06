@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Перечень исполнителей</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap&subset=cyrillic-ext"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Yantramanav:wght@700&display=swapsubset=cyrillic-ext"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300;400;700&family=Yantramanav:wght@100;300;400;500;700;900&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="sass/style.css">
+    <link rel="stylesheet" href="sass/performers_list.css">
+</head>
+<body>
+<header>
+    <nav>
+        <ul class="d-flex">
+            <li>
+                <div class="logo"><img src="img/logo.svg" alt="logo"></div>
+            </li>
+            <li><a href="#">Преимущества</a></li>
+            <li><a href="#">Наши психологи</a></li>
+            <li>
+                <div class="user">
+                    <div class="user-thumb"><img src="img/kelly.png" alt="user photo"></div>
+                    <div class="user-name"><span>Александра <br> Александрова</span></div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<div class="main">
+    <div class="section-title">
+        <h1>Наши психологи</h1>
+        <hr>
+    </div>
+
+    <div class="filters d-flex">
+        <span>Фильтр:</span>
+        <div class="select-control">
+            <select name="directions" id="directions">
+                <option selected value="default" disabled>Направления</option>
+                <option value="default">Направление 1</option>
+                <option value="default">Направление 2</option>
+                <option value="default">Направление 3</option>
+            </select>
+        </div>
+        <select name="price" id="price">
+            <option selected value="default" disabled>Стоимость</option>
+            <option value="default">Направление 1</option>
+            <option value="default">Направление 2</option>
+            <option value="default">Направление 3</option>
+        </select>
+        <select name="gender" id="gender">
+            <option selected value="default" disabled>Пол психолога</option>
+            <option value="female">Женщина</option>
+            <option value="male">Мужчина</option>
+            <option value="they">Они</option>
+        </select>
+        <button class="btn-primary">Применить</button>
+    </div>
+
+    <div class="items-list">
+
+        <div class="item col-3">
+            <div class="item-thumbnail">
+                <img src="img/first-card.png" alt="People photo">
+            </div>
+            <div class="item-short-desc">
+                <h3>Иван Иванов</h3>
+                <h4>Гештальт - терапия, НЛП</h4>
+            </div>
+            <div class="item-description">
+                <p>Семейный терапевт, помогает решать сложности во взаимоотношениях в формате семейной и парной
+                    психотерапии
+                </p>
+                    <a href="#">
+                        <div class="more-description">
+                            Подробнее
+                            <div class="gradient-primary"><i class="arrow"></i></div>
+                        </div>
+                    </a>
+            </div>
+            <div class="item-price">
+                <div class="d-flex">
+                    <span>1 консультация</span>
+                    <span>50$</span>
+                </div>
+                <div class="d-flex">
+                    <span>Абонемент</span>
+                    <span>от 250$</span>
+                </div>
+            </div>
+            <a href="#" class="btn-primary">Записаться</a>
+        </div>
+
+        <div class="item col-3">
+            <div class="item-thumbnail">
+                <img src="img/second-card.png" alt="People photo">
+            </div>
+            <div class="item-short-desc">
+                <h3>Анастасия Семёнова</h3>
+                <h4>Когнитивно - поведенческая терапия, схема - терапия</h4>
+            </div>
+            <div class="item-description">
+                <p>Психолог, глубоко понимает и анализирует ситуацию. Тот самый психолог для травматиков
+                </p>
+                <a href="#">
+                    <div class="more-description">
+                        Подробнее
+                        <div class="gradient-primary"><i class="arrow"></i></div>
+                    </div>
+                </a>
+            </div>
+            <div class="item-price">
+                <div class="d-flex">
+                    <span>1 консультация</span>
+                    <span>50$</span>
+                </div>
+                <div class="d-flex">
+                    <span>Абонемент</span>
+                    <span>от 250$</span>
+                </div>
+            </div>
+            <a href="#" class="btn-primary">Записаться</a>
+        </div>
+
+        <div class="item col-3">
+            <div class="item-thumbnail">
+                <img src="img/third-card.png" alt="People photo">
+            </div>
+            <div class="item-short-desc">
+                <h3>Виктория Андреева</h3>
+                <h4>Транзакционный анализ,  телестно - ориентированная и гештальт терапия</h4>
+            </div>
+            <div class="item-description">
+                <p>
+                    Терапевт, помогающий осознать и сменить жизненные установки
+                </p>
+                <a href="#">
+                    <div class="more-description">
+                        Подробнее
+                        <div class="gradient-primary"><i class="arrow"></i></div>
+                    </div>
+                </a>
+            </div>
+            <div class="item-price">
+                <div class="d-flex">
+                    <span>1 консультация</span>
+                    <span>50$</span>
+                </div>
+                <div class="d-flex">
+                    <span>Абонемент</span>
+                    <span>от 250$</span>
+                </div>
+            </div>
+            <a href="#" class="btn-primary">Записаться</a>
+        </div>
+
+
+        <div class="item col-3">
+            <div class="item-thumbnail">
+                <img src="img/first-card.png" alt="People photo">
+            </div>
+            <div class="item-short-desc">
+                <h3>Иван Иванов</h3>
+                <h4>Гештальт - терапия, НЛП</h4>
+            </div>
+            <div class="item-description">
+                <p>Семейный терапевт, помогает решать сложности во взаимоотношениях в формате семейной и парной
+                    психотерапии
+                </p>
+                <a href="#">
+                    <div class="more-description">
+                        Подробнее
+                        <div class="gradient-primary"><i class="arrow"></i></div>
+                    </div>
+                </a>
+            </div>
+            <div class="item-price">
+                <div class="d-flex">
+                    <span>1 консультация</span>
+                    <span>50$</span>
+                </div>
+                <div class="d-flex">
+                    <span>Абонемент</span>
+                    <span>от 250$</span>
+                </div>
+            </div>
+            <a href="#" class="btn-primary">Записаться</a>
+        </div>
+
+        <div class="item col-3">
+            <div class="item-thumbnail">
+                <img src="img/second-card.png" alt="People photo">
+            </div>
+            <div class="item-short-desc">
+                <h3>Анастасия Семёнова</h3>
+                <h4>Когнитивно - поведенческая терапия, схема - терапия</h4>
+            </div>
+            <div class="item-description">
+                <p>Психолог, глубоко понимает и анализирует ситуацию. Тот самый психолог для травматиков
+                </p>
+                <a href="#">
+                    <div class="more-description">
+                        Подробнее
+                        <div class="gradient-primary"><i class="arrow"></i></div>
+                    </div>
+                </a>
+            </div>
+            <div class="item-price">
+                <div class="d-flex">
+                    <span>1 консультация</span>
+                    <span>50$</span>
+                </div>
+                <div class="d-flex">
+                    <span>Абонемент</span>
+                    <span>от 250$</span>
+                </div>
+            </div>
+            <a href="#" class="btn-primary">Записаться</a>
+        </div>
+
+        <div class="item col-3">
+            <div class="item-thumbnail">
+                <img src="img/third-card.png" alt="People photo">
+            </div>
+            <div class="item-short-desc">
+                <h3>Виктория Андреева</h3>
+                <h4>Транзакционный анализ,  телестно - ориентированная и гештальт терапия</h4>
+            </div>
+            <div class="item-description">
+                <p>
+                    Терапевт, помогающий осознать и сменить жизненные установки
+                </p>
+                <a href="#">
+                    <div class="more-description">
+                        Подробнее
+                        <div class="gradient-primary"><i class="arrow"></i></div>
+                    </div>
+                </a>
+            </div>
+            <div class="item-price">
+                <div class="d-flex">
+                    <span>1 консультация</span>
+                    <span>50$</span>
+                </div>
+                <div class="d-flex">
+                    <span>Абонемент</span>
+                    <span>от 250$</span>
+                </div>
+            </div>
+            <a href="#" class="btn-primary">Записаться</a>
+        </div>
+
+
+        <div class="item col-3">
+            <div class="item-thumbnail">
+                <img src="img/first-card.png" alt="People photo">
+            </div>
+            <div class="item-short-desc">
+                <h3>Иван Иванов</h3>
+                <h4>Гештальт - терапия, НЛП</h4>
+            </div>
+            <div class="item-description">
+                <p>Семейный терапевт, помогает решать сложности во взаимоотношениях в формате семейной и парной
+                    психотерапии
+                </p>
+                <a href="#">
+                    <div class="more-description">
+                        Подробнее
+                        <div class="gradient-primary"><i class="arrow"></i></div>
+                    </div>
+                </a>
+            </div>
+            <div class="item-price">
+                <div class="d-flex">
+                    <span>1 консультация</span>
+                    <span>50$</span>
+                </div>
+                <div class="d-flex">
+                    <span>Абонемент</span>
+                    <span>от 250$</span>
+                </div>
+            </div>
+            <a href="#" class="btn-primary">Записаться</a>
+        </div>
+
+        <div class="item col-3">
+            <div class="item-thumbnail">
+                <img src="img/second-card.png" alt="People photo">
+            </div>
+            <div class="item-short-desc">
+                <h3>Анастасия Семёнова</h3>
+                <h4>Когнитивно - поведенческая терапия, схема - терапия</h4>
+            </div>
+            <div class="item-description">
+                <p>Психолог, глубоко понимает и анализирует ситуацию. Тот самый психолог для травматиков
+                </p>
+                <a href="#">
+                    <div class="more-description">
+                        Подробнее
+                        <div class="gradient-primary"><i class="arrow"></i></div>
+                    </div>
+                </a>
+            </div>
+            <div class="item-price">
+                <div class="d-flex">
+                    <span>1 консультация</span>
+                    <span>50$</span>
+                </div>
+                <div class="d-flex">
+                    <span>Абонемент</span>
+                    <span>от 250$</span>
+                </div>
+            </div>
+            <a href="#" class="btn-primary">Записаться</a>
+        </div>
+
+    </div>
+
+</div>
+
+
+<footer>
+    <div class="title-section">
+        <h1>Остались вопросы?</h1>
+    </div>
+    <div class="d-flex">
+        <div class="col-3 social">
+            <h4>Напишите нам</h4>
+            <ul>
+                <li><a href="#" target="_blank"><i class="icon-instagram"></i>@maxb861</a></li>
+                <li><a href="#" target="_blank"><i class="icon-facebook"></i>Максим Бурцев</a></li>
+                <li><a href="#" target="_blank"><i class="icon-telegram"></i>@Maxb86</a></li>
+                <li><a href="#" target="_blank"><i class="icon-mail"></i>directorkorol@gmail.com</a></li>
+            </ul>
+        </div>
+        <div class="col-2 contact-form">
+            <h4>Мы с Вами свяжемся</h4>
+            <form action="">
+                <div class="input-form">
+                    <input type="text" placeholder="Имя">
+                </div>
+                <div class="input-form">
+                    <input type="text" placeholder="Как с Вами связаться">
+                </div>
+                <div class="input-form">
+                    <input type="text" placeholder="Ваш вопрос">
+                </div>
+
+                <button class="btn-primary" type="submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+
+</footer>
+
+</body>
+</html>

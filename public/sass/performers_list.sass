@@ -1,0 +1,189 @@
+$primary: #F9A54B
+$secondary: #0292A3
+
+nav
+  font-family: "Montserrat", sans-serif
+  font-weight: 600
+  font-size: 2rem
+
+  .user
+    display: flex
+    justify-content: flex-end
+    align-items: center
+
+  a
+    color: #000000
+
+  .user-thumb
+    width: 90px
+    height: 90px
+    margin-right: 2rem
+
+    img
+      width: 100%
+      height: 100%
+      border-radius: 50%
+
+  .user-name
+    span
+      color: #000000
+
+ul.d-flex
+  padding: 2.5rem 5rem
+  justify-content: space-between
+  align-items: center
+
+
+.main
+  padding-top: 8vh
+  width: calc(100% - 150px)
+  margin: auto
+  text-align: center
+
+.section-title
+  color: $primary
+
+  h1
+    font-size: 4rem
+    font-family: "Yanone Kaffeesatz", sans-serif
+    font-weight: 700
+
+  hr
+    width: 20vw
+    height: 5px
+    margin: auto
+    background: linear-gradient(90deg, #0292A3, #47B8C6, #0292A3)
+    border: none
+    border-radius: 10px
+
+.filters
+  padding-top: 3.5rem
+  padding-bottom: 4rem
+  align-items: center
+  justify-content: space-between
+
+  .btn-primary
+    height: 100%
+    padding: 1.5rem 3.5rem
+    border-radius: 60px
+
+  select
+    border: 3px solid $secondary
+    border-radius: 10px
+    padding: 1.3rem 7vw 1.3rem .9rem
+    font-size: 1.8rem
+    -webkit-appearance: none
+    background-image: url("/img/arrow-bottom-light.svg")
+    background-repeat: no-repeat
+    background-position: right
+
+
+  span
+    font-family: "Yanone Kaffeesatz", "Montserrat", sans-serif
+    font-size: 2.5rem
+    font-weight: 700
+
+.items-list
+  display: flex
+  flex-wrap: wrap
+  .item.col-3
+    width: calc(100% / 3 - 6rem)
+
+  .item
+    margin: 0 3rem 6.5rem 3rem
+    .btn-primary
+      padding: 1.32rem 3.8rem
+      border-radius: 60px
+
+.item-thumbnail
+  width: 400px
+  height: 470px
+  margin: auto auto 3rem
+
+  img
+    width: 100%
+    height: 100%
+    border-radius: 20px
+
+.item-short-desc
+  h3
+    font-size: 2.3rem
+    font-weight: 700
+
+  h4
+    font-weight: 600
+    font-size: 1.6rem
+    margin: 1rem 0
+
+.item-description
+  font-weight: 400
+  font-size: 1.5rem
+  text-align: left
+  a
+    color: #000000
+
+.item-price
+  margin-bottom: 4rem
+
+  .d-flex
+    justify-content: space-between
+    padding-top: 1.8rem
+    span
+      font-weight: 600
+      font-size: 1.6rem
+
+.more-description
+  display: flex
+  justify-content: space-between
+  align-items: stretch
+
+.gradient-primary
+  width: 20%
+  margin-left: 4rem
+  background: linear-gradient(90deg, rgba(249, 165, 75, 0) 0%, #F9A54B 82.2%)
+  position: relative
+
+  .arrow
+    position: absolute
+    width: 80%
+    height: 3px
+    top: calc(50% - 1.5px)
+    left: -0.5rem
+    background-color: #000
+    border: none
+    border-radius: 3px
+
+  .arrow::after, .arrow::before 
+    content: ''
+    position: absolute
+    width: 15px
+    height: 3px
+    right: -3px
+    background-color: #000
+    border-radius: 3px
+
+
+  .arrow::after 
+    top: -5px
+    transform: rotate(45deg)
+  
+  
+  .arrow::before 
+    top: 5px
+    transform: rotate(-45deg)
+  
+
+
+
+
+
+@media only screen and (max-width: 1700px)
+  html
+    font-size: 14px
+
+
+
+@media only screen and (max-width: 1500px)
+  .filters
+    select
+      font-size: 1.5rem

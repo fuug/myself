@@ -1,0 +1,451 @@
+html {
+  font-size: 14px;
+}
+
+/* header */
+.nav {
+  padding: 2.5rem 5rem;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  list-style-type: none;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+.nav .d-flex {
+  width: 100%;
+  justify-content: space-evenly;
+}
+.nav a {
+  text-decoration: none;
+  color: black;
+}
+
+.logo {
+  width: 12vw;
+  margin-left: 3rem;
+  justify-content: space-evenly;
+}
+
+/* banner */
+.title {
+  font-family: "Consolas", Serif;
+  font-weight: 700;
+  font-size: 72px;
+  line-height: 93px;
+  max-width: 742px;
+  max-height: 279px;
+  font-style: normal;
+  text-align: center;
+}
+
+.main-banner {
+  max-width: 45vw;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+}
+
+section a {
+  font-family: "Yantramanav", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 44px;
+  text-decoration: none;
+  color: #fff;
+  margin-bottom: 37.5px;
+}
+
+.btn {
+  border-radius: 100px;
+  background: linear-gradient(90deg, #0292A3, #47B8C6, #0292A3);
+  width: 440px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 37.5px;
+  filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.25)) drop-shadow(-10px -10px 15px rgba(2, 146, 163, 0.2));
+}
+
+.wrapper {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.banner {
+  background-color: #F9A54B;
+  color: #fff;
+}
+
+/* content */
+.content {
+  font-family: "Yanone Kaffeesatz", sans-serif;
+  font-style: normal;
+  font-size: 64px;
+  color: #F9A54B;
+  display: flex;
+  justify-content: center;
+  margin-top: 102px;
+}
+
+hr {
+  height: 6px;
+  border-radius: 8px;
+  margin: auto;
+  margin-top: 20px;
+  color: #0292A3;
+  background-color: #0292A3;
+  border: none;
+}
+
+.columns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style-type: none;
+  flex-wrap: wrap;
+  width: 95%;
+  margin: auto;
+}
+
+.columns1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  list-style-type: none;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.container {
+  width: calc(100% - 75px);
+  margin: auto;
+  margin-top: 60px;
+}
+
+.mt-3 {
+  margin-top: 3rem;
+}
+
+.text {
+  width: calc(50% - 3rem);
+  color: #fff;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 2rem;
+  background-color: #0292A3;
+  margin-bottom: 100px;
+  padding: 3.5rem;
+}
+
+.text:nth-child(odd) {
+  border-radius: 0 20px 20px 0;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25), -10px -10px 10px rgba(135, 135, 135, 0.25);
+}
+
+.text:nth-child(even) {
+  border-radius: 20px 0 0 20px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25), -10px -10px 10px rgba(135, 135, 135, 0.25);
+}
+
+.prepared {
+  margin-top: 60px;
+}
+.prepared .d-flex {
+  justify-content: space-between;
+}
+
+.item {
+  width: calc(50% - 80px);
+  margin-bottom: 2rem;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 2rem;
+  line-height: 49px;
+}
+
+.description {
+  align-items: flex-start;
+  flex-direction: column;
+  margin-left: 3rem;
+  width: 45%;
+}
+.description .desc-item {
+  width: 100%;
+  margin-top: 2rem;
+}
+.description .desc-item:first-child {
+  margin-top: 0;
+}
+
+.text-description h4 {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 2rem;
+}
+
+.text-description.d-flex {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.more-text {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 1.25rem;
+  line-height: 34px;
+}
+
+.more_details {
+  text-decoration: none;
+  color: black;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.photo-area {
+  width: 50%;
+}
+.photo-area img {
+  width: 100%;
+}
+
+.firs-card {
+  position: absolute;
+  top: 1rem;
+  left: 10rem;
+  z-index: 0;
+  width: 19vw;
+}
+
+.second-card {
+  position: absolute;
+  top: 1.1rem;
+  right: 0;
+  z-index: 10;
+  width: 25vw;
+}
+
+.third-card {
+  position: absolute;
+  width: 23vw;
+  z-index: 10;
+  top: 7rem;
+  left: 1rem;
+}
+
+.fourth-card {
+  position: absolute;
+  width: 30vw;
+  z-index: 10;
+  top: 30rem;
+  right: 2rem;
+}
+
+.fifth-card {
+  position: absolute;
+  top: 38rem;
+  width: 20vw;
+  z-index: 0;
+}
+
+.sixth-card {
+  position: absolute;
+  top: 48rem;
+  width: 16vw;
+  left: 1.8rem;
+  z-index: 10;
+}
+
+.clear {
+  padding: 4rem;
+}
+.clear hr {
+  width: 40%;
+}
+
+.cards-list {
+  padding-top: 6rem;
+}
+.cards-list .col-3 {
+  padding: 1.5rem;
+  border-radius: 20px;
+}
+
+.cards-list.d-flex {
+  justify-content: space-evenly;
+}
+
+.col-3 {
+  background: #F9A54B;
+  transition: 0.3s;
+}
+.col-3 .border-outline {
+  border: 1px solid #0292A3;
+  border-radius: 20px;
+  padding: 1rem;
+  height: 100%;
+}
+
+.focus {
+  transform: scale(1.1) !important;
+}
+
+.mini {
+  transform: scale(0.9);
+}
+
+.title-card h3 {
+  text-align: center;
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.body-card {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.body-card ul {
+  margin-bottom: 1rem;
+}
+.body-card ul li {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+}
+.body-card ul li:last-child {
+  margin-top: 2.5rem;
+  font-weight: 500;
+}
+.body-card .full-width {
+  width: 100%;
+  text-align: center;
+  padding: 3.5rem 0;
+}
+
+.banner-command {
+  background-image: url("/img/banner-command.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 90vh;
+}
+.banner-command .banner-title {
+  text-align: center;
+  padding-top: 3.5rem;
+}
+.banner-command .banner-title h2 {
+  font-weight: normal;
+  font-size: 2.25rem;
+}
+.banner-command .banner-bottom {
+  text-align: center;
+  margin-top: 0.9rem;
+}
+.banner-command .banner-bottom .btn-primary {
+  font-family: Yanone Kaffeesatz;
+  border-radius: 60px;
+  padding: 1.5rem 3rem 1rem 3rem;
+  font-size: 4.5rem;
+}
+
+.number {
+  font-size: 8rem;
+  font-weight: 900;
+  color: rgba(71, 184, 198, 0.5);
+  margin: -4rem 3rem;
+}
+
+.stairs .step-one {
+  margin-top: 10vh;
+}
+.stairs .step-two {
+  margin-top: 22.5vh;
+}
+.stairs .step-three {
+  margin-top: 30vh;
+}
+.stairs .step-four {
+  margin-top: 45vh;
+}
+
+.step-title h3 {
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.step-description {
+  margin-top: 1.5rem;
+}
+.step-description p {
+  font-size: 1.7rem;
+}
+
+.stairs.d-flex {
+  justify-content: space-evenly;
+}
+
+@media only screen and (max-width: 1440px) {
+  .firs-card {
+    position: absolute;
+    top: 1rem;
+    left: 10rem;
+    z-index: 0;
+    width: 19vw;
+  }
+
+  .second-card {
+    position: absolute;
+    top: 1.1rem;
+    right: 0;
+    z-index: 10;
+    width: 25vw;
+  }
+
+  .third-card {
+    position: absolute;
+    width: 23vw;
+    z-index: 10;
+    top: 5rem;
+    left: 1rem;
+  }
+
+  .fourth-card {
+    position: absolute;
+    width: 30vw;
+    z-index: 10;
+    top: 22rem;
+    right: 2rem;
+  }
+
+  .fifth-card {
+    position: absolute;
+    top: 30rem;
+    width: 20vw;
+    z-index: 0;
+  }
+
+  .sixth-card {
+    position: absolute;
+    top: 38rem;
+    width: 16vw;
+    left: 1.8rem;
+    z-index: 10;
+  }
+}
+
+/*# sourceMappingURL=index.css.map */
