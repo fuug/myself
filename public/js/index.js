@@ -1,4 +1,3 @@
-
 $('.more').click(function () {
     const elem = $(this).closest('.desc-item').find('.more-text')
     if (elem.css('display') === 'none') {
@@ -20,3 +19,9 @@ $('.col-3.scalable').hover(function () {
     $(this).removeClass('focus')
 })
 
+function showModal(action) {
+    $('.tab-list > li').removeClass('focus')
+    $('.li-' + action).addClass('focus')
+    $('.tab').hide()
+    $('#' + action).show()
+}

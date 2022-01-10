@@ -8,40 +8,62 @@ $secondary: #0292A3
     box-sizing: border-box
 
 
-body
-    background: linear-gradient(to left, #fff 50%, #F9A54B 50%)
+.btn-primary
+    padding: 1.9rem 10rem !important
+    border-radius: 60px !important
+
+.col-2.bg-primary
+    background: $primary
+    padding-bottom: 3rem
+
+.col-2
+    width: 50% !important
+
+.col-2.banner
+    margin: 0 7rem
+    text-align: center
+
+.tab-register
+    display: none
+
+    button
+        margin-top: 3rem
+
+.header
+    ul.d-flex.list-style-none
+        li:first-child
+            margin: 0 4.4rem 0 .5rem
+
+.register-page
+    display: flex
+    justify-content: space-between
+    flex-direction: row
+    align-items: center
+    margin: 2rem 8rem 0 8rem
+    overflow: hidden
+
 
 .login-page
     display: flex
     justify-content: space-between
     flex-direction: row
     align-items: center
-    margin: 0 8rem 0 8rem
-
-    .left
-        display: flex
-        justify-content: center
-        flex-direction: column
-        align-items: center
-
-    .right
-        display: flex
-        justify-content: center
-        flex-direction: column
-        align-items: center
-        margin-left: 6rem
+    margin: 2rem 8rem 0 8rem
 
 
-.btn
-    border-radius: 100px
-    border: none
-    font-size: 2rem
-    color: #ffffff
-    font-weight: 600
-    background: linear-gradient(90deg, #0292A3, #47B8C6, #0292A3)
-    padding: 1.8rem 9rem
-    margin-top: 4rem
-    filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.25)) drop-shadow(-10px -10px 15px rgba(2, 146, 163, 0.2))
+.left
+    display: flex
+    justify-content: center
+    flex-direction: column
+    align-items: center
+
+
+.right
+    display: flex
+    justify-content: center
+    flex-direction: column
+    align-items: center
+    margin-left: 6rem
 
 
 .text-in-btn
@@ -56,24 +78,64 @@ body
     justify-content: space-between
     align-items: center
     margin-top: 3rem
+    width: 100%
 
+    .d-flex
+        align-items: center
+        justify-content: space-between
+        width: 45%
 
     .login-with
-        margin-right: 5rem
         font-weight: 500
         font-size: 1.5rem
+        width: 45%
 
-.enter
-    width: 100%
-    height: 100%
-    background-color: #F9A54B
-    border-radius: 1rem
-    margin-top: 2rem
-    box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.1), inset -10px -10px 10px rgba(255, 255, 255, 0.1)
-    border: 0.3rem solid #F9A54B
-    padding: 1rem
+
+.login-with1
+    margin-right: 3rem
+    font-weight: 500
     font-size: 1.5rem
 
+.mb-1
+    margin-bottom: 1rem
+
+li.focus
+    border-bottom: 3px solid $secondary
+
+.tabs
+    margin-top: 3rem
+
+form
+    display: flex
+    flex-direction: column
+    align-items: center
+    width: 100%
+    margin-top: 1rem
+
+    .input-form
+        input
+            color: #ffffff
+            background: $primary
+            border: none
+            border-radius: 10px
+            padding: 1.3rem
+            box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.1), inset -10px -10px 10px rgba(255, 255, 255, 0.1)
+            width: 100%
+            font-weight: 400
+            font-size: 1.5rem
+
+        input::placeholder
+            color: #000
+            font-weight: 400
+            font-size: 1.5rem
+
+    .input-form
+        background: $primary
+        padding: .65rem
+        border-radius: 10px
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1), -10px -10px 10px rgba(187, 187, 187, 0.1)
+        margin-bottom: 1rem
+        width: 100%
 
 .enter::-webkit-input-placeholder
     color: #000000
@@ -95,6 +157,7 @@ body
     display: flex
     flex-direction: row
     margin-top: 0.5rem
+    margin-bottom: 5rem
     margin-right: 1rem
     font-weight: 500
     font-size: 1.1rem
@@ -105,10 +168,14 @@ body
         margin-left: 1rem
 
 
-.main-banner
-    max-width: 45rem
-    max-height: 45rem
+.img-banner
+    width: 100%
     margin-top: 3rem
+    margin-bottom: 5rem
+
+    img
+        width: 100%
+        height: 100%
 
 .logo
     margin-top: 3rem
@@ -119,7 +186,7 @@ body
     margin-bottom: 1rem
 
 
-.checkbox__input
+.checkbox_input
     -webkit-appearance: none
     appearance: none
     position: absolute
@@ -140,6 +207,7 @@ body
     border-radius: 3px
     position: absolute
     z-index: 1
+    margin-left: 0.5rem
 
     transition: background .1s linear, border .1s linear
 
@@ -154,13 +222,13 @@ body
     transition: opacity .1s linear
 
 
-.checkbox__input:checked + .checkbox__label:before
+.checkbox_input:checked + .checkbox__label:before
 
     background-color: #0292A3
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e")
 
 
-.checkbox__input:checked + .checkbox__label:after
+.checkbox_input:checked + .checkbox__label:after
     opacity: 1
 
 .forgot-checkbox
@@ -170,23 +238,66 @@ body
     width: 100%
 
 
-.facebook
-    margin-right: 3rem
-
 .header
     width: 100%
-    display: flex
-    justify-content: flex-start
     font-size: 1.56rem
     font-weight: bold
 
-    .entrance
-        margin-left: 4rem
+.width-80
+    width: 80%
+    margin: 18rem auto auto
 
 hr
     border-radius: 8px
     color: $secondary
     width: 100%
 
+.login-with-some
+    li
+        list-style: none
+
+    i
+        border-radius: 50%
+        background-color: $secondary
+        background-repeat: no-repeat
+        background-position: center
+        width: 5rem
+        height: 5rem
+
+    a
+        font-weight: normal
+        text-decoration: none
+        color: #ffffff
+        display: inline-flex
+        align-items: center
+
+    .social-icon
+        padding: 1rem
+        border-radius: 50%
+        background: $secondary
+        width: 80px
+        height: 80px
+
+    .icon-facebook
+        background-image: url("../img/social/facebook.png")
+
+    .icon-telegram
+        background-image: url("../img/social/telegram.png")
 
 
+.br-modal
+
+    margin-top: 30px
+
+    /*border: 2px solid #0c0c0c;*/
+
+    border-radius: 10px
+    -webkit-box-shadow: 0px 6px 8px 0px rgba(34, 60, 80, 0.2)
+    -moz-box-shadow: 0px 6px 8px 0px rgba(34, 60, 80, 0.2)
+    box-shadow: 0px 6px 8px 0px rgba(34, 60, 80, 0.2)
+    background: #f5f5f5
+
+
+@media only screen and (max-width: 1700px)
+    .width-80
+        margin: 12rem auto auto
