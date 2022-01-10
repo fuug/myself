@@ -7,57 +7,147 @@
 @endsection
 
 @section('content')
-    <section class="login-page">
 
-        <div class="left">
-            <div class="header">
-                <div>
-                    <p>Вход</p>
-                    <hr size="6" color="#0292A3"/>
+    <div class="d-flex justify-content-space-between">
+
+        <div class="col-2 bg-primary ">
+            <div class="width-80">
+                <div class="header">
+                    <ul class="d-flex list-style-none tab-list">
+                        <li class="li-auth focus" onclick="showModal('auth')">Вход</li>
+                        <li class="li-register" onclick="showModal('register')">Регистрация</li>
+                    </ul>
                 </div>
 
-                <p class="entrance">Регистрация</p>
+                <div class="tabs">
+
+                    <div id="auth" class="tab tab-auth">
+                        <form method="post" action="{{ route('login') }}">
+                            @csrf
+                            <div class="input-form">
+                                <input id="email" type="email" class="enter" name="email" value="{{ old('email') }}"
+                                       required
+                                       autocomplete="email" autofocus placeholder="Логин">
+                            </div>
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                    <strong>Неверный E-mail</strong>
+                                </span>
+                            @enderror
+
+                            <div class="input-form">
+                                <input id="password" type="password" class="enter" name="password" placeholder="Пароль"
+                                       required
+                                       autocomplete="current-password">
+                            </div>
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>Неверный пароль</strong>
+                            </span>
+                            @enderror
+
+                            <div class="forgot">
+                                <div>
+                                    <input type="checkbox" class="checkbox_input" id="form-check-label">
+                                    <label class="checkbox__label" for="form-check-label">Запомнить меня</label>
+                                </div>
+                                <div class="form-check-label-container">
+                                    <label class="form-check-label1">Забыли пароль?</label>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn-primary">Вход</button>
+
+                            <div class="login-with-some">
+                                <p class="login-with">Войти с помощью</p>
+                                <ul class="d-flex list-style-none">
+                                    <li><a href="{{ route('fb.auth') }}" target="_blank"><i
+                                                class="icon-facebook"></i></a></li>
+                                    <li><a href="{{ route('fb.auth') }}" target="_blank"><i
+                                                class="icon-telegram"></i></a></li>
+                                </ul>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div id="register" class="tab tab-register">
+                        <form method="POST" action="{{ route('register') }}">
+                            @csrf
+
+                            <div class="input-form">
+                                <input id="name" type="text"
+                                       class="form-control @error('name') is-invalid @enderror"
+                                       name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="input-form">
+                                <input id="email" type="email"
+                                       class="form-control @error('email') is-invalid @enderror"
+                                       name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="input-form">
+                                <input id="password" type="password"
+                                       class="form-control @error('password') is-invalid @enderror" name="password"
+                                       required autocomplete="new-password">
+
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+
+                            <div class="input-form">
+                                <input id="password-confirm" type="password" class="form-control"
+                                       name="password_confirmation" required autocomplete="new-password">
+                            </div>
+
+
+                            <button type="submit" class="btn-primary">Регистрация</button>
+
+                            <div class="login-with-some">
+                                <p class="login-with">Зарегистрироваться с помощью</p>
+                                <ul class="d-flex list-style-none">
+                                    <li><a href="#" target="_blank"><i class="icon-facebook"></i></a></li>
+                                    <li><a href="#" target="_blank"><i class="icon-telegram"></i></a></li>
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
             </div>
-            <form method="post" action="{{ route('login') }}">
-                @csrf
-                <input id="email" type="email" class="enter" name="email" value="{{ old('email') }}" required
-                       autocomplete="email" autofocus placeholder="Логин">
-                @error('email')
-                <span class="invalid-feedback" role="alert">
-                    <strong>Неверный E-mail</strong>
-                </span>
-                @enderror
-
-                <input id="password" type="password" class="enter" name="password"  placeholder="Пароль" required autocomplete="current-password">
-                @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>Неверный пароль</strong>
-                </span>
-                @enderror
-
-
-                <div class="forgot">
-                    <div>
-                        <input type="checkbox" class="checkbox__input" id="form-check-label">
-                        <label class="checkbox__label" for="form-check-label">Запомнить меня</label>
-                    </div>
-                    <div class="form-check-label-container">
-                        <label class="form-check-label1">Забыли пароль?</label>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn">Вход</button>
-            </form>
-            <section class="login-with-some">
-                <div><p class="login-with">Войти с помощью</p></div>
-                <a href="{{ route('fb.auth') }}">FB</a>
-                <img src="img/facebook.svg" class="facebook">
-                <img src="img/telegram.svg">
-            </section>
         </div>
-        <div class="right">
-            <img class="logo" alt="logo" src="img/logo.svg">
-            <img class="main-banner" alt="psychotherapist" src="img/mainImage.png">
+
+        <div class="col-2 banner">
+            <div class="logo">
+                <img alt="logo" src="img/logo.svg">
+            </div>
+            <div class="img-banner">
+                <img class="main-banner" alt="psychotherapist" src="img/mainImage.png">
+            </div>
         </div>
-    </section>
+
+    </div>
+
+@endsection
+
+@section('footer')
+    <script src="js/index.js"></script>
 @endsection

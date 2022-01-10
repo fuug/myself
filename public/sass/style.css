@@ -29,6 +29,14 @@ ul {
   font-family: "Yanone Kaffeesatz", sans-serif;
 }
 
+.list-style-none {
+  list-style: none;
+}
+
+.justify-content-space-between {
+  justify-content: space-between;
+}
+
 .more-text {
   display: none;
 }

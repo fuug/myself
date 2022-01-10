@@ -1,77 +1,104 @@
-@extends('layouts.app')
+@extends('layouts.main')
+
+@section('title', 'MySelf - Авторизация')
+
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('sass/login.css') }}">
+@endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+    <div class="d-flex justify-content-space-between">
 
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+        <div class="col-2 bg-primary ">
+            <div class="width-80">
+                <div class="header">
+                    <ul class="d-flex list-style-none tab-list">
+                        <li class="li-auth focus" onclick="showModal('auth')">Вход</li>
+                        <li class="li-register" onclick="showModal('register')">Регистрация</li>
+                    </ul>
+                </div>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                <div class="tabs">
+                    <div id="register" class="tab tab-register">
+                        <form method="POST" action="{{ route('register') }}">
+                            @csrf
+
+                            <div class="input-form">
+                                <input id="name" type="text"
+                                       class="form-control @error('name') is-invalid @enderror"
+                                       name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
-                                    <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                        </div>
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            <div class="input-form">
+                                <input id="email" type="email"
+                                       class="form-control @error('email') is-invalid @enderror"
+                                       name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
-                                    <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                        </div>
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                            <div class="input-form">
+                                <input id="password" type="password"
+                                       class="form-control @error('password') is-invalid @enderror" name="password"
+                                       required autocomplete="new-password">
 
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                        </div>
 
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <div class="input-form">
+                                <input id="password-confirm" type="password" class="form-control"
+                                       name="password_confirmation" required autocomplete="new-password">
                             </div>
-                        </div>
 
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
+
+                            <button type="submit" class="btn-primary">Регистрация</button>
+
+                            <div class="login-with-some">
+                                <p class="login-with">Зарегистрироваться с помощью</p>
+                                <ul class="d-flex list-style-none">
+                                    <li><a href="#" target="_blank"><i class="icon-facebook"></i></a></li>
+                                    <li><a href="#" target="_blank"><i class="icon-telegram"></i></a></li>
+                                </ul>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+
                 </div>
+
             </div>
         </div>
+
+        <div class="col-2 banner">
+            <div class="logo">
+                <img alt="logo" src="img/logo.svg">
+            </div>
+            <div class="img-banner">
+                <img class="main-banner" alt="psychotherapist" src="img/mainImage.png">
+            </div>
+        </div>
+
     </div>
-</div>
+@endsection
+
+
+
+
+@section('footer')
+    <script src="js/index.js"></script>
 @endsection
