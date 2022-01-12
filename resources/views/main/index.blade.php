@@ -1,11 +1,10 @@
 @extends('layouts.main')
 
-@section('title', 'MySelf')
+@section('title', 'Главная')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('sass/index.css') }}">
 @endsection
-
 
 @section('header')
 
@@ -643,7 +642,6 @@
     </div>
 
 @endsection
-
 
 @section('footer')
 
