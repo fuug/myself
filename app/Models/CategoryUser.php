@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Review extends Model
+class CategoryUser extends Model
 {
     use HasFactory;
 
-    protected $table = 'reviews';
+    protected $table = 'categoryUsers';
     protected $guarded = false;
 }
