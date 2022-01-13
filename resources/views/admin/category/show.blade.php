@@ -36,23 +36,30 @@
                                 <table class="table table-head-fixed text-nowrap">
                                     <thead>
                                     <tr class="text-center col-form-label-lg">
-                                        <th class="col-1">ID</th>
-                                        <th>Название</th>
-                                        <th class="col-2">Количество специалистов</th>
+                                        <th>Имя</th>
+                                        <th>Email</th>
+                                        <th>Роль</th>
                                         <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
-{{--                                    @foreach($categories as $category)--}}
-{{--                                        <tr class="text-center">--}}
-{{--                                            <td>{{ $category->id }}</td>--}}
-{{--                                            <td>{{ $category->title }}</td>--}}
-{{--                                            <td>1</td>--}}
-{{--                                            <td>--}}
-{{--                                                <a href=""><i class="fas fa-eye"></i></a>--}}
-{{--                                            </td>--}}
-{{--                                        </tr>--}}
-{{--                                    @endforeach--}}
+                                    @if(count($category->users) == 0)
+                                        <tr class="text-center">
+                                            <td colspan="6" class="text-center col-form-label-lg">Нет пользователей</td>
+                                        </tr>
+                                    @else
+                                        @foreach($category->users as $user)
+                                            <tr class="text-center">
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->role_rus }}</td>
+                                                <td>
+                                                    <a href="{{ route('admin.user.show', $user->id) }}"><i class="fas fa-eye"></i></a>
+                                                    <a class="blue ml-2 pointer show-modal" data-user_id="{{ $user->id }}" data-toggle="modal" data-target="#modal-rename-cat"><i class="fas fa-pencil-alt"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
                                     </tbody>
                                 </table>
                             </div>

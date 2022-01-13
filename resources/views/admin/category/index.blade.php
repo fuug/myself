@@ -45,7 +45,6 @@
                                 <table class="table table-head-fixed text-nowrap">
                                     <thead>
                                     <tr class="text-center col-form-label-lg">
-                                        <th class="col-1">ID</th>
                                         <th>Название</th>
                                         <th class="col-3">Количество специалистов</th>
                                         <th colspan="3">Действия</th>
@@ -59,9 +58,8 @@
                                     @else
                                         @foreach($categories as $category)
                                             <tr class="text-center">
-                                                <td>{{ $category->id }}</td>
                                                 <td>{{ $category->title }}</td>
-                                                <td>1</td>
+                                                <td>{{ count($category->users) }}</td>
                                                 <td class="col-1">
                                                     <a href="{{ route('admin.category.show', $category->id) }}">
                                                         <i class="fas fa-eye"></i>
