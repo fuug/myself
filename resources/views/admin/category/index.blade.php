@@ -96,7 +96,7 @@
         </section>
     </div>
     @error('title')
-    @include('admin.includes.alert')
+        @include('admin.includes.alert', array('title' => 'Название категории не заполнено'))
     @enderror
 
     <div class="modal fade" id="modal-create-cat" aria-hidden="true">

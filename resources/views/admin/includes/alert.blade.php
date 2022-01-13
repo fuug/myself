@@ -10,7 +10,7 @@
 
         Toast.fire({
             icon: 'error',
-            title: 'Такая категория уже существует'
+            title: '{{ $title }}'
         })
     });
 </script>
