@@ -52,34 +52,40 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($categories as $category)
+                                    @if(count($categories) == 0)
                                         <tr class="text-center">
-                                            <td>{{ $category->id }}</td>
-                                            <td>{{ $category->title }}</td>
-                                            <td>1</td>
-                                            <td class="col-1">
-                                                <a href="{{ route('admin.category.show', $category->id) }}">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                            </td>
-                                            <td class="col-1">
-                                                <a class="blue ml-2 pointer show-modal"
-                                                   data-category_id="{{ $category->id }}" data-toggle="modal"
-                                                   data-target="#modal-rename-cat">
-                                                    <i class="fas fa-pencil-alt"></i>
-                                                </a>
-                                            </td>
-                                            <td class="col-1">
-                                                <form method="post" action="{{ route('admin.category.delete', $category->id) }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="border-0 bg-transparent" type="submit">
-                                                        <i class="fas fa-minus-circle" role="button"></i>
-                                                    </button>
-                                                </form>
-                                            </td>
+                                            <td colspan="6" class="text-center col-form-label-lg">Нет категорий</td>
                                         </tr>
-                                    @endforeach
+                                    @else
+                                        @foreach($categories as $category)
+                                            <tr class="text-center">
+                                                <td>{{ $category->id }}</td>
+                                                <td>{{ $category->title }}</td>
+                                                <td>1</td>
+                                                <td class="col-1">
+                                                    <a href="{{ route('admin.category.show', $category->id) }}">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                </td>
+                                                <td class="col-1">
+                                                    <a class="blue ml-2 pointer show-modal"
+                                                       data-category_id="{{ $category->id }}" data-toggle="modal"
+                                                       data-target="#modal-rename-cat">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                    </a>
+                                                </td>
+                                                <td class="col-1">
+                                                    <form method="post" action="{{ route('admin.category.delete', $category->id) }}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="border-0 bg-transparent text-danger" type="submit">
+                                                            <i class="fas fa-minus-circle" role="button"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
                                     </tbody>
                                 </table>
                             </div>
