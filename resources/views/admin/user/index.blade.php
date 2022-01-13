@@ -45,7 +45,6 @@
                                 <table class="table table-head-fixed text-nowrap">
                                     <thead>
                                     <tr class="text-center col-form-label-lg">
-                                        <th class="col-1">ID</th>
                                         <th>Имя</th>
                                         <th>Email</th>
                                         <th>Роль</th>
@@ -60,7 +59,6 @@
                                     @else
                                         @foreach($users as $user)
                                             <tr class="text-center">
-                                                <td>{{ $user->id }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>{{ $user->role_rus }}</td>

@@ -12,6 +12,6 @@ class ShowController extends Controller
     public function __invoke(User $user)
     {
         $categories = Category::all();
-        return view('admin.users.show', compact('user', 'categories'));
+        return view('admin.user.show', compact('user', 'categories'));
     }
 }

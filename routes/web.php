@@ -40,7 +40,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::get('/', 'IndexController')->name('admin.user.index');
         Route::post('/create', 'CreateController')->name('admin.user.store');
         Route::get('/{user}', 'ShowController')->name('admin.user.show');
-        Route::patch('/edit', 'EditController')->name('admin.user.rename');
+        Route::patch('/edit', 'EditController')->name('admin.user.edit');
+        Route::delete('/delete/{user}', 'DeleteController')->name('admin.user.delete');
+
     });
 
 });

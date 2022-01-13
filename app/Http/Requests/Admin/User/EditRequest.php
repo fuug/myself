@@ -24,8 +24,12 @@ class EditRequest extends FormRequest
     public function rules()
     {
         return [
-            'cat_id' => 'required|string',
-            'title' => 'required|string'
+            'user_id' => 'required|string',
+            'email' => 'required|string',
+            'description' => 'nullable|string',
+            'name' => 'required|string',
+            'category_ids' => 'nullable|array',
+            'user_role' => 'nullable|string',
         ];
     }
 }

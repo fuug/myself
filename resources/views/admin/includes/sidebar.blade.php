@@ -14,7 +14,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
                     <a href="{{ route('admin.index') }}" class="nav-link">
-                        <i class="fas fa-home"></i>
+                        <i class="nav-icon fas fa-home"></i>
                         <p>Главная</p>
                     </a>
                 </li>
@@ -25,15 +25,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-edit"></i>
-                        <p>Отзывы</p>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="{{ route('admin.category.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-list"></i>
                         <p>Категории</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p>Отзывы</p>
                     </a>
                 </li>
             </ul>
