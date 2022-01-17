@@ -5,3 +5,7 @@
 .pointer {
     cursor: pointer;
 }
+
+.custom-file-input:lang(en)~.custom-file-label::after {
+    content: '...'!important;
+}

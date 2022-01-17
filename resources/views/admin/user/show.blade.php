@@ -4,12 +4,14 @@
     <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/custom.css') }}">
 @endsection
 
 @section('scripts')
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
+    <script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
     <script>
         $(function () {
             $('.select2').select2();
@@ -24,6 +26,8 @@
                     ['view', ['fullscreen', 'codeview', 'help']]
                 ]
             })
+            bsCustomFileInput.init();
+
         });
     </script>
 
@@ -38,14 +42,24 @@
                     <div class="col-sm-6">
                         <h1 class="m-0">{{ $user->name }} | {{ $user->email }}</h1>
                     </div>
+
+                </div>
+                <div class="row mb-2">
+                    <div class="col-6">
+                        <div class="w-50">
+{{--                            <img src="{{  url('storage/images/guest.png') }}" class="img-thumbnail" alt="user photo">--}}
+                            <img src="{{  url( 'storage/' . $user->thumbnail) }}" class="img-thumbnail" alt="user photo">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-            <section class="content">
+        <section class="content">
                 <div class="container-fluid">
                     <div class="row mt-3">
                         <div class="col-12">
                             <div class="card card-primary">
-                                <form method="POST" action="{{ route('admin.user.edit') }}">
+                                <form method="POST" action="{{ route('admin.user.edit') }}" enctype="multipart/form-data">
                                     @csrf
                                     @method('PATCH')
                                     <div class="card-body">
@@ -78,21 +92,20 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="summernote">Описание пользователя</label>
-                                            <textarea name="description" id="summernote"></textarea>
+                                            <textarea name="description" id="summernote">{{ $user->description }}</textarea>
                                         </div>
-    {{--                                    <div class="form-group">--}}
-    {{--                                        <label for="exampleInputFile">File input</label>--}}
-    {{--                                        <div class="input-group">--}}
-    {{--                                            <div class="custom-file">--}}
-    {{--                                                <input type="file" class="custom-file-input" id="exampleInputFile">--}}
-    {{--                                                <label class="custom-file-label" for="exampleInputFile">Choose--}}
-    {{--                                                    file</label>--}}
-    {{--                                            </div>--}}
-    {{--                                            <div class="input-group-append">--}}
-    {{--                                                <span class="input-group-text">Upload</span>--}}
-    {{--                                            </div>--}}
-    {{--                                        </div>--}}
-    {{--                                    </div>--}}
+                                        <div class="form-group">
+                                            <label for="thumbnail">File input</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="thumbnail" name="thumbnail">
+                                                    <label class="custom-file-label" for="thumbnail">Выберите изображение</label>
+                                                </div>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">Upload</span>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <label for="category_id">Выберите категории</label>
                                             <select id="category_id" name="category_ids[]" class="select2 select2-hidden-accessible" multiple="" data-placeholder="Выберите категории" style="width: 100%;" data-select2-id="1000" tabindex="-1" aria-hidden="true">

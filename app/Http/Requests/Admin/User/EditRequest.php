@@ -27,6 +27,7 @@ class EditRequest extends FormRequest
             'user_id' => 'required|string',
             'email' => 'required|string',
             'description' => 'nullable|string',
+            'thumbnail' => 'nullable|file',
             'name' => 'required|string',
             'category_ids' => 'nullable|array',
             'user_role' => 'nullable|string',
