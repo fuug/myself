@@ -12,7 +12,7 @@ class EditController extends Controller
     public function __invoke(EditRequest $request)
     {
         $data = $request->validated();
-        $data['thumbnail'] = Storage::put('/images', $data['thumbnail']);
+        $data['thumbnail'] = Storage::disk('public')->put('/images', $data['thumbnail']);
 
         $user = User::where('id', $data['user_id'])->first();
 
