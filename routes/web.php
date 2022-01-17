@@ -42,7 +42,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::get('/{user}', 'ShowController')->name('admin.user.show');
         Route::patch('/edit', 'EditController')->name('admin.user.edit');
         Route::delete('/delete/{user}', 'DeleteController')->name('admin.user.delete');
-
+        Route::delete('/delete/thumb/{user}', 'DeleteThumbController')->name('admin.user.deleteThumb');
     });
 
 });

@@ -12,11 +12,17 @@ class EditController extends Controller
     public function __invoke(EditRequest $request)
     {
         $data = $request->validated();
-        $data['thumbnail'] = Storage::disk('public')->put('/images', $data['thumbnail']);
 
         $user = User::where('id', $data['user_id'])->first();
 
         $data['user_role'] = $data['user_role'] ?? $user->role;
+
+        if(isset($data['thumbnail'])) {
+            $data['thumbnail'] = Storage::disk('public')->put('/images', $data['thumbnail']);
+        } else {
+            $data['thumbnail'] = $user->thumbnail;
+        }
+
         $user->update(array(
             'name'=>$data['name'],
             'email'=>$data['email'],

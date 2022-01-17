@@ -47,8 +47,12 @@
                 <div class="row mb-2">
                     <div class="col-6">
                         <div class="w-50">
-{{--                            <img src="{{  url('storage/images/guest.png') }}" class="img-thumbnail" alt="user photo">--}}
-                            <img src="{{  url( 'storage/' . $user->thumbnail) }}" class="img-thumbnail" alt="user photo">
+                            <img src="{{ url( 'storage/' . $user->thumbnail) }}" class="img-thumbnail" alt="user photo">
+                            <form action="{{ route('admin.user.deleteThumb', $user->id) }}" method="post" class="mt-3">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger">Удалить изображение</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -95,18 +99,6 @@
                                             <textarea name="description" id="summernote">{{ $user->description }}</textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label for="thumbnail">File input</label>
-                                            <div class="input-group">
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="thumbnail" name="thumbnail">
-                                                    <label class="custom-file-label" for="thumbnail">Выберите изображение</label>
-                                                </div>
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text">Upload</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
                                             <label for="category_id">Выберите категории</label>
                                             <select id="category_id" name="category_ids[]" class="select2 select2-hidden-accessible" multiple="" data-placeholder="Выберите категории" style="width: 100%;" data-select2-id="1000" tabindex="-1" aria-hidden="true">
                                                 @foreach($categories as $category)
@@ -114,8 +106,16 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="thumbnail">Выберите изображение</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="thumbnail" name="thumbnail">
+                                                    <label class="custom-file-label" for="thumbnail">Выберите изображение</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-
                                     <div class="card-footer">
                                         <button type="submit" class="btn btn-primary">Сохранить</button>
                                     </div>
