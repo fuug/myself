@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Main'], function () {
     Route::get('/', 'IndexController');
+    Route::get('/performers', 'IndexController@performersList')->name('performers.list');
 });
 
 Route::group(['middleware' => 'guest'], function () {
@@ -43,6 +44,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::patch('/edit', 'EditController')->name('admin.user.edit');
         Route::delete('/delete/{user}', 'DeleteController')->name('admin.user.delete');
         Route::delete('/delete/thumb/{user}', 'DeleteThumbController')->name('admin.user.deleteThumb');
+    });
+
+    Route::group(['namespace' => 'Statistic', 'prefix' => 'statistic'], function () {
+        Route::get('/', 'IndexController')->name('admin.statistic.index');
+        Route::get('/format', 'IndexController@formatByDate')->name('admin.statistic.format');
     });
 
 });

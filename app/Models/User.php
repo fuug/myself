@@ -47,7 +47,28 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function categories(){
+    public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
         return $this->belongsToMany(Category::class, 'category_users', 'user_id', 'category_id');
     }
+
+    public function subscriptions_performer(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Subscription::class, 'performer_id');
+    }
+
+    public function subscriptions_customer(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Subscription::class, 'customer_id');
+    }
+
+    public function getSumPer($from = null, $to = null)
+    {
+        $sum = 0;
+        foreach ($this->subscriptions_performer as $subscription) {
+            $sum += $subscription->getSumPerDate($from, $to);
+        }
+        return $sum;
+    }
+
 }
