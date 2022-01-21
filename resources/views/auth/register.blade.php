@@ -26,7 +26,7 @@
 
                             <div class="input-form">
                                 <input id="name" type="text"
-                                       class="form-control @error('name') is-invalid @enderror"
+                                       placeholder="Ваше имя" class="form-control @error('name') is-invalid @enderror"
                                        name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
@@ -38,6 +38,7 @@
 
                             <div class="input-form">
                                 <input id="email" type="email"
+                                       placeholder="Ваша почта"
                                        class="form-control @error('email') is-invalid @enderror"
                                        name="email" value="{{ old('email') }}" required autocomplete="email">
 
@@ -50,6 +51,7 @@
 
                             <div class="input-form">
                                 <input id="password" type="password"
+                                       placeholder="Ваш пароль"
                                        class="form-control @error('password') is-invalid @enderror" name="password"
                                        required autocomplete="new-password">
 
@@ -63,6 +65,7 @@
 
                             <div class="input-form">
                                 <input id="password-confirm" type="password" class="form-control"
+                                       placeholder="Подтвердите пароль"
                                        name="password_confirmation" required autocomplete="new-password">
                             </div>
 
