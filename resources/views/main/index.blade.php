@@ -6,36 +6,6 @@
     <link rel="stylesheet" href="{{ asset('sass/index.css') }}">
 @endsection
 
-@section('header')
-
-    <header>
-        <nav>
-            <ul class="nav d-flex">
-                <li><img class="logo" alt="logo" src="img/logo.svg"></li>
-                <li><a href="">Преимущества</a></li>
-                <li><a href="">Наши психологи</a></li>
-                @guest
-                    <li><a href="{{ url('login') }}">Вход</a></li>
-                @else
-                    <li>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            Выход
-                        </a>
-                    </li>
-                    <form id="logout-form" style="position: absolute" action="{{ route('logout') }}" method="POST"
-                          class="d-none">
-                        @csrf
-                    </form>
-                @endif
-
-            </ul>
-        </nav>
-    </header>
-
-@endsection
-
 @section('content')
 
     <section class="banner">
