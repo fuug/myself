@@ -1,38 +1,8 @@
-html {
-  font-size: 14px;
-}
-
-/* header */
-.nav {
-  padding: 2.5rem 5rem;
-  justify-content: space-between;
-  align-items: center;
-  display: flex;
-  list-style-type: none;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 1.5rem;
-}
-.nav .d-flex {
-  width: 100%;
-  justify-content: space-evenly;
-}
-.nav a {
-  text-decoration: none;
-  color: black;
-}
-
-.logo {
-  width: 12vw;
-  margin-left: 3rem;
-  justify-content: space-evenly;
-}
-
 /* banner */
 .title {
-  font-family: "Consolas", Serif;
+  font-family: "Consolas", serif;
   font-weight: 700;
-  font-size: 72px;
+  font-size: 4.5rem;
   line-height: 93px;
   max-width: 742px;
   max-height: 279px;
@@ -400,6 +370,10 @@ hr {
 }
 
 @media only screen and (max-width: 1440px) {
+  html {
+    font-size: 14px;
+  }
+
   .firs-card {
     position: absolute;
     top: 1rem;

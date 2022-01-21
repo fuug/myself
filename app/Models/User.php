@@ -52,6 +52,15 @@ class User extends Authenticatable
         return $this->belongsToMany(Category::class, 'category_users', 'user_id', 'category_id');
     }
 
+    public function hasCategory($category_id = null): bool
+    {
+        if ($this->categories()->count() < 1)
+            return false;
+        if ($this->categories()->where('category_id', $category_id)->count() < 1)
+            return false;
+        return true;
+    }
+
     public function subscriptions_performer(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Subscription::class, 'performer_id');
@@ -71,4 +80,26 @@ class User extends Authenticatable
         return $sum;
     }
 
+    public function getPerformerEvents()
+    {
+        $sessions_arr = array();
+        foreach ($this->subscriptions_performer as $item)
+        {
+            foreach ($item->sessions->all() as $session){
+                $sessions_arr[] = $session;
+            }
+        }
+        return $sessions_arr;
+    }
+    public function getCustomerEvents()
+    {
+        $sessions_arr = array();
+        foreach ($this->subscriptions_customer as $item)
+        {
+            foreach ($item->sessions->all() as $session){
+                $sessions_arr[] = $session;
+            }
+        }
+        return $sessions_arr;
+    }
 }
