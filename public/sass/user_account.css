@@ -1,0 +1,159 @@
+.main {
+  width: calc(100% - 9.4rem);
+  margin: auto;
+}
+
+.sidebar {
+  width: 25%;
+}
+
+.user-info {
+  margin-bottom: 2rem;
+  font-size: 1.75rem;
+  text-align: center;
+}
+.user-info .name {
+  padding-top: 1rem;
+  font-weight: bold;
+}
+.user-info .about {
+  padding-top: 1.3rem;
+}
+.user-info .about *::after {
+  content: ",";
+}
+.user-info .about *:last-child::after {
+  content: ".";
+}
+
+.thumb {
+  width: 100%;
+  height: 28rem;
+}
+.thumb img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 60px;
+}
+
+.nav-li {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.sidebar-nav ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-icon {
+  width: 70px;
+  height: 70px;
+  background-color: #F9A54B;
+  margin-right: 1.5rem;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.icon-edit-info {
+  background-image: url("../img/icon/icon-edit.svg");
+}
+
+.icon-edit {
+  background-image: url("../img/icon/icon-calendar.svg");
+}
+
+.icon-chat {
+  background-image: url("../img/icon/icon-chat.svg");
+}
+
+.icon-consultation {
+  background-image: url("../img/icon/icon-consultation.svg");
+}
+
+.icon-clients {
+  background-image: url("../img/icon/icon-list.svg");
+}
+
+.icon-material {
+  background-image: url("../img/icon/icon-material.svg");
+}
+
+#calendar {
+  width: calc(75% - 2rem);
+  margin-left: 2rem;
+}
+#calendar .calendar-head {
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+#calendar .calendar-head .month-title h3 {
+  font-size: 3rem;
+  font-family: "Yanone Kaffeesatz", serif;
+  font-weight: 700;
+}
+
+.calendar-table {
+  border: 3px solid #0292A3;
+  border-radius: 1rem;
+  width: 100%;
+}
+.calendar-table .calendar-thead {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.calendar-table .calendar-thead .day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.calendar-table .week {
+  display: flex;
+  height: 5rem;
+}
+.calendar-table .week .day {
+  width: 14.2857142857%;
+  border-right: 3px solid #0292A3;
+}
+.calendar-table .week .day:last-child {
+  border-right: none;
+}
+.calendar-table .calendar-tbody .week {
+  border-top: 3px solid #0292A3;
+}
+.calendar-table .calendar-tbody .week .day {
+  width: 14.2857142857%;
+}
+.calendar-table .calendar-tbody .week .day .day-title {
+  margin-left: 1.2rem;
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+.calendar-table .calendar-tbody .week .day .day-desc {
+  margin-left: 0.4rem;
+}
+.calendar-table .calendar-tbody .week .day .note {
+  margin-top: 0.5rem;
+  display: flex;
+}
+.calendar-table .calendar-tbody .week .day .note .time {
+  margin-right: 2px;
+}
+
+.nav-li p {
+  font-family: Montserrat, serif;
+  font-size: 1.75rem;
+}
+
+@media only screen and (max-width: 1700px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+/*# sourceMappingURL=user_account.css.map */

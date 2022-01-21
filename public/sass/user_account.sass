@@ -1,0 +1,151 @@
+$primary: #F9A54B
+$secondary: #0292A3
+
+.main
+    width: calc(100% - 9.4rem)
+    margin: auto
+
+
+.sidebar
+    width: 25%
+
+.user-info
+    margin-bottom: 2rem
+    font-size: 1.75rem
+    text-align: center
+
+
+    .name
+        padding-top: 1rem
+        font-weight: bold
+
+    .about
+        padding-top: 1.3rem
+
+        *::after
+            content: ','
+
+        *:last-child::after
+            content: '.'
+
+.thumb
+    width: 100%
+    height: 28rem
+
+    img
+        object-fit: cover
+        width: 100%
+        height: 100%
+        border: none
+        border-radius: 60px
+
+.nav-li
+    display: inline-flex
+    align-items: center
+    margin-bottom: 2rem
+
+.sidebar-nav
+    ul
+        display: flex
+        flex-direction: column
+
+.nav-icon
+    width: 70px
+    height: 70px
+    background-color: $primary
+    margin-right: 1.5rem
+    border-radius: 50%
+    background-repeat: no-repeat
+    background-position: center
+
+.icon-edit-info
+    background-image: url("../img/icon/icon-edit.svg")
+
+.icon-edit
+    background-image: url("../img/icon/icon-calendar.svg")
+
+.icon-chat
+    background-image: url("../img/icon/icon-chat.svg")
+
+.icon-consultation
+    background-image: url("../img/icon/icon-consultation.svg")
+
+.icon-clients
+    background-image: url("../img/icon/icon-list.svg")
+
+.icon-material
+    background-image: url("../img/icon/icon-material.svg")
+
+
+#calendar
+    width: calc(75% - 2rem)
+    margin-left: 2rem
+
+    .calendar-head
+        justify-content: space-between
+        margin-bottom: 2rem
+        align-items: center
+
+        .month-title
+            h3
+                font-size: 3rem
+                font-family: "Yanone Kaffeesatz", serif
+                font-weight: 700
+
+.calendar-table
+    border: 3px solid $secondary
+    border-radius: 1rem
+    width: 100%
+
+    .calendar-thead
+        font-size: 1.3rem
+        font-weight: 600
+
+        .day
+            display: flex
+            justify-content: center
+            align-items: center
+
+    .week
+        display: flex
+        height: 5rem
+
+        .day
+            width: calc(100% / 7)
+            border-right: 3px solid $secondary
+
+        .day:last-child
+            border-right: none
+
+    .calendar-tbody
+        .week
+            border-top: 3px solid $secondary
+
+            .day
+                width: calc(100% / 7)
+
+                .day-title
+                    margin-left: 1.2rem
+                    font-size: 2.5rem
+                    font-weight: 500
+
+                .day-desc
+                    margin-left: .4rem
+
+                .note
+                    margin-top: .5rem
+                    display: flex
+
+                    .time
+                        margin-right: 2px
+
+
+.nav-li
+    p
+        font-family: Montserrat, serif
+        font-size: 1.75rem
+
+
+@media only screen and (max-width: 1700px)
+    html
+        font-size: 12px

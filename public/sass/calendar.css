@@ -1,0 +1,99 @@
+table {
+  border: 3px solid #0292A3;
+  border-radius: 30px;
+}
+
+td {
+  border-right: 3px solid #0292A3;
+}
+
+td:last-child {
+  border: none;
+}
+
+tbody tr {
+  border-bottom: 3px solid #0292A3;
+}
+tbody tr:last-child {
+  border-bottom: 0;
+}
+
+.fc-toolbar-title {
+  text-transform: capitalize;
+  font-size: 3rem !important;
+  font-family: "Yanone Kaffeesatz", serif !important;
+  font-weight: 700 !important;
+}
+
+.fc-daygrid-day-top {
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+.fc-daygrid-day-number {
+  margin-left: 1.2rem;
+  margin-top: 0.2rem;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.fc-button-primary {
+  width: 70px;
+  height: 70px;
+  border: none !important;
+  border-radius: 60px !important;
+  background-color: #0292A3 !important;
+}
+
+.fc-icon.fc-icon-chevron-right {
+  background: url("../img/icon/icon-right.svg") no-repeat 50% 50% !important;
+  background-size: auto !important;
+  width: 60px;
+  height: 60px;
+  margin-left: 6px;
+}
+
+.fc-daygrid-event-dot {
+  display: none !important;
+}
+
+.fc-icon.fc-icon-chevron-right::before {
+  content: none;
+}
+
+.fc-icon.fc-icon-chevron-left {
+  background: url("../img/icon/icon-left.svg") no-repeat 50% 50% !important;
+  background-size: auto !important;
+  width: 60px;
+  height: 60px;
+  margin-right: 6px;
+  padding: 0;
+}
+
+.fc-icon.fc-icon-chevron-left::before {
+  content: none;
+}
+
+.fc-col-header-cell {
+  padding: 10px 0 !important;
+  border-right: 3px solid #0292A3 !important;
+}
+
+.fc-col-header-cell-cushion {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.fc-event {
+  font-size: 1.2rem !important;
+}
+
+.fc-event-title {
+  font-weight: normal !important;
+}
+
+td.fc-daygrid-day {
+  height: 130px !important;
+}
+
+/*# sourceMappingURL=calendar.css.map */
