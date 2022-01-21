@@ -44,17 +44,19 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="text-center">
+
                                     @if(count($users) == 0)
-                                        <td colspan="6" class="text-center col-form-label-lg">Ничего не найдено</td>
+                                        <tr class="text-center"><td colspan="6" class="text-center col-form-label-lg">Ничего не найдено</td></tr>
                                     @else
                                         @foreach($users as $user)
+                                            <tr class="text-center">
                                             <td><a href="{{ route('admin.user.show', $user->id) }}">{{ $user->name }}</a></td>
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->getSumPer($startDate, $endDate) == 0 ? 'Нет выплат' : $user->getSumPer($startDate, $endDate) }}</td>
+                                            </tr>
                                         @endforeach
                                     @endif
-                                </tr>
+
                                 </tbody>
                                 <tfoot>
                                     <tr>

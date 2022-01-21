@@ -19,50 +19,50 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>10</h3>
+                                <h3>{{ $customersCount }}</h3>
                                 <p>Клиентов</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-users"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Подробнее <i class="fas fa-arrow-circle-right"></i></a>
+{{--                            <a href="#" class="small-box-footer">Подробнее <i class="fas fa-arrow-circle-right"></i></a>--}}
                         </div>
                     </div>
                     <div class="col-lg-3 col-6">
 
                         <div class="small-box bg-cyan">
                             <div class="inner">
-                                <h3>2</h3>
+                                <h3>{{ $performersCount }}</h3>
                                 <p>Психологов</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-user-tie"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Подробнее <i class="fas fa-arrow-circle-right"></i></a>
+{{--                            <a href="#" class="small-box-footer">Подробнее <i class="fas fa-arrow-circle-right"></i></a>--}}
                         </div>
                     </div>
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-indigo">
                             <div class="inner">
-                                <h3>65</h3>
+                                <h3>{{ $subscriptionsCount }}</h3>
                                 <p>Абонементов</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Подробнее <i class="fas fa-arrow-circle-right"></i></a>
+{{--                            <a href="#" class="small-box-footer">Подробнее <i class="fas fa-arrow-circle-right"></i></a>--}}
                         </div>
                     </div>
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>65</h3>
+                                <h3>{{ $doneSessionsCount }}</h3>
                                 <p>Посещённых сеансов</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Подробнее <i class="fas fa-arrow-circle-right"></i></a>
+{{--                            <a href="#" class="small-box-footer">Подробнее <i class="fas fa-arrow-circle-right"></i></a>--}}
                         </div>
                     </div>
                 </div>
