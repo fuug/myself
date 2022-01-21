@@ -17,6 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'Main'], function () {
     Route::get('/', 'IndexController');
     Route::get('/performers', 'IndexController@performersList')->name('performers.list');
+    Route::post('/performers', 'IndexController@performersListFilters')->name('performers.list.filters');
+});
+
+Route::group(['namespace' => 'User', 'prefix' => 'profile', 'middleware' => ['auth', 'verified']], function () {
+    Route::get('{user}', 'IndexController')->name('user.profile.index');
+    Route::get('/{user}/calendar', 'CalendarController')->name('user.profile.calendar');
 });
 
 Route::group(['middleware' => 'guest'], function () {
@@ -24,7 +30,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('facebook/auth/callback', 'SocialController@callback');
 });
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin', 'verified']], function () {
     Route::group(['namespace' => 'Main'], function () {
         Route::get('/', 'IndexController')->name('admin.index');
     });
@@ -54,4 +60,4 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 });
 
 
-Auth::routes();
+Auth::routes(['verify'=>true]);

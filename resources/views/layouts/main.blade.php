@@ -19,19 +19,35 @@
         rel="stylesheet">
 
 
+    <link rel="stylesheet" href="{{ asset('sass/style.css') }}">
     @hasSection('styles')
         @yield('styles')
     @endif
-    <link rel="stylesheet" href="sass/style.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
 
-@hasSection('header')
-    @yield('header')
-@endif
+<header>
+    <nav>
+        <ul class="nav d-flex">
+            <li><a href="/"><img class="logo" alt="logo" src="{{ asset('img/logo.svg')}}"></a></li>
+            <li><a href="{{ route('performers.list') }}">Наши психологи</a></li>
+            @guest
+                <li><a href="{{ url('login') }}">Вход</a></li>
+            @else
+                <li>
+                    <div class="user">
+                        <div class="user-thumb"><img src="{{ url( 'storage/' . auth()->user()->thumbnail) }}" alt="user photo"></div>
+                        <div class="user-name"><span><a href="{{ route('user.profile.index', auth()->user()->id) }}">{{ auth()->user()->name }}</a></span></div>
+                    </div>
+                </li>
+            @endif
+
+        </ul>
+    </nav>
+</header>
 
 @hasSection('content')
     @yield('content')
