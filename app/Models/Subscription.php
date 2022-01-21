@@ -58,17 +58,17 @@ class Subscription extends Model
         }
 
         if ($from == null) {
-            return $this->doneSessions()->whereDate('updated_at', '<=', $to)->count() * $this->getPricePerSession();
+            return $this->doneSessions()->whereDate('start', '<=', $to)->count() * $this->getPricePerSession();
         }
 
         if ($to == null) {
-            return $this->doneSessions()->whereDate('updated_at', '>=', $from)->count() * $this->getPricePerSession();
+            return $this->doneSessions()->whereDate('start', '>=', $from)->count() * $this->getPricePerSession();
         }
 
         if (strlen($to) > 10) {
-            return $this->doneSessions()->whereBetween('updated_at', [$from, $to])->count() * $this->getPricePerSession();
+            return $this->doneSessions()->whereBetween('start', [$from, $to])->count() * $this->getPricePerSession();
         } else {
-            return $this->doneSessions()->whereBetween('updated_at', [$from, $to . ':23:59:59'])->count() * $this->getPricePerSession();
+            return $this->doneSessions()->whereBetween('start', [$from, $to . ':23:59:59'])->count() * $this->getPricePerSession();
         }
 
     }
