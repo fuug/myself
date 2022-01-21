@@ -17,6 +17,7 @@ $('.col-3.scalable').hover(function () {
 }, function () {
     $('.col-3.scalable').removeClass('mini')
     $(this).removeClass('focus')
+    $('.col-3.scalable.general').addClass('focus')
 })
 
 function showModal(action) {

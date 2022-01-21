@@ -189,7 +189,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3 scalable focus">
+            <div class="col-3 scalable focus general">
                 <div class="border-outline">
                     <div class="title-card">
                         <h3>8 консультаций</h3>
@@ -649,7 +649,7 @@
         </div>
 
     </footer>
-    <script src="js/index.js"></script>
-    <script src="js/slider.js"></script>
+    <script src="{{ asset('js/index.js') }}"></script>
+    <script src="{{ asset('js/slider.js') }}"></script>
 @endsection
 
