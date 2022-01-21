@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('role')->default('customer');
             $table->string('thumbnail')->default('images/guest.png');
             $table->text('description')->nullable();
+            $table->text('gender')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
