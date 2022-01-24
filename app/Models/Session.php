@@ -13,4 +13,13 @@ class Session extends Model
 
     protected $table = 'sessions';
     protected $guarded = false;
+
+    public function subscription(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Subscription::class, 'subscription_id');
+    }
+
+    public function performer(){
+        return $this->subscription->performer();
+    }
 }
