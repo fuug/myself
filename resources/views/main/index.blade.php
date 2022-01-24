@@ -12,7 +12,7 @@
         <img class="main-banner" alt="psychotherapist" src="img/mainImage.png">
         <div class="wrapper">
             <h4 class="title">Это пространство, где есть место Вам и чувствам</h4>
-            <a class="btn" href="#">Записаться</a>
+            <a class="btn" href="{{ route('performers.list') }}">Записаться</a>
         </div>
     </section>
     <div class="content">
@@ -36,7 +36,7 @@
         <p>Так можно. Прямо сейчас. <br>
             Готовы ли Вы к своей трансформации...</p>
     </div>
-    <div class="offer">
+    <div id="advantages" class="offer">
         <h1>Мы приготовили для Вас:</h1>
         <hr/>
     </div>
@@ -147,15 +147,6 @@
                     </div>
                 </div>
             </div>
-
-            <!--        <div class="photo-area">-->
-            <!--            <img src="/img/border-rec.svg" class="firs-card" alt="">-->
-            <!--            <img src="/img/usman.png" class="second-card" alt="">-->
-            <!--            <img src="/img/kelly.png" class="third-card" alt="">-->
-            <!--            <img src="/img/nik.png" class="fourth-card" alt="">-->
-            <!--            <img src="/img/Rectangle.svg" class="fifth-card" alt="">-->
-            <!--            <img src="/img/anthony.png" class="sixth-card" alt="">-->
-            <!--        </div>-->
             <div class="photo-area">
                 <img src="/img/test/Group%2021.png" alt="">
             </div>
@@ -287,7 +278,7 @@
                 </div>
             </div>
             <div class="banner-bottom">
-                <a href="#" class="btn-primary">Подобрать своего специалиста</a>
+                <a href="{{ route('performers.list') }}" class="btn-primary">Подобрать своего специалиста</a>
             </div>
         </div>
         <div class="clear"></div>
@@ -615,6 +606,20 @@
 
 @section('footer')
 
+    <div id="modalUrgency">
+        <div class="modalContent">
+            <div class="closeModal">
+                <button type="button" class="close" onclick="$('#modalUrgency').fadeOut()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modalBody">
+                <h1>Нужна срочная консультация?</h1>
+                <a href="{{ route('performers.urgency') }}">Ближайшие свободные записи</a>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <div class="title-section">
             <h1>Остались вопросы?</h1>
@@ -633,6 +638,7 @@
             <div class="col-2 contact-form">
                 <h4>Мы с Вами свяжемся</h4>
                 <form action="">
+                    @csrf
                     <div class="input-form">
                         <input type="text" placeholder="Имя">
                     </div>
@@ -651,5 +657,11 @@
     </footer>
     <script src="{{ asset('js/index.js') }}"></script>
     <script src="{{ asset('js/slider.js') }}"></script>
+    <script>
+        setTimeout(
+            showUrgency,
+            3000
+        )
+    </script>
 @endsection
 

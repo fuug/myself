@@ -34,6 +34,7 @@
         <ul class="nav d-flex">
             <li><a href="/"><img class="logo" alt="logo" src="{{ asset('img/logo.svg')}}"></a></li>
             <li><a href="{{ route('performers.list') }}">Наши психологи</a></li>
+            <li><a href="/#advantages">Преимущества</a></li>
             @guest
                 <li><a href="{{ url('login') }}">Вход</a></li>
             @else

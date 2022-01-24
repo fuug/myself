@@ -26,3 +26,6 @@ function showModal(action) {
     $('.tab').hide()
     $('#' + action).show()
 }
+
+
+const showUrgency = () => $('#modalUrgency').fadeIn();
