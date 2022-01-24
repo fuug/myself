@@ -22,7 +22,6 @@ Route::group(['namespace' => 'Main'], function () {
 
 Route::group(['namespace' => 'User', 'prefix' => 'profile', 'middleware' => ['auth', 'verified']], function () {
     Route::get('{user}', 'IndexController')->name('user.profile.index');
-    Route::get('/{user}/calendar', 'CalendarController')->name('user.profile.calendar');
 });
 
 Route::group(['middleware' => 'guest'], function () {
