@@ -50,6 +50,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         Route::get('/', 'IndexController')->name('admin.user.index');
         Route::post('/create', 'CreateController')->name('admin.user.store');
         Route::get('/{user}', 'ShowController')->name('admin.user.show');
+        Route::post('/{user}/subscription-add', 'SubscriptionAddController')->name('admin.user.subscription.add');
         Route::patch('/edit', 'EditController')->name('admin.user.edit');
         Route::delete('/delete/{user}', 'DeleteController')->name('admin.user.delete');
         Route::delete('/delete/thumb/{user}', 'DeleteThumbController')->name('admin.user.deleteThumb');

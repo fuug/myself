@@ -103,4 +103,12 @@ class User extends Authenticatable implements MustVerifyEmail
         }
         return $sessions_arr;
     }
+
+    public function getMinimumPrice()
+    {
+        if ($this->subscriptions_performer()->get()->count() != 0) {
+            return $this->subscriptions_performer()->orderBy('price')->get('price')->first()->price;
+        }
+        return false;
+    }
 }

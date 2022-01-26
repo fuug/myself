@@ -31,7 +31,7 @@ class Subscription extends Model
 
     public function doneSessions(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->sessions()->where('status', 'done');
+        return $this->sessions()->where('end','<>', '');
     }
 
     /**
@@ -39,7 +39,8 @@ class Subscription extends Model
      *
      * @return float|int
      */
-    public function getPricePerSession() {
+    public function getPricePerSession()
+    {
         return round($this->price / count($this->sessions));
     }
 
@@ -48,11 +49,13 @@ class Subscription extends Model
      *
      * @return float|int
      */
-    public function getSumPerDoneSession() {
+    public function getSumPerDoneSession()
+    {
         return $this->getPricePerSession() * count($this->doneSessions);
     }
 
-    public function getSumPerDate($from = null, $to = null) {
+    public function getSumPerDate($from = null, $to = null)
+    {
         if ($from == null && $to == null) {
             return $this->doneSessions()->count() * $this->getPricePerSession();
         }
@@ -71,5 +74,16 @@ class Subscription extends Model
             return $this->doneSessions()->whereBetween('start', [$from, $to . ':23:59:59'])->count() * $this->getPricePerSession();
         }
 
+    }
+
+    public function getStatus(): string
+    {
+        if ($this->customer == null) {
+            return 'Не куплен';
+        }
+        if ($this->sessions()->count() === $this->doneSessions()->count()) {
+            return 'Завершён';
+        }
+        return 'Не завершён';
     }
 }

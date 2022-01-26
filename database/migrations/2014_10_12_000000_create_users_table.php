@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('thumbnail')->default('images/guest.png');
             $table->text('description')->nullable();
             $table->text('gender')->nullable();
+            $table->unsignedBigInteger('pricePerOnceSession')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

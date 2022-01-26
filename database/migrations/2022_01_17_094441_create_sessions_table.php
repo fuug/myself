@@ -16,11 +16,9 @@ class CreateSessionsTable extends Migration
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
 
-            $table->string('status')->default('wait');
             $table->string('title');
             $table->dateTime('start')->nullable();
             $table->dateTime('end')->nullable();
-
 
             $table->unsignedBigInteger('subscription_id')->nullable();
             $table->index('subscription_id', 'session_subscription_idx');

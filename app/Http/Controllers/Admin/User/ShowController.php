@@ -12,6 +12,7 @@ class ShowController extends Controller
     public function __invoke(User $user)
     {
         $categories = Category::all();
-        return view('admin.user.show', compact('user', 'categories'));
+        $subscriptions = $user->subscriptions_performer;
+        return view('admin.user.show', compact('user', 'categories', 'subscriptions'));
     }
 }
