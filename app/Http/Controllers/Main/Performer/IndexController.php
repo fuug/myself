@@ -13,7 +13,7 @@ class IndexController extends Controller
     {
         $performers = User::all()->where('role', 'performer');
         $categories = Category::all();
-        return view('main.performersList', compact('performers', 'categories'));
+        return view('main.performer.performersList', compact('performers', 'categories'));
     }
 
     public function filtered(FilterRequest $request)
@@ -37,7 +37,7 @@ class IndexController extends Controller
         if ($price != 'default') {
             $performers = $performers->where('price', $request['price']);
         }
-        return view('main.performers.list', compact('performers', 'categories', 'old_category', 'gender', 'price'));
+        return view('main.performer.performersList', compact('performers', 'categories', 'old_category', 'gender', 'price'));
     }
 
 }
