@@ -31,34 +31,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <h1 class="m-0">Абонементы</h1>
-                        <div class="card">
-                            <div class="card-body table-responsive p-0 vh-60">
-                                <table class="table table-head-fixed text-nowrap">
-                                    <thead>
-                                    <tr class="text-center col-form-label-lg">
-                                        <th>Стоимость</th>
-                                        <th>Количество сеансов</th>
-                                        <th>Статус</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($subscriptions as $subscription)
-                                        <tr class="text-center">
-                                            <td>{{ $subscription->price }}</td>
-                                            <td>{{ $subscription->session_count }}</td>
-                                            <td>{{ $subscription->getStatus() }}</td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary" data-toggle="modal"
-                                data-target="#modal-add">Добавить абонемент
-                        </button>
-                    </div>
+                    @if($user->role == 'performer')
+                        @include('admin.user.includes.subscriptionList')
+                    @endif
                 </div>
             </div>
         </div>
@@ -67,75 +42,13 @@
                 <div class="row mt-3">
                     <div class="col-12">
                         <div class="card card-primary">
-                            <form method="POST" action="{{ route('admin.user.edit') }}" enctype="multipart/form-data">
-                                @csrf
-                                @method('PATCH')
-                                <div class="card-body">
-                                    <input name="user_id" type="hidden" value="{{ $user->id }}">
-                                    <div class="form-group">
-                                        <label for="email">Email пользователя</label>
-                                        <input type="email" class="form-control" id="email"
-                                               placeholder="Email" name="email" autocomplete="false"
-                                               value="{{ $user->email }}">
-                                        @error('email')
-                                        <div class="text-danger">Это поле обязательно для заполнения</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="name">Имя пользователя</label>
-                                        <input type="text" class="form-control" id="name"
-                                               placeholder="" name="name" autocomplete="false"
-                                               value="{{ $user->name }}">
-                                        @error('name')
-                                        <div class="text-danger">Это поле обязательно для заполнения</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="user_role">Роль пользователя</label>
-                                        <select name="user_role" id="user_role"
-                                                class="select2 select2-hidden-accessible" style="width: 100%;"
-                                                data-select2-id="1" tabindex="-1" aria-hidden="true">
-                                            <option selected="selected" value="{{ $user->role }}"
-                                                    disabled>{{ $user->role_rus }}</option>
-                                            <option value="admin">Администратор</option>
-                                            <option value="moderator">Модератор</option>
-                                            <option value="performer">Специалист</option>
-                                            <option value="customer">Клиент</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="summernote">Описание пользователя</label>
-                                        <textarea name="description" id="summernote">{{ $user->description }}</textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="category_id">Выберите категории</label>
-                                        <select id="category_id" name="category_ids[]"
-                                                class="select2 select2-hidden-accessible" multiple=""
-                                                data-placeholder="Выберите категории" style="width: 100%;"
-                                                data-select2-id="1000" tabindex="-1" aria-hidden="true">
-                                            @foreach($categories as $category)
-                                                <option
-                                                    {{ is_array($user->categories->pluck('id')->toArray() ) && in_array($category->id, $user->categories->pluck('id')->toArray() ) ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->title }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="thumbnail">Выберите изображение</label>
-                                        <div class="input-group">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="thumbnail"
-                                                       name="thumbnail">
-                                                <label class="custom-file-label" for="thumbnail">Выберите
-                                                    изображение</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Сохранить</button>
-                                </div>
-                            </form>
-
+                            @if($user->role == 'performer')
+                                @include('admin.user.includes.editFormPerformer')
+                            @elseif($user->role == 'customer')
+                                @include('admin.user.includes.editFormCustomer')
+                            @else
+                                @include('admin.user.includes.editFormAdmin')
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -157,7 +70,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Добавить пользователя</h4>
+                    <h4 class="modal-title">Добавить абонемент</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
