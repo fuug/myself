@@ -19,11 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('role')->default('customer');
-            $table->string('thumbnail')->default('images/guest.png');
-            $table->text('description')->nullable();
-            $table->text('gender')->nullable();
-            $table->unsignedBigInteger('pricePerOnceSession')->nullable();
+            $table->string('thumbnail')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnThumbnailToUsersTable extends Migration
+class AddRoleFkToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,9 @@ class AddColumnThumbnailToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('thumbnail')->nullable();
+            $table->unsignedBigInteger('role_id')->default(0);
+            $table->index('role_id', 'role_idx');
+            $table->foreign('role_id', 'role_fk')->on('roles')->references('id');
         });
     }
 
@@ -26,7 +28,7 @@ class AddColumnThumbnailToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('thumbnail');
+            $table->dropColumn('role_id');
         });
     }
 }
