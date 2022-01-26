@@ -58,7 +58,7 @@
                     </div>
                     <div class="item-description">
                         <p>{!! $performer->description !!}</p>
-                        <a href="#">
+                        <a href="{{ route('performer.about',$performer->id) }}">
                             <div class="more-description">
                                 Подробнее
                                 <div class="gradient-primary"><i class="arrow"></i></div>
@@ -68,11 +68,15 @@
                     <div class="item-price">
                         <div class="d-flex">
                             <span>1 консультация</span>
-                            <span>50$</span>
+                            <span>{{ $performer->pricePerOnceSession }}$</span>
                         </div>
                         <div class="d-flex">
-                            <span>Абонемент</span>
-                            <span>от 250$</span>
+                            @if($performer->getMinimumPrice())
+                                <span>Абонемент</span>
+                                <span>от {{ $performer->getMinimumPrice() }}$</span>
+                            @else
+                                <span>Нет свободных абонементов</span>
+                            @endif
                         </div>
                     </div>
                     <a href="#" class="btn-primary">Записаться</a>

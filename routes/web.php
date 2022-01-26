@@ -16,8 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Main'], function () {
     Route::get('/', 'IndexController');
-    Route::get('/performers', 'IndexController@performersList')->name('performers.list');
-    Route::post('/performers', 'IndexController@performersListFilters')->name('performers.list.filters');
+    Route::group(['namespace' => 'Performer', 'prefix' => 'performers'], function () {
+        Route::get('/', 'IndexController')->name('performers.list');
+        Route::post('/', 'IndexController@filtered')->name('performers.list.filters');
+        Route::get('/urgency', 'UrgencyController')->name('performers.urgency');
+        Route::get('/{performer}', 'ShowController')->name('performer.about');
+    });
 });
 
 Route::group(['namespace' => 'User', 'prefix' => 'profile', 'middleware' => ['auth', 'verified']], function () {
