@@ -8,7 +8,6 @@
 @endsection
 
 @section('content')
-
     <div class="main">
         <div class="psych-info d-flex">
             <div class="psych-thumb">

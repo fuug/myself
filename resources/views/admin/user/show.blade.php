@@ -14,10 +14,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-6">
-                        <div class="col-6">
-                            <h1 class="m-0">{{ $user->name }} | {{ $user->email }}</h1>
-                        </div>
-
+                        <h1 class="m-0">{{ $user->name }} | {{ $user->email }}</h1>
                         <div class="row mb-2">
                             <div class="w-50">
                                 <img src="{{ url( 'storage/' . $user->thumbnail) }}" class="img-thumbnail"
@@ -31,7 +28,7 @@
                             </div>
                         </div>
                     </div>
-                    @if($user->role == 'performer')
+                    @if($user->role->title == 'performer')
                         @include('admin.user.includes.subscriptionList')
                     @endif
                 </div>
@@ -42,9 +39,9 @@
                 <div class="row mt-3">
                     <div class="col-12">
                         <div class="card card-primary">
-                            @if($user->role == 'performer')
+                            @if($user->role->title == 'performer')
                                 @include('admin.user.includes.editFormPerformer')
-                            @elseif($user->role == 'customer')
+                            @elseif($user->role->title == 'customer')
                                 @include('admin.user.includes.editFormCustomer')
                             @else
                                 @include('admin.user.includes.editFormAdmin')

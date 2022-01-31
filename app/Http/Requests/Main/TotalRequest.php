@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\User;
+namespace App\Http\Requests\Main;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditRequest extends FormRequest
+class TotalRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,9 @@ class EditRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|string',
-            'email' => 'required|string',
-            'role_id' => 'nullable|string',
-            'thumbnail' => 'nullable|file',
-            'name' => 'required|string',
-            'description' => 'nullable|string',
-            'category_ids' => 'nullable|array',
+            'performer_id' => 'string',
+            'session_id' => 'string',
+            'price' => 'string'
         ];
     }
 }

@@ -21,6 +21,8 @@ Route::group(['namespace' => 'Main'], function () {
         Route::post('/', 'IndexController@filtered')->name('performers.list.filters');
         Route::get('/urgency', 'UrgencyController')->name('performers.urgency');
         Route::get('/{performer}', 'ShowController')->name('performer.about');
+        Route::get('/{currentPerformer}/checkout', 'CheckoutController')->name('performer.checkout');
+        Route::get('/{currentPerformer}/checkout/payment', 'CheckoutController@payment')->name('performer.checkout.payment');
     });
 });
 
@@ -52,6 +54,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         Route::get('/{user}', 'ShowController')->name('admin.user.show');
         Route::post('/{user}/subscription-add', 'SubscriptionAddController')->name('admin.user.subscription.add');
         Route::patch('/edit', 'EditController')->name('admin.user.edit');
+        Route::patch('/edit', 'EditController@performerEdit')->name('admin.performer.edit');
         Route::delete('/delete/{user}', 'DeleteController')->name('admin.user.delete');
         Route::delete('/delete/thumb/{user}', 'DeleteThumbController')->name('admin.user.deleteThumb');
     });

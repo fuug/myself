@@ -1,42 +1,43 @@
-<form method="POST" action="{{ route('admin.user.edit') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('admin.performer.edit') }}" enctype="multipart/form-data">
     @csrf
     @method('PATCH')
     <div class="card-body">
         <input name="user_id" type="hidden" value="{{ $user->id }}">
-        <div class="form-group">
-            <label for="email">Email пользователя</label>
-            <input type="email" class="form-control" id="email"
-                   placeholder="Email" name="email" autocomplete="false"
-                   value="{{ $user->email }}">
-            @error('email')
+        <div class="row">
+            <div class="form-group col-6">
+                <label for="email">Email пользователя</label>
+                <input type="email" class="form-control" id="email"
+                       placeholder="Email" name="email" autocomplete="false"
+                       value="{{ $user->email }}">
+                @error('email')
                 <div class="text-danger">Это поле обязательно для заполнения</div>
-            @enderror
-        </div>
-        <div class="form-group">
-            <label for="name">Имя пользователя</label>
-            <input type="text" class="form-control" id="name"
-                   placeholder="" name="name" autocomplete="false"
-                   value="{{ $user->name }}">
-            @error('name')
+                @enderror
+            </div>
+            <div class="form-group col-6">
+                <label for="name">Имя пользователя</label>
+                <input type="text" class="form-control" id="name"
+                       placeholder="" name="name" autocomplete="false"
+                       value="{{ $user->name }}">
+                @error('name')
                 <div class="text-danger">Это поле обязательно для заполнения</div>
-            @enderror
+                @enderror
+            </div>
         </div>
         <div class="form-group">
             <label for="user_role">Роль пользователя</label>
-            <select name="user_role" id="user_role"
+            <select name="role_id" id="role_id"
                     class="select2 select2-hidden-accessible" style="width: 100%;"
                     data-select2-id="1" tabindex="-1" aria-hidden="true">
-                <option selected="selected" value="{{ $user->role }}"
-                        disabled>{{ $user->role_rus }}</option>
-                <option value="admin">Администратор</option>
-                <option value="moderator">Модератор</option>
-                <option value="performer">Специалист</option>
-                <option value="customer">Клиент</option>
+                @foreach(\App\Models\Role::all() as $role)
+                    <option
+                        {{ $user->role->id == $role->id ? 'selected' : '' }} value="{{ $role->id }}">{{ $role->name }}</option>
+                @endforeach
             </select>
         </div>
+        <hr>
         <div class="form-group">
             <label for="summernote">Описание пользователя</label>
-            <textarea name="description" id="summernote">{{ $user->description }}</textarea>
+            <textarea name="description" id="summernote">{{ $user->performerDescription->about }}</textarea>
         </div>
         <div class="form-group">
             <label for="category_id">Выберите категории</label>
@@ -51,19 +52,29 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="experience">Опыт работы</label>
-            <input type="number" class="form-control" id="experience" placeholder=""
-                   name="experience" autocomplete="false" value="{{ $user->experience }}">
-        </div>
-        <div class="form-group">
-            <label for="highestCategory">Имеет высшую категорию</label>
-            <input type="checkbox" class="form-control" id="highestCategory" placeholder=""
-                   name="highestCategory" autocomplete="false" value="{{ $user->highestCategory }}">
+            <div class="row">
+                <div class="col-4">
+                    <label for="experience">Опыт работы</label>
+                    <input type="number" class="form-control" id="experience" placeholder=""
+                           name="experience" autocomplete="false" value="{{ $user->performerDescription->experience }}">
+                </div>
+                <div class="col-4">
+                    <label for="pricePerOnceSession">Стоимость одного приёма</label>
+                    <input type="number" class="form-control" id="pricePerOnceSession" placeholder=""
+                           name="pricePerOnceSession" autocomplete="false"
+                           value="{{ $user->performerDescription->pricePerOnceSession }}">
+                </div>
+                <div class="col-4">
+                    <label for="highestCategory">Имеет высшую категорию</label>
+                    <input type="checkbox" class="form-control" id="highestCategory" placeholder=""
+                           name="highestCategory" autocomplete="false" {{ $user->performerDescription->hasHighestCategory ? 'checked' : '' }}>
+                </div>
+            </div>
         </div>
         <div class="form-group">
             <label for="activities">Основные направления деятельности:</label>
             <input type="text" class="form-control" id="activities" placeholder=""
-                   name="activities" autocomplete="false" value="{{ $user->activities }}">
+                   name="activities" autocomplete="false" value="{{ $user->performerDescription->activities }}">
         </div>
 
         <div class="form-group">

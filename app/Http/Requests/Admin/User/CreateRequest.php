@@ -26,7 +26,7 @@ class CreateRequest extends FormRequest
         return [
             'username' => 'string',
             'email' => 'required|string|unique:users',
-            'user_role' => 'required|string',
+            'role_id' => 'required|string',
         ];
     }
 }

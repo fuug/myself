@@ -9,6 +9,6 @@ class PerformerDescription extends Model
 {
     use HasFactory;
 
-    protected $table = 'performerDescription';
+    protected $table = 'performer_descriptions';
     protected $guarded = false;
 }

@@ -5,38 +5,29 @@ namespace App\Http\Controllers\Main\Performer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Main\FilterRequest;
 use App\Models\Category;
+use App\Models\Role;
 use App\Models\User;
+use App\Service\PerformersFilterService;
 
 class IndexController extends Controller
 {
     public function __invoke()
     {
-        $performers = User::all()->where('role', 'performer');
+        $performers = Role::all()->where('title', 'performer')->first()->users;
         $categories = Category::all();
         return view('main.performer.performersList', compact('performers', 'categories'));
     }
 
     public function filtered(FilterRequest $request)
     {
-        $performers = User::all()->where('role', 'performer');
         $categories = Category::all();
+
         $old_category = $request['category'];
         $gender = $request['gender'];
         $price = $request['price'];
 
-        if ($old_category != 'default') {
-            foreach ($performers as $key => $performer) {
-                if (!$performer->hasCategory($request['category'])) {
-                    unset($performers[$key]);
-                }
-            }
-        }
-        if ($gender != 'default') {
-            $performers = $performers->where('gender', $request['gender']);
-        }
-        if ($price != 'default') {
-            $performers = $performers->where('price', $request['price']);
-        }
+        $performers = PerformersFilterService::getPerformers($request);
+
         return view('main.performer.performersList', compact('performers', 'categories', 'old_category', 'gender', 'price'));
     }
 

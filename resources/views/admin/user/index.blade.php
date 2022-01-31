@@ -61,7 +61,7 @@
                                             <tr class="text-center">
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
-                                                <td>{{ $user->role_rus }}</td>
+                                                <td>{{ $user->role->name }}</td>
                                                 <td>
                                                     <a href="{{ route('admin.user.show', $user->id) }}"><i class="fas fa-eye"></i></a>
                                                     <a class="blue ml-2 pointer show-modal" data-user_id="{{ $user->id }}" data-toggle="modal" data-target="#modal-rename-cat"><i class="fas fa-pencil-alt"></i></a>
@@ -108,13 +108,12 @@
                                    placeholder="Email пользователя" required>
                         </div>
                         <div class="form-group">
-                            <label for="user_role">Роль пользователя</label>
-                            <select name="user_role" id="user_role" class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <label for="role_id">Роль пользователя</label>
+                            <select name="role_id" id="role_id" class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
                                 <option selected="selected" disabled>Роль пользователя</option>
-                                <option data-select2-id="11" value="admin">Администратор</option>
-                                <option data-select2-id="12" value="moderator">Модератор</option>
-                                <option data-select2-id="14" value="performer">Специалист</option>
-                                <option data-select2-id="15" value="customer">Клиент</option>
+                                @foreach(\App\Models\Role::all() as $role)
+                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="pt-4 d-flex justify-content-end">

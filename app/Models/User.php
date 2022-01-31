@@ -22,10 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
-        'role',
-        'role_rus',
-        'description',
-        'gender',
+        'role_id',
         'thumbnail',
     ];
 
@@ -53,6 +50,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Category::class, 'category_users', 'user_id', 'category_id');
     }
 
+    public function performerDescription(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(PerformerDescription::class, 'user_id');
+    }
+
     public function role(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Role::class);
@@ -63,6 +65,27 @@ class User extends Authenticatable implements MustVerifyEmail
         if ($this->categories()->count() < 1)
             return false;
         if ($this->categories()->where('category_id', $category_id)->count() < 1)
+            return false;
+        return true;
+    }
+
+    public function hasGender($gender = null): bool
+    {
+        if ($this->performerDescription->count() < 1)
+            return false;
+        if ($this->performerDescription->gender != $gender)
+            return false;
+        return true;
+    }
+
+    public function hasPrice($price = null): bool
+    {
+        if ($this->performerDescription->count() < 1)
+            return false;
+        switch ($price) {
+            case '50':
+        }
+        if ($this->performerDescription->price != $price)
             return false;
         return true;
     }

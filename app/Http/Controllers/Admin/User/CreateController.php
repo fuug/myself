@@ -21,32 +21,12 @@ class CreateController extends Controller
         $user = User::create([
             'name' => $data['username'],
             'email' => $data['email'],
-            'role' => $data['user_role'],
             'thumbnail' => 'images/guest.png',
-            'role_rus' => $this->getRoleName($data['user_role']),
             'password' => Hash::make($password),
+            'role_id' => $data['role_id']
         ]);
         Mail::to($data['email'])->send(new PasswordMail($password));
         event(new Registered($user));
         return redirect()->route('admin.user.index');
-    }
-
-    private function getRoleName($user_role): string
-    {
-        switch ($user_role) {
-            case 'admin':
-                $role = 'Администратор';
-                break;
-            case 'moderator':
-                $role = 'Модератор';
-                break;
-            case 'performer':
-                $role = 'Исполнитель';
-                break;
-            default:
-                $role = 'Заказчик';
-                break;
-        }
-        return $role;
     }
 }

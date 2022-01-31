@@ -25,7 +25,7 @@ class FilterRequest extends FormRequest
     {
         return [
             'category' => 'nullable|string',
-            'price' => 'nullable|string',
+            'price' => 'nullable',
             'gender' => 'nullable|string'
         ];
     }

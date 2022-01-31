@@ -22,16 +22,13 @@
             @enderror
         </div>
         <div class="form-group">
-            <label for="user_role">Роль пользователя</label>
-            <select name="user_role" id="user_role"
+            <label for="role_id">Роль пользователя</label>
+            <select name="role_id" id="role_id"
                     class="select2 select2-hidden-accessible" style="width: 100%;"
                     data-select2-id="1" tabindex="-1" aria-hidden="true">
-                <option selected="selected" value="{{ $user->role }}"
-                        disabled>{{ $user->role_rus }}</option>
-                <option value="admin">Администратор</option>
-                <option value="moderator">Модератор</option>
-                <option value="performer">Специалист</option>
-                <option value="customer">Клиент</option>
+                @foreach(\App\Models\Role::all() as $role)
+                    <option {{ $user->role->id == $role->id ? 'selected' : '' }} value="{{ $role->id }}">{{ $role->name }}</option>
+                @endforeach
             </select>
         </div>
         <div class="form-group">

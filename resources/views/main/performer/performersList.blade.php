@@ -26,12 +26,12 @@
                     </select>
                 </div>
                 <select name="price" id="price">
-                    <option selected value="default">Стоимость</option>
-                    <option value="50">до 50$</option>
-                    <option value="50-100">от 50$ до 100$</option>
-                    <option value="100-150">от 100$ до 150$</option>
-                    <option value="150-200">от 150$ до 200$</option>
-                    <option value="200">от 200$</option>
+                    <option {{ isset($price) && $price == 'default' ? 'selected' : '' }} value="default">Стоимость</option>
+                    <option {{ isset($price) && $price == ',50' ? 'selected' : '' }} value=",50">до 50$</option>
+                    <option {{ isset($price) && $price == '50,100' ? 'selected' : '' }} value="50,100">от 50$ до 100$</option>
+                    <option {{ isset($price) && $price == '100,150' ? 'selected' : '' }} value="100,150">от 100$ до 150$</option>
+                    <option {{ isset($price) && $price == '150,200' ? 'selected' : '' }} value="150,200">от 150$ до 200$</option>
+                    <option {{ isset($price) && $price == '200,' ? 'selected' : '' }} value="200,">от 200$</option>
                 </select>
                 <select name="gender" id="gender">
                     <option {{ isset($gender) && $gender == 'default' ? 'selected' : '' }} value="default">Пол психолога</option>
@@ -57,7 +57,7 @@
                         </h4>
                     </div>
                     <div class="item-description">
-                        <p>{!! $performer->description !!}</p>
+                        <p>{{ $performer->description }}</p>
                         <a href="{{ route('performer.about',$performer->id) }}">
                             <div class="more-description">
                                 Подробнее
@@ -79,7 +79,7 @@
                             @endif
                         </div>
                     </div>
-                    <a href="#" class="btn-primary">Записаться</a>
+                    <a href="{{ route('performer.checkout', $performer->id) }}" class="btn-primary">Записаться</a>
                 </div>
             @endforeach
         </div>
