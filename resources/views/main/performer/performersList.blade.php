@@ -68,7 +68,7 @@
                     <div class="item-price">
                         <div class="d-flex">
                             <span>1 консультация</span>
-                            <span>{{ $performer->pricePerOnceSession }}$</span>
+                            <span>{{ $performer->performerDescription->pricePerOnceSession }}$</span>
                         </div>
                         <div class="d-flex">
                             @if($performer->getMinimumPrice())
