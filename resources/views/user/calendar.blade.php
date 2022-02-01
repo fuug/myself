@@ -11,13 +11,24 @@
                 right: 'next'
             },
             events: [
-                @foreach ($user->getCustomerEvents() as $events)
+
+                @foreach ($user->getUserEvents() as $event)
                 {
-                    title: '{{ $events->title }}',
-                    start: '{{ $events->start }}'
+                    id: '{{ $event['id'] }}',
+                    title: '{{ $event['customer_id'] ? \App\Models\User::all()->where('id', $event['customer_id'])->first()->name : 'Свободное место' }}',
+                    start: '{{ $event['start'] }}',
+                    end: '{{ $event['end'] }}'
                 },
                 @endforeach
-            ]
+            ],
+            eventClick: function(info) {
+                $('#changeEventModal').fadeIn();
+                $('#eventId').val(info.event.id)
+            },
+            dateClick: function(info) {
+                $('#addEventModal').fadeIn();
+                $('#date').val(info.dateStr)
+            }
         });
 
         calendar.render();

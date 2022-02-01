@@ -75,6 +75,54 @@
           class="d-none">
         @csrf
     </form>
+
+
+    <div id="addEventModal" class="modal">
+        <div class="modalContent">
+            <div class="closeModal">
+                <button type="button" class="close" onclick="$('#addEventModal').fadeOut()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modalBody">
+                <h1>Укажите время</h1>
+                <form action="{{ route('user.profile.addEvent', $user->id) }}" method="POST">
+                    @csrf
+                    <div class="d-flex">
+                        <div class="col-2">
+                            <label for="start">Время начала</label>
+                            <input type="time" name="start" id="start">
+                        </div>
+                        <div class="col-2">
+                            <label for="end">Время окончания</label>
+                            <input type="time" name="end" id="end">
+                        </div>
+                    </div>
+                    <input type="hidden" id="date" name="date">
+                    <button class="btn btn-primary" type="submit">Создать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="changeEventModal" class="modal">
+        <div class="modalContent">
+            <div class="closeModal">
+                <button type="button" class="close" onclick="$('#addEventModal').fadeOut()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modalBody">
+                <h1>Удалить запись?</h1>
+                <form action="{{ route('user.profile.deleteEvent', $user->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" id="eventId" name="eventId">
+                    <button class="btn btn-primary" type="submit">Удалить</button>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @include('user.calendar')

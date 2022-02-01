@@ -28,6 +28,8 @@ Route::group(['namespace' => 'Main'], function () {
 
 Route::group(['namespace' => 'User', 'prefix' => 'profile', 'middleware' => ['auth', 'verified']], function () {
     Route::get('{user}', 'IndexController')->name('user.profile.index');
+    Route::post('{user}/event', 'IndexController@storeEvent')->name('user.profile.addEvent');
+    Route::delete('{user}/event/delete', 'IndexController@deleteEvent')->name('user.profile.deleteEvent');
 });
 
 Route::group(['middleware' => 'guest'], function () {

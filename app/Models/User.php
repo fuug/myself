@@ -109,25 +109,20 @@ class User extends Authenticatable implements MustVerifyEmail
         return $sum;
     }
 
-    public function getPerformerEvents(): array
+    public function performerEvents()
     {
-        $sessions_arr = array();
-        foreach ($this->subscriptions_performer as $item) {
-            foreach ($item->sessions->all() as $session) {
-                $sessions_arr[] = $session;
-            }
-        }
-        return $sessions_arr;
+        return $this->hasMany(Event::class, 'performer_id');
     }
 
-    public function getCustomerEvents(): array
+    public function customerEvents()
     {
-        $sessions_arr = array();
-        foreach ($this->subscriptions_customer as $item) {
-            foreach ($item->sessions->all() as $session) {
-                $sessions_arr[] = $session;
-            }
-        }
+        return $this->hasMany(Event::class, 'customer_id');
+    }
+
+    public function getUserEvents()
+    {
+        $sessions_arr = $this->performerEvents->toArray();
+        $sessions_arr += $this->customerEvents->toArray();
         return $sessions_arr;
     }
 
