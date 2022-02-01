@@ -30,6 +30,8 @@ class PerformerEditRequest extends FormRequest
             'role_id' => 'nullable|string',
             'description' => 'nullable|string',
             'category_ids' => 'nullable|array',
+            'gender' => 'nullable|string',
+            'pricePerOnceSession' => 'nullable|int',
             'highestCategory' => 'nullable|string',
             'activities' => 'nullable|string',
             'experience' => 'nullable|string',

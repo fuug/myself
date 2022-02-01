@@ -53,22 +53,37 @@
         </div>
         <div class="form-group">
             <div class="row">
-                <div class="col-4">
+                <div class="col-3">
                     <label for="experience">Опыт работы</label>
                     <input type="number" class="form-control" id="experience" placeholder=""
                            name="experience" autocomplete="false" value="{{ $user->performerDescription->experience }}">
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                     <label for="pricePerOnceSession">Стоимость одного приёма</label>
                     <input type="number" class="form-control" id="pricePerOnceSession" placeholder=""
                            name="pricePerOnceSession" autocomplete="false"
                            value="{{ $user->performerDescription->pricePerOnceSession }}">
                 </div>
-                <div class="col-4">
+                <div class="col-3">
+                    <label for="gender">Пол пользователя</label>
+                    <select name="gender" id="gender" class="select2 select2-hidden-accessible" style="width: 100%;"
+                            data-select2-id="2"
+                            tabindex="-1" aria-hidden="true">
+                        <option {{ $user->performerDescription->gender == 'male' ? 'selected' : '' }} value="male">
+                            Мужчина
+                        </option>
+                        <option {{ $user->performerDescription->gender == 'female' ? 'selected' : '' }} value="female">
+                            Женщина
+                        </option>
+                    </select>
+                </div>
+                <div class="col-3">
                     <label for="highestCategory">Имеет высшую категорию</label>
                     <input type="checkbox" class="form-control" id="highestCategory" placeholder=""
-                           name="highestCategory" autocomplete="false" {{ $user->performerDescription->hasHighestCategory ? 'checked' : '' }}>
+                           name="highestCategory"
+                           autocomplete="false" {{ $user->performerDescription->hasHighestCategory ? 'checked' : '' }}>
                 </div>
+
             </div>
         </div>
         <div class="form-group">
