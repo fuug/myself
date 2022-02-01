@@ -31,8 +31,15 @@ Route::group(['namespace' => 'User', 'prefix' => 'profile', 'middleware' => ['au
 });
 
 Route::group(['middleware' => 'guest'], function () {
-    Route::get('facebook/auth', 'SocialController@index')->name('fb.auth');
-    Route::get('facebook/auth/callback', 'SocialController@callback');
+    Route::group(['namespace' => 'Facebook', 'prefix' => 'facebook'], function () {
+        Route::get('/auth', 'SocialController@index')->name('fb.auth');
+        Route::get('/auth/callback', 'SocialController@callback');
+    });
+
+    Route::group(['namespace' => 'Telegram', 'prefix' => 'telegram'], function () {
+        Route::get('/auth', 'SocialController@index')->name('tg.auth');
+        Route::get('/auth/callback', 'SocialController@callback');
+    });
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin', 'verified']], function () {
@@ -67,4 +74,4 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
 });
 
 
-Auth::routes(['verify'=>true]);
+Auth::routes(['verify' => true]);

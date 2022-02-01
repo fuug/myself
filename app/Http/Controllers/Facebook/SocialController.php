@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Facebook;
 
-use App\Models\User;
+use App\Http\Controllers\Controller;
 use App\Service\SocialService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialController extends Controller

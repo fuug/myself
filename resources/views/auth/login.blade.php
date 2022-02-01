@@ -80,7 +80,7 @@
                             <ul class="d-flex list-style-none">
                                 <li><a href="{{ route('fb.auth') }}" target="_blank"><i
                                             class="icon-facebook"></i></a></li>
-                                <li><a href="{{ route('fb.auth') }}" target="_blank"><i
+                                <li><a href="{{ route('tg.auth') }}" target="_blank"><i
                                             class="icon-telegram"></i></a></li>
                             </ul>
                         </div>
