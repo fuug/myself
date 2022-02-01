@@ -4,7 +4,7 @@ namespace App\Http\Requests\Main;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TotalRequest extends FormRequest
+class PaymentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,8 @@ class TotalRequest extends FormRequest
     {
         return [
             'performer_id' => 'string',
-            'session_id' => 'string',
-            'price' => 'string'
+            'subscription_id' => 'string',
+            'hiddenSum' => 'string'
         ];
     }
 }

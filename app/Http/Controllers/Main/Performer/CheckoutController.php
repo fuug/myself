@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Main\Performer;
 
-use App\Http\Requests\Main\TotalRequest;
+use App\Http\Requests\Main\PaymentRequest;
 use App\Models\Role;
 use App\Models\User;
 
@@ -17,14 +17,10 @@ class CheckoutController
         return view('user.checkout', compact('performers' ,'currentPerformer', 'subscriptions', 'pricePerOne'));
     }
 
-    public function getTotalPrice(TotalRequest $request) {
-        $performer = User::all()->where('id', $request->performer_id)->first();
-        // performer_id
-        // session_id
-        // price
-        return $performer->name;
-    }
-    public function payment (){
-        return view('user.payment');
+    public function payment (PaymentRequest $request){
+        $performer_id = $request->performer_id;
+        $subscription_id = $request->subscription_id;
+        $sum = $request->hiddenSum;
+        return view('user.payment', compact('performer_id', 'subscription_id', 'sum'));
     }
 }

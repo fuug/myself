@@ -38,16 +38,6 @@ class EditController extends Controller
     {
 
         $data = $request->validated();
-//user_id
-//email
-//name
-//role_id
-//description
-//category_ids
-//experience
-//highestCategory
-//activities
-//thumbnail
         $user = User::where('id', $data['user_id'])->first();
         $description = $user->performerDescription;
         if ($description != null) {

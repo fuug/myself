@@ -68,8 +68,7 @@
 
             </div>
             <div class="end">
-                <span>Пополнение счёта: <b>9562 9562 9562</b></span>
-                <span>Итого: <b>200$</b></span>
+                <span>Итого: <b>{{ $sum }}$</b></span>
                 <button class="btn-primary">Оплатить</button>
             </div>
 

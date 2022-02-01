@@ -8,12 +8,10 @@
 @section('footer')
     <script>
         $('#countSession').change(function () {
-            const totalOutput = $('#totalSum');
-            const session_count = $('#countSession option:selected').data('count');
-            const price = $('#price').val().slice(0, -1);
-            const totalPrice = session_count * price;
-            totalOutput.text(totalPrice + '$')
+            const totalPrice = $('#countSession option:selected').val() == 0 ? $('#price').val().slice(0, -1) : $('#countSession option:selected').data('price')
+            $('#totalSum').text(totalPrice + '$')
             $('#hiddenSum').val(totalPrice)
+            $('#subscription_id').val($('#countSession option:selected').val())
         })
     </script>
 @endsection
@@ -36,7 +34,7 @@
                     <option value="default" selected disabled>Количество консультаций</option>
                     <option value="0" data-count="1">Одна консультация</option>
                     @foreach($subscriptions as $subscription)
-                        <option value="{{ $subscription->id }}" data-count="{{ $subscription->session_count }}">
+                        <option value="{{ $subscription->id }}" data-price="{{ $subscription->price }}" data-count="{{ $subscription->session_count }}">
                             Абонемент {{ $subscription->session_count }} консультаций
                         </option>
                     @endforeach
@@ -52,7 +50,9 @@
             <span>Итого: <b id="totalSum">0$</b> </span>
             <form action="{{ route('performer.checkout.payment', $currentPerformer->id) }}" method="GET">
                 @csrf
-                <input type="hidden" id="hiddenSum" value="">
+                <input type="hidden" name="performer_id" id="performer_id" value="{{ $currentPerformer->id }}">
+                <input type="hidden" name="subscription_id" id="subscription_id" value="">
+                <input type="hidden" name="hiddenSum" id="hiddenSum" value="">
                 <button class="btn-primary">Оплатить</button>
             </form>
         </div>
