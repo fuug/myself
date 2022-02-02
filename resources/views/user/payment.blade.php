@@ -69,7 +69,7 @@
             </div>
             <div class="end">
                 <span>Итого: <b>{{ $sum }}$</b></span>
-                <button class="btn-primary">Оплатить</button>
+                <a href="{{ route('performer.checkout.done', [auth()->user(), $subscription_id]) }}" class="btn btn-primary">Оплатить</a>
             </div>
 
         </div>

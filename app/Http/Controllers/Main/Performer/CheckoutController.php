@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Main\Performer;
 
 use App\Http\Requests\Main\PaymentRequest;
 use App\Models\Role;
+use App\Models\Subscription;
 use App\Models\User;
 
 class CheckoutController
@@ -22,5 +23,11 @@ class CheckoutController
         $subscription_id = $request->subscription_id;
         $sum = $request->hiddenSum;
         return view('user.payment', compact('performer_id', 'subscription_id', 'sum'));
+    }
+
+    public function done (User $customer, Subscription $subscription){
+        $subscription->update([
+            'customer_id' => $customer->id
+        ]);
     }
 }
