@@ -2,16 +2,24 @@
 @section('title', 'Личный кабинет')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('sass/user_account.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('sass/user_account.css') }}" xmlns="">
     <link rel="stylesheet" href="{{ asset('plugins/fullcalendar/main.css') }}">
     <link rel="stylesheet" href="{{ asset('sass/calendar.css') }}">
 @endsection
 
 @section('footer')
+    <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
+    <script>
+        $(function () {
+            $('#timeZoneSelect').select2()
+        });
+    </script>
     <script src="{{ asset('js/calendar.js') }}"></script>
 
     <script src="{{ asset('plugins/fullcalendar/main.js') }}"></script>
     <script src="{{ asset('plugins/fullcalendar/locales/ru.js') }}"></script>
+
 @endsection
 
 
@@ -55,7 +63,7 @@
             </div>
             <div class="modalBody">
                 <h1>Укажите время</h1>
-                <form action="{{ route('user.profile.addEvent', $user->id) }}" method="POST">
+                <form action="{{ route('user.profile.addSession', $user->id) }}" method="POST">
                     @csrf
                     <div class="d-flex">
                         <div class="col-2">
@@ -83,7 +91,7 @@
             </div>
             <div class="modalBody">
                 <h1>Удалить запись?</h1>
-                <form action="{{ route('user.profile.deleteEvent', $user->id) }}" method="POST">
+                <form action="{{ route('user.profile.deleteSession', $user->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <input type="hidden" id="eventId" name="eventId">
@@ -92,6 +100,29 @@
             </div>
         </div>
     </div>
+
+    <div id="timeZone" class="modal">
+        <div class="modalContent">
+            <div class="closeModal">
+                <button type="button" class="close" onclick="$('#timeZone').fadeOut()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modalBody">
+                <div class="form-select">
+                    <label for="timeZoneSelect">Ваш часовой пояс</label>
+                    <select name="timeZoneSelect" id="timeZoneSelect" style="width:100%;" class="select2 select2-hidden-accessible"
+                            data-select2-id="1"
+                            tabindex="-1" aria-hidden="true">
+                        @foreach($timeZoneList as $timeZone => $timezone_gmt_diff)
+                            <option value="{{ $timeZone }}">{{ $timezone_gmt_diff }} </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @include('user.calendar')
 @endsection
 
-@include('user.calendar')

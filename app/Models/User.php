@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -100,7 +101,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Subscription::class, 'customer_id');
     }
 
-    public function getSumPer($from = null, $to = null)
+    public function getSumPer($from = null, $to = null): int
     {
         $sum = 0;
         foreach ($this->subscriptions_performer as $subscription) {
@@ -109,20 +110,25 @@ class User extends Authenticatable implements MustVerifyEmail
         return $sum;
     }
 
-    public function performerEvents()
+    public function performerSessions(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Event::class, 'performer_id');
+        return $this->hasMany(Session::class, 'performer_id');
     }
 
-    public function customerEvents()
+    public function customerSessions(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Event::class, 'customer_id');
+        return $this->hasMany(Session::class, 'customer_id');
     }
 
-    public function getUserEvents()
+    public function getNearSessions()
     {
-        $sessions_arr = $this->performerEvents->toArray();
-        $sessions_arr += $this->customerEvents->toArray();
+        return $this->performerSessions()->where('customer_id', null)->where('start', '>', Carbon::today())->orderBy('start')->first();
+    }
+
+    public function getUserSessions(): array
+    {
+        $sessions_arr = $this->performerSessions != null ? $this->performerSessions->toArray() : [];
+        $sessions_arr += $this->customerSessions != null ? $this->customerSessions->toArray() : [];
         return $sessions_arr;
     }
 
@@ -133,4 +139,10 @@ class User extends Authenticatable implements MustVerifyEmail
         }
         return false;
     }
+
+    public static function getPerformers()
+    {
+        return User::all()->where('role_id', Role::all()->where('title', 'performer')->first()->id);
+    }
+
 }

@@ -344,7 +344,7 @@
                 <div class="checkbox-control">
                     <input type="checkbox" class="checkbox" name="incognito" id="incognito"><label for="incognito">Оставить анонимный отзыв</label>
                 </div>
-                <button class="btn-primary" type="submit">Отправить</button>
+                <button class="btn btn-primary" type="submit">Отправить</button>
             </form>
         </div>
         <div class="col-2">
@@ -379,7 +379,7 @@
                         <input type="text" placeholder="Ваш вопрос">
                     </div>
 
-                    <button class="btn-primary" type="submit">Отправить</button>
+                    <button class="btn btn-primary" type="submit">Отправить</button>
                 </form>
             </div>
         </div>

@@ -53,7 +53,7 @@
                 <input type="hidden" name="performer_id" id="performer_id" value="{{ $currentPerformer->id }}">
                 <input type="hidden" name="subscription_id" id="subscription_id" value="">
                 <input type="hidden" name="hiddenSum" id="hiddenSum" value="">
-                <button class="btn-primary">Оплатить</button>
+                <button class="btn btn-primary">Оплатить</button>
             </form>
         </div>
     </div>

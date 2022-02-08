@@ -11,23 +11,36 @@
                 right: 'next'
             },
             events: [
-                @foreach ($user->getUserEvents() as $event)
-                    {
-                        id: '{{ $event['id'] }}',
-                        title: '{{ $event['customer_id'] ? \App\Models\User::all()->where('id', $event['customer_id'])->first()->name : 'Свободное место' }}',
-                        start: '{{ $event['start'] }}',
-                        end: '{{ $event['end'] }}'
-                    },
-                @endforeach
+                @if($user->role->title == 'performer')
+                    @foreach ($user->getUserSessions() as $event)
+                        {
+                            id: '{{ $event['id'] }}',
+                            title: '{{ $event['customer_id'] ? \App\Models\User::all()->where('id', $event['customer_id'])->first()->name : 'Свободное место' }}',
+                            start: '{{ $event['start'] }}',
+                            end: '{{ $event['end'] }}'
+                        },
+                    @endforeach
+                @else
+                    @foreach ($user->getUserSessions() as $event)
+                        {
+                            id: '{{ $event['id'] }}',
+                            title: '{{ \App\Models\User::all()->where('id', $event['performer_id'])->first()->name }}',
+                            start: '{{ $event['start'] }}',
+                            end: '{{ $event['end'] }}'
+                        },
+                    @endforeach
+                @endif
             ],
             eventClick: function (info) {
+                @if($user->role->title == 'performer')
                 $('#changeEventModal').fadeIn();
                 $('#eventId').val(info.event.id)
+                @endif
             },
             dateClick: function (info) {
                 @if($user->role->title == 'performer')
-                    $('#addEventModal').fadeIn();
-                    $('#date').val(info.dateStr)
+                $('#addEventModal').fadeIn();
+                $('#date').val(info.dateStr)
                 @endif
             }
         });

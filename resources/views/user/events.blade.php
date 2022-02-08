@@ -11,23 +11,21 @@
 
         $('.eventSubmit').click(function () {
 
-            const eventId = $(this).attr('id');
-            const subscriptionId = $('#event-' + eventId + '>#subscriptionId').val();
-            console.log(subscriptionId);
-
+            const sessionId = $(this).attr('id');
+            const subscriptionId = $('#event-' + sessionId + '>#subscriptionId').val();
             $.ajax({
-                url: '{{ route('user.profile.confirmEvent', $user->id) }}',
+                url: '{{ route('user.profile.confirmSession', $user->id) }}',
                 type: "POST",
                 data: {
                     subscriptionId: subscriptionId,
-                    eventId: eventId
+                    sessionId: sessionId
                 },
                 headers: {
                     'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function (data) {
-                    if(data == 'success') {
-                        $('#event-' + eventId).fadeOut(200)
+                    if(data === 'success') {
+                        $('#event-' + sessionId).fadeOut(200)
                     } else {
                         alert('Максимальное количество записей')
                     }
@@ -36,7 +34,6 @@
                     alert(' Какая-то ошибка( ')
                 }
             });
-
         })
     </script>
 
@@ -49,16 +46,13 @@
         @if(count($performerEvents) != 0)
             Свободные даты у психолога:
             @foreach($performerEvents as $event)
-                <div id="event-{{$event->id}}">
-                    {{ $event->start }}
+                <div id="event-{{$event->id}}" style="padding-top: 1.3rem">
+                    <span style="font-size: 1.5rem">{{ $event->start }}</span>
                     <input type="hidden" name="subscriptionId" id="subscriptionId" value="{{ $subscription->id }}">
-{{--                    <input type="hidden" name="customerId" id="customerId" value="{{ $user->id }}">--}}
-{{--                    <input type="hidden" name="eventId" id="eventId" value="{{ $event->id }}">--}}
-                    <button class="eventSubmit" id="{{ $event->id }}">Записаться</button>
+                    <button class="eventSubmit btn" id="{{ $event->id }}">Записаться</button>
                 </div>
             @endforeach
         @else
-
             <h1>Нет свободных мест</h1>
         @endif
     </div>

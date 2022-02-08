@@ -31,7 +31,7 @@ class Subscription extends Model
 
     public function doneSessions(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->sessions()->where('end','<>', '');
+        return $this->sessions()->where('is_done',1);
     }
 
     /**
@@ -54,6 +54,11 @@ class Subscription extends Model
         return $this->getPricePerSession() * count($this->doneSessions);
     }
 
+    /**
+     * Получить сумму за выполненные приёмы в периоде.
+     *
+     * @return float|int
+     */
     public function getSumPerDate($from = null, $to = null)
     {
         if ($from == null && $to == null) {

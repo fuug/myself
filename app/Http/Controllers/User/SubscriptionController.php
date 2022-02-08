@@ -7,6 +7,7 @@ use App\Http\Requests\Event\ConfirmRequest;
 use App\Http\Requests\Event\DeleteEventRequest;
 use App\Http\Requests\Event\StoreRequest;
 use App\Models\Event;
+use App\Models\Session;
 use App\Models\Subscription;
 use App\Models\User;
 
@@ -20,21 +21,20 @@ class SubscriptionController extends Controller
 
     public function events(User $user, Subscription $subscription)
     {
-        $performerEvents = User::all()->where('id', $subscription->performer_id)->first()->performerEvents->where('customer_id', '');
+        $performerEvents = User::all()->where('id', $subscription->performer_id)->first()->performerSessions->where('customer_id', '');
         return view('user.events', compact('user', 'subscription', 'performerEvents'));
     }
 
-    public function confirmEvent(User $customer, ConfirmRequest $request)
+    public function confirmSession(User $customer, ConfirmRequest $request)
     {
-        $event = Event::all()->where('id', $request->eventId)->first();
-        $performer = User::all()->where('id', $event->performer_id)->first();
-        $allEventsCount = $performer->performerEvents()->where('customer_id', $customer->id)->count();
+        $session = Session::all()->where('id', $request->sessionId)->first();
+        $performer = User::all()->where('id', $session->performer_id)->first();
 
         $subscription = Subscription::all()->where('id', $request->subscriptionId)->first();
-
-        if($allEventsCount < $subscription->session_count) {
-            $event->update([
-                'customer_id' => $customer->id
+        if($subscription->sessions()->count() < $subscription->session_count) {
+            $session->update([
+                'customer_id' => $customer->id,
+                'subscription_id' => $subscription->id
             ]);
         } else {
             return 'err';

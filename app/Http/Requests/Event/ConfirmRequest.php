@@ -24,7 +24,7 @@ class ConfirmRequest extends FormRequest
     public function rules()
     {
         return [
-            'eventId' => 'required',
+            'sessionId' => 'required',
             'subscriptionId' => 'required'
         ];
     }

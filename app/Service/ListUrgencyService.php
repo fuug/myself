@@ -4,43 +4,23 @@ namespace App\Service;
 
 use App\Models\Session;
 use App\Models\Subscription;
+use App\Models\User;
 use Carbon\Carbon;
-
 
 
 class ListUrgencyService
 {
-    public static function getPerformers(): array
+    public static function getNearPerformers()
     {
-        $subscription_ids = Session::all();
+        $performers = User::getPerformers();
 
-//        $subscription_ids = Session::where(function ($query) {
-//            $query->where('end', '<=', Carbon::now('3'))
-//                ->orWhere('start', '>=', Carbon::now('4'));
-//        })->get();
-        $subscription_ids = self::getSubscriptionIds(4, 3);
-        $performers = [];
-        foreach ($subscription_ids as $subscription_id) {
-            $performers[] = Subscription::all()->where('id', $subscription_id)->first()->performer;
+        foreach ($performers as $key => $performer) {
+            if ($performer->getNearSessions() === null) unset($performers[$key]);
         }
-        return $performers;
+
+        return $performers->sortBy(function ($performer) {
+            return $performer->getNearSessions()->start;
+        });
     }
-
-
-    public static function getSubscriptionIds(int $start, int $end): array
-    {
-        $sessions = Session::where(function ($query) use ($start, $end) {
-            $query->where('end', '<=', Carbon::now($end))
-                ->orWhere('start', '>=', Carbon::now($start));
-        })->get();
-
-        if ($sessions->count() <= 3) {
-            $start += 1;
-            $end += 1;
-            return self::getSubscriptionIds($start, $end);
-        }
-        return array_keys($sessions->groupBy('subscription_id')->toArray());
-    }
-
 
 }

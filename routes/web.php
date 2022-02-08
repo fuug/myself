@@ -30,10 +30,10 @@ Route::group(['namespace' => 'Main'], function () {
 Route::group(['namespace' => 'User', 'prefix' => 'profile', 'middleware' => ['auth', 'verified']], function () {
     Route::get('{user}', 'IndexController')->name('user.profile.index');
     Route::get('{user}/subscriptions', 'SubscriptionController')->name('user.profile.subscription');
-    Route::get('{user}/subscriptions/{subscription}', 'SubscriptionController@events')->name('user.profile.eventUpdate');
-    Route::post('{customer}/confirm', 'SubscriptionController@confirmEvent')->name('user.profile.confirmEvent');
-    Route::post('{user}/event', 'IndexController@storeEvent')->name('user.profile.addEvent');
-    Route::delete('{user}/event/delete', 'IndexController@deleteEvent')->name('user.profile.deleteEvent');
+    Route::get('{user}/subscriptions/{subscription}', 'SubscriptionController@events')->name('user.profile.sessionUpdate');
+    Route::post('{customer}/confirm', 'SubscriptionController@confirmSession')->name('user.profile.confirmSession');
+    Route::post('{user}/event', 'IndexController@storeSession')->name('user.profile.addSession');
+    Route::delete('{user}/event/delete', 'IndexController@deleteEvent')->name('user.profile.deleteSession');
 });
 
 Route::group(['middleware' => 'guest'], function () {

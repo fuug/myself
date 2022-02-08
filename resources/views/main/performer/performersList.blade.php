@@ -38,7 +38,7 @@
                     <option {{ isset($gender) && $gender == 'female' ? 'selected' : '' }} value="female">Женщина</option>
                     <option {{ isset($gender) && $gender == 'male' ? 'selected' : '' }} value="male">Мужчина</option>
                 </select>
-                <button id="filterSubmit" class="btn-primary" type="submit">Применить</button>
+                <button id="filterSubmit" class="btn btn-primary" type="submit">Применить</button>
             </div>
         </form>
 
@@ -79,7 +79,7 @@
                             @endif
                         </div>
                     </div>
-                    <a href="{{ route('performer.checkout', $performer->id) }}" class="btn-primary">Записаться</a>
+                    <a href="{{ route('performer.checkout', $performer->id) }}" class="btn btn-primary">Записаться</a>
                 </div>
             @endforeach
         </div>
@@ -115,7 +115,7 @@
                         <input type="text" placeholder="Ваш вопрос">
                     </div>
 
-                    <button class="btn-primary" type="submit">Отправить</button>
+                    <button class="btn btn-primary" type="submit">Отправить</button>
                 </form>
             </div>
         </div>

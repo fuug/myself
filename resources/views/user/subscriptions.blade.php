@@ -14,7 +14,7 @@
 
     @foreach($subscriptions as $subscription)
         Абонемент на {{ $subscription->session_count }} консультаций у {{ \App\Models\User::all()->where('id', $subscription->performer_id)->first()->name }}
-        <a href="{{ route('user.profile.eventUpdate', [$user, $subscription]) }}">Погасить</a>
+        <a href="{{ route('user.profile.sessionUpdate', [$user, $subscription]) }}">Погасить</a>
     @endforeach
 
 @endsection

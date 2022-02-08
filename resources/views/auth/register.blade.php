@@ -70,7 +70,7 @@
                             </div>
 
 
-                            <button type="submit" class="btn-primary">Регистрация</button>
+                            <button type="submit" class="btn btn-primary">Регистрация</button>
 
                             <div class="login-with-some">
                                 <p class="login-with">Зарегистрироваться с помощью</p>

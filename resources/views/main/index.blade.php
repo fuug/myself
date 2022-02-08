@@ -175,7 +175,7 @@
                             <li>Стоимость от 200$</li>
                         </ul>
                         <div class="full-width">
-                            <a href="#" class="btn-primary">Купить</a>
+                            <a href="#" class="btn btn-primary">Купить</a>
                         </div>
                     </div>
                 </div>
@@ -195,7 +195,7 @@
                             <li>Стоимость от 450$</li>
                         </ul>
                         <div class="full-width">
-                            <a href="#" class="btn-primary">Купить</a>
+                            <a href="#" class="btn btn-primary">Купить</a>
                         </div>
                     </div>
                 </div>
@@ -214,7 +214,7 @@
                             <li>Стоимость от 1000$</li>
                         </ul>
                         <div class="full-width">
-                            <a href="#" class="btn-primary">Купить</a>
+                            <a href="#" class="btn btn-primary">Купить</a>
                         </div>
                     </div>
                 </div>
@@ -278,7 +278,7 @@
                 </div>
             </div>
             <div class="banner-bottom">
-                <a href="{{ route('performers.list') }}" class="btn-primary">Подобрать своего специалиста</a>
+                <a href="{{ route('performers.list') }}" class="btn btn-primary">Подобрать своего специалиста</a>
             </div>
         </div>
         <div class="clear"></div>
@@ -649,7 +649,7 @@
                         <input type="text" placeholder="Ваш вопрос">
                     </div>
 
-                    <button class="btn-primary" type="submit">Отправить</button>
+                    <button class="btn btn-primary" type="submit">Отправить</button>
                 </form>
             </div>
         </div>
@@ -657,11 +657,19 @@
     </footer>
     <script src="{{ asset('js/index.js') }}"></script>
     <script src="{{ asset('js/slider.js') }}"></script>
+{{--    <script>--}}
+{{--        setTimeout(--}}
+{{--            showUrgency,--}}
+{{--            3000--}}
+{{--        )--}}
+{{--    </script>--}}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone-with-data.min.js"></script>
     <script>
-        setTimeout(
-            showUrgency,
-            3000
-        )
+        $(document).ready(function() {
+            console.log(moment.tz.guess());
+        });
     </script>
 @endsection
 

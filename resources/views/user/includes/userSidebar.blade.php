@@ -6,7 +6,9 @@
         </li>
         <li class="nav-li">
             <i class="nav-icon icon-edit"></i>
-            <p>Количество консультаций {{ $user->subscriptions_customer->count() }}</p>
+            <a href="{{ route('user.profile.subscription', $user->id) }}">
+                Количество консультаций {{ $user->subscriptions_customer->count() }}
+            </a>
         </li>
         <li class="nav-li">
             <i class="nav-icon icon-chat"></i>
