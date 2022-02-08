@@ -17,11 +17,20 @@ class CreateSessionsTable extends Migration
             $table->id();
 
             $table->string('title');
+            $table->boolean('is_done')->default(0);
             $table->dateTime('start')->nullable();
             $table->dateTime('end')->nullable();
 
             $table->unsignedBigInteger('subscription_id')->nullable();
+            $table->unsignedBigInteger('performer_id')->nullable();
+            $table->unsignedBigInteger('customer_id')->nullable();
+
+            $table->index('performer_id', 'session_user_performer_idx');
+            $table->index('customer_id', 'session_user_customer_idx');
             $table->index('subscription_id', 'session_subscription_idx');
+
+            $table->foreign('performer_id', 'session_user_performer_fk')->on('users')->references('id');
+            $table->foreign('customer_id', 'session_user_customer_fk')->on('users')->references('id');
             $table->foreign('subscription_id', 'session_subscription_fk')->on('subscriptions')->references('id');
 
             $table->softDeletes();
