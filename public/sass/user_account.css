@@ -145,9 +145,15 @@
   margin-right: 2px;
 }
 
-.nav-li p {
+.form-select {
+  width: 100%;
+}
+
+.nav-li p, .nav-li a {
+  color: #000;
   font-family: Montserrat, serif;
   font-size: 1.75rem;
+  width: 70%;
 }
 
 .modal {
