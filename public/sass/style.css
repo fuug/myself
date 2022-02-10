@@ -329,6 +329,7 @@ footer .rec {
   padding: 1.5rem 0.5rem;
   width: 60%;
   border-radius: 60px;
+  height: auto;
 }
 .contact-form form {
   display: flex;

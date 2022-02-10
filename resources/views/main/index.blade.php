@@ -12,7 +12,7 @@
         <img class="main-banner" alt="psychotherapist" src="img/mainImage.png">
         <div class="wrapper">
             <h4 class="title">Это пространство, где есть место Вам и чувствам</h4>
-            <a class="btn" href="{{ route('performers.list') }}">Записаться</a>
+            <a class="btn btn-primary" href="{{ route('performers.list') }}">Записаться</a>
         </div>
     </section>
     <div class="content">
