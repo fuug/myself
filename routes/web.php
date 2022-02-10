@@ -29,6 +29,7 @@ Route::group(['namespace' => 'Main'], function () {
 
 Route::group(['namespace' => 'User', 'prefix' => 'profile', 'middleware' => ['auth', 'verified']], function () {
     Route::get('{user}', 'IndexController')->name('user.profile.index');
+    Route::get('{user}/video-room', 'IndexController@videoRoom')->name('user.profile.videoroom');
     Route::get('{user}/subscriptions', 'SubscriptionController')->name('user.profile.subscription');
     Route::get('{user}/subscriptions/{subscription}', 'SubscriptionController@sessions')->name('user.profile.sessionUpdate');
     Route::post('{customer}/confirm', 'SubscriptionController@confirmSession')->name('user.profile.confirmSession');

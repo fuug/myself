@@ -39,6 +39,11 @@ class IndexController extends Controller
         return redirect()->route('user.profile.index', compact('user'));
     }
 
+    public function videoRoom(User $user)
+    {
+        return view('user.videoroom');
+    }
+
     static public function getTimeZoneList()
     {
         return \Cache::rememberForever('timezones_list_collection', function () {
