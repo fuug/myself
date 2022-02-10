@@ -22,15 +22,15 @@ Route::group(['namespace' => 'Main'], function () {
         Route::get('/urgency', 'UrgencyController')->name('performers.urgency');
         Route::get('/{performer}', 'ShowController')->name('performer.about');
         Route::get('/{currentPerformer}/checkout', 'CheckoutController')->name('performer.checkout');
-        Route::get('/{currentPerformer}/checkout/payment', 'CheckoutController@payment')->name('performer.checkout.payment');
-        Route::get('/{customer}/checkout/payment/{subscription}', 'CheckoutController@done')->name('performer.checkout.done');
+        Route::post('/{currentPerformer}/checkout/payment', 'CheckoutController@payment')->name('performer.checkout.payment');
+        Route::post('/{customer}/checkout/payment/{subscription}', 'CheckoutController@done')->name('performer.checkout.done');
     });
 });
 
 Route::group(['namespace' => 'User', 'prefix' => 'profile', 'middleware' => ['auth', 'verified']], function () {
     Route::get('{user}', 'IndexController')->name('user.profile.index');
     Route::get('{user}/subscriptions', 'SubscriptionController')->name('user.profile.subscription');
-    Route::get('{user}/subscriptions/{subscription}', 'SubscriptionController@events')->name('user.profile.sessionUpdate');
+    Route::get('{user}/subscriptions/{subscription}', 'SubscriptionController@sessions')->name('user.profile.sessionUpdate');
     Route::post('{customer}/confirm', 'SubscriptionController@confirmSession')->name('user.profile.confirmSession');
     Route::post('{user}/event', 'IndexController@storeSession')->name('user.profile.addSession');
     Route::delete('{user}/event/delete', 'IndexController@deleteEvent')->name('user.profile.deleteSession');

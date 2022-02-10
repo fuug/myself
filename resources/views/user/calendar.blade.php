@@ -16,8 +16,9 @@
                         {
                             id: '{{ $event['id'] }}',
                             title: '{{ $event['customer_id'] ? \App\Models\User::all()->where('id', $event['customer_id'])->first()->name : 'Свободное место' }}',
-                            start: '{{ $event['start'] }}',
-                            end: '{{ $event['end'] }}'
+                            {{--start: '{{ $event['start'] }}',--}}
+                            start: '{{ \Illuminate\Support\Carbon::parse($event['start'])->timezone($user->timezone) }}',
+                            end: '{{ \Illuminate\Support\Carbon::parse($event['end'])->timezone($user->timezone) }}',
                         },
                     @endforeach
                 @else
@@ -25,8 +26,8 @@
                         {
                             id: '{{ $event['id'] }}',
                             title: '{{ \App\Models\User::all()->where('id', $event['performer_id'])->first()->name }}',
-                            start: '{{ $event['start'] }}',
-                            end: '{{ $event['end'] }}'
+                            start: '{{ \Illuminate\Support\Carbon::parse($event['start'])->timezone($user->timezone) }}',
+                            end: '{{ \Illuminate\Support\Carbon::parse($event['end'])->timezone($user->timezone) }}',
                         },
                     @endforeach
                 @endif

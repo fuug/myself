@@ -44,16 +44,16 @@
 
     <div style="width: 85%; margin: auto; text-align: center">
         @if(count($performerEvents) != 0)
-            Свободные даты у психолога:
+            <h1>Свободные записи у психолога:</h1>
             @foreach($performerEvents as $event)
                 <div id="event-{{$event->id}}" style="padding-top: 1.3rem">
-                    <span style="font-size: 1.5rem">{{ $event->start }}</span>
+                    <span style="font-size: 1.5rem">{{ \Illuminate\Support\Carbon::parse($event->start)->timezone($user->timezone) }}</span>
                     <input type="hidden" name="subscriptionId" id="subscriptionId" value="{{ $subscription->id }}">
                     <button class="eventSubmit btn" id="{{ $event->id }}">Записаться</button>
                 </div>
             @endforeach
         @else
-            <h1>Нет свободных мест</h1>
+            <h1>Нет свободных записей</h1>
         @endif
     </div>
 

@@ -7,6 +7,7 @@ use App\Http\Requests\Event\DeleteEventRequest;
 use App\Http\Requests\Event\StoreRequest;
 use App\Models\Session;
 use App\Models\User;
+use Carbon\Carbon;
 
 class IndexController extends Controller
 {
@@ -18,11 +19,15 @@ class IndexController extends Controller
 
     public function storeSession(User $user, StoreRequest $request): \Illuminate\Http\RedirectResponse
     {
+        //Конвертируем время пользователя в UTC, для представления пользователю в другом часовом поясе
+        $timeStart = Carbon::createFromFormat('H:i', $request->start, $user->timezone)->setTimezone('UTC');
+        $timeEnd = Carbon::createFromFormat('H:i', $request->end, $user->timezone)->setTimezone('UTC');
+
         Session::create([
             'performer_id' => $user->id,
             'title' => 'Свободное место',
-            'start' => $request->date . ' ' . $request->start,
-            'end' => $request->date . ' ' . $request->end
+            'start' => $request->date . ' ' . $timeStart->format('H:i'),
+            'end' => $request->date . ' ' . $timeEnd->format('H:i')
         ]);
 
         return redirect()->route('user.profile.index', compact('user'));

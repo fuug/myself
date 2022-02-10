@@ -15,21 +15,19 @@ class SubscriptionController extends Controller
 {
     public function __invoke(User $user)
     {
-        $subscriptions = $user->subscriptions_customer;
+        $subscriptions = $user->subscriptions_customer->where('customer_id', '');
         return view('user.subscriptions', compact('user', 'subscriptions'));
     }
 
-    public function events(User $user, Subscription $subscription)
+    public function sessions(User $user, Subscription $subscription)
     {
         $performerEvents = User::all()->where('id', $subscription->performer_id)->first()->performerSessions->where('customer_id', '');
-        return view('user.events', compact('user', 'subscription', 'performerEvents'));
+        return view('user.sessions', compact('user', 'subscription', 'performerEvents'));
     }
 
-    public function confirmSession(User $customer, ConfirmRequest $request)
+    public function confirmSession(User $customer, ConfirmRequest $request): string
     {
         $session = Session::all()->where('id', $request->sessionId)->first();
-        $performer = User::all()->where('id', $session->performer_id)->first();
-
         $subscription = Subscription::all()->where('id', $request->subscriptionId)->first();
         if($subscription->sessions()->count() < $subscription->session_count) {
             $session->update([

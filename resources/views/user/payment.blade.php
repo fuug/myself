@@ -69,7 +69,10 @@
             </div>
             <div class="end">
                 <span>Итого: <b>{{ $sum }}$</b></span>
-                <a href="{{ route('performer.checkout.done', [auth()->user(), $subscription_id]) }}" class="btn btn-primary">Оплатить</a>
+                <form action="{{ route('performer.checkout.done', [auth()->user(), $subscription_id]) }}" method="POST">
+                    @csrf
+                    <button class="btn btn-primary">Оплатить</button>
+                </form>
             </div>
 
         </div>

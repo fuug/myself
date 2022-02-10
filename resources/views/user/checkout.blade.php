@@ -48,7 +48,7 @@
 
         <div class="total">
             <span>Итого: <b id="totalSum">0$</b> </span>
-            <form action="{{ route('performer.checkout.payment', $currentPerformer->id) }}" method="GET">
+            <form action="{{ route('performer.checkout.payment', $currentPerformer->id) }}" method="POST">
                 @csrf
                 <input type="hidden" name="performer_id" id="performer_id" value="{{ $currentPerformer->id }}">
                 <input type="hidden" name="subscription_id" id="subscription_id" value="">

@@ -12,13 +12,14 @@ class CheckoutController
 
     public function __invoke(User $currentPerformer)
     {
-        $subscriptions = $currentPerformer->subscriptions_performer;
+        $subscriptions = $currentPerformer->subscriptions_performer->where('customer_id', '');
         $pricePerOne = $currentPerformer->performerDescription->pricePerOnceSession;
         $performers = Role::all()->where('title', 'performer')->first()->users;
         return view('user.checkout', compact('performers' ,'currentPerformer', 'subscriptions', 'pricePerOne'));
     }
 
-    public function payment (PaymentRequest $request){
+    public function payment (PaymentRequest $request)
+    {
         $performer_id = $request->performer_id;
         $subscription_id = $request->subscription_id;
         $sum = $request->hiddenSum;
@@ -29,5 +30,6 @@ class CheckoutController
         $subscription->update([
             'customer_id' => $customer->id
         ]);
+        dd($subscription);
     }
 }
