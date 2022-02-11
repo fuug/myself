@@ -19,6 +19,40 @@ ul {
   width: 80%;
 }
 
+.text-center {
+  text-align: center;
+}
+
+.pagination-container {
+  padding: 2rem 0;
+}
+
+.primary {
+  background-color: #0292A3 !important;
+  color: #ffffff !important;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.page-item {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #d9d9d9;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin: 0 1rem;
+}
+
+.page-arrow {
+  margin: 0 0 2px 0;
+}
+
 nav {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;

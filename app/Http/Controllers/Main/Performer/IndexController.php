@@ -6,14 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Main\FilterRequest;
 use App\Models\Category;
 use App\Models\Role;
-use App\Models\User;
 use App\Service\PerformersFilterService;
 
 class IndexController extends Controller
 {
     public function __invoke()
     {
-        $performers = Role::all()->where('title', 'performer')->first()->users;
+        $performers = Role::all()->where('title', 'performer')->first()->users()->paginate(9);
         $categories = Category::all();
         return view('main.performer.performersList', compact('performers', 'categories'));
     }

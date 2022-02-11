@@ -83,6 +83,9 @@
                 </div>
             @endforeach
         </div>
+        <div class="pagination-container">
+            {{ $performers->links() }}
+        </div>
 
     </div>
 @endsection
