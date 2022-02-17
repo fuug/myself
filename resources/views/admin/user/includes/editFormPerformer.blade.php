@@ -87,7 +87,8 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="activities">Основные направления деятельности:</label>
+            <label for="activities">Основные направления деятельности <br/><span style="font-size: 0.8rem;color: #666666;">Указывать через ";". Например "Нарушения привязанности;Травма брошенности, абъюза, потери"</span></label>
+
             <input type="text" class="form-control" id="activities" placeholder=""
                    name="activities" autocomplete="false" value="{{ $user->performerDescription->activities }}">
         </div>

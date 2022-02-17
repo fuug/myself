@@ -19,23 +19,36 @@
                 <span>Фильтр:</span>
                 <div class="select-control">
                     <select name="category" id="category">
-                        <option {{ isset($old_category) && $old_category == 'default' ? 'selected' : '' }} value="default">Направления</option>
+                        <option
+                            {{ isset($old_category) && $old_category == 'default' ? 'selected' : '' }} value="default">
+                            Направления
+                        </option>
                         @foreach($categories as $category)
-                            <option {{ isset($old_category) && $category->id == $old_category ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->title }}</option>
+                            <option
+                                {{ isset($old_category) && $category->id == $old_category ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->title }}</option>
                         @endforeach
                     </select>
                 </div>
                 <select name="price" id="price">
-                    <option {{ isset($price) && $price == 'default' ? 'selected' : '' }} value="default">Стоимость</option>
+                    <option {{ isset($price) && $price == 'default' ? 'selected' : '' }} value="default">Стоимость
+                    </option>
                     <option {{ isset($price) && $price == ',50' ? 'selected' : '' }} value=",50">до 50$</option>
-                    <option {{ isset($price) && $price == '50,100' ? 'selected' : '' }} value="50,100">от 50$ до 100$</option>
-                    <option {{ isset($price) && $price == '100,150' ? 'selected' : '' }} value="100,150">от 100$ до 150$</option>
-                    <option {{ isset($price) && $price == '150,200' ? 'selected' : '' }} value="150,200">от 150$ до 200$</option>
+                    <option {{ isset($price) && $price == '50,100' ? 'selected' : '' }} value="50,100">от 50$ до 100$
+                    </option>
+                    <option {{ isset($price) && $price == '100,150' ? 'selected' : '' }} value="100,150">от 100$ до
+                        150$
+                    </option>
+                    <option {{ isset($price) && $price == '150,200' ? 'selected' : '' }} value="150,200">от 150$ до
+                        200$
+                    </option>
                     <option {{ isset($price) && $price == '200,' ? 'selected' : '' }} value="200,">от 200$</option>
                 </select>
                 <select name="gender" id="gender">
-                    <option {{ isset($gender) && $gender == 'default' ? 'selected' : '' }} value="default">Пол психолога</option>
-                    <option {{ isset($gender) && $gender == 'female' ? 'selected' : '' }} value="female">Женщина</option>
+                    <option {{ isset($gender) && $gender == 'default' ? 'selected' : '' }} value="default">Пол
+                        психолога
+                    </option>
+                    <option {{ isset($gender) && $gender == 'female' ? 'selected' : '' }} value="female">Женщина
+                    </option>
                     <option {{ isset($gender) && $gender == 'male' ? 'selected' : '' }} value="male">Мужчина</option>
                 </select>
                 <button id="filterSubmit" class="btn btn-primary" type="submit">Применить</button>
@@ -68,12 +81,18 @@
                     <div class="item-price">
                         <div class="d-flex">
                             <span>1 консультация</span>
-                            <span>{{ $performer->performerDescription->pricePerOnceSession }}$</span>
+                            <span>{{ $performer->performerDescription->pricePerOnceSession }}$
+                                    @if(auth()->user() !== null)
+                                        {{ auth()->user()->role->title !== 'customer' && auth()->user()->role->title !== 'performer' ? '(' . $performer->performerDescription->pricePerOnceSession / 2 . '$)' : ''}}</span>
+                                    @endif
                         </div>
                         <div class="d-flex">
                             @if($performer->getMinimumPrice())
                                 <span>Абонемент</span>
-                                <span>от {{ $performer->getMinimumPrice() }}$</span>
+                                <span>от {{ $performer->getMinimumPrice() }}$
+                                    @if(auth()->user() !== null)
+                                        {{ auth()->user()->role->title !== 'customer' && auth()->user()->role->title !== 'performer' ? '(' . $performer->getMinimumPrice() / 2 . '$)' : ''}}</span>
+                                    @endif
                             @else
                                 <span>Нет свободных абонементов</span>
                             @endif

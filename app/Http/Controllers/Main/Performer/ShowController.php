@@ -12,7 +12,21 @@ class ShowController extends Controller
 {
     public function __invoke(User $performer)
     {
-        return view('main.performer.performerAbout', compact('performer'));
+        $experience = $performer->performerDescription->experience;
+        switch ($experience){
+            case 1:
+                $experience_str = $experience . ' год';
+                break;
+            case 2 && 3 && 4:
+                $experience_str = $experience . ' года';
+                break;
+            default:
+                $experience_str = $experience . ' лет';
+
+        }
+
+        $directionsArr = explode(';' ,$performer->performerDescription->activities);
+        return view('main.performer.performerAbout', compact('performer', 'experience_str', 'directionsArr'));
     }
 
 }

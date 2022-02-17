@@ -65,7 +65,8 @@
 
                         <div class="forgot">
                             <div>
-                                <input type="checkbox" class="checkbox_input" id="form-check-label">
+                                <input type="checkbox" class="checkbox_input" id="form-check-label" name="remember"
+                                       value="1">
                                 <label class="checkbox__label" for="form-check-label">Запомнить меня</label>
                             </div>
                             <div class="form-check-label-container">

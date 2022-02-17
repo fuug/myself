@@ -17,30 +17,26 @@
             </div>
 
             <div class="about">
-                <h1 class="psych-name">Иван Иванов</h1>
+                <h1 class="psych-name">{{ $performer->name }}</h1>
                 <div class="d-flex">
                     <div class="col-2">
-                        <h4 class="experience">Опыт работы: 15 лет</h4>
-                        <h4 class="rank">Имеет высшую категорию</h4>
-                        <p class="short-desc">Семейный терапевт, помогает решать сложности во взаимоотношениях в формате семейной и парной психотерапии.</p>
+                        <h4 class="experience">Опыт работы: {{ $experience_str }}</h4>
+                        <h4 class="rank">{{ $performer->performerDescription->hasHighestCategory ? 'Имеет высшую категорию' : ''}}</h4>
+                        <p class="short-desc">{{ $performer->performerDescription->about }}</p>
                         <ul class="treatment">
                             Подходы:
-                            <li>Гештальт - терапия</li>
-                            <li>Нейролингвистическое программирование (НЛП)</li>
+                            @foreach($performer->categories as $category)
+                                <li> {{ $category->title }}</li>
+                            @endforeach
                         </ul>
                     </div>
                     <div class="col-2">
                         <div class="directions">
                             <ul>
                                 Основные направления деятельности:
-                                <li>Нарушения привязанности</li>
-                                <li>Травма брошенности, абъюза, потери</li>
-                                <li>Абъюзивные и созависимые отношения</li>
-                                <li>Психосоматические нарушения</li>
-                                <li>Тревога и депрессия</li>
-                                <li>Обсессивно-компульсивное расстройство</li>
-                                <li>Кризисные состояния личности</li>
-                                <li>Трудности в семейных отношениях</li>
+                                @foreach($directionsArr as $direction)
+                                    <li>{{ $direction }}</li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
