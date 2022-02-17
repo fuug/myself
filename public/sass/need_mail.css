@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  width: 50%;
+  height: 55%;
+  border-radius: 60px;
+  background: #c0c0c0;
+  text-align: center;
+}
+
+form > h1 {
+  margin-top: 2rem;
+  font-size: 3rem;
+}
+
+input {
+  color: #ffffff;
+  background: #F9A54B;
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.1), inset -10px -10px 10px rgba(255, 255, 255, 0.1);
+  width: 60%;
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+input::placeholder {
+  color: #000;
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+/*# sourceMappingURL=need_mail.css.map */
