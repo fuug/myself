@@ -34,4 +34,28 @@ class SocialService
 
         return redirect('Main');
     }
+
+    public function saveSocialDataFromArray($user)
+    {
+        $password = Str::random(10);
+
+        $isUser = User::where('email', $user['email'])->first();
+        if ($isUser) {
+            Auth::login($isUser);
+            return true;
+        }
+
+        $createUser = User::create([
+            'name' => $user['name'],
+            'email' => $user['email'],
+            'role_id' => Role::all()->where('title', 'customer')->first()->id,
+            'password' => $password
+        ]);
+        Mail::to($createUser->email)->send(new PasswordMail($password));
+        event(new Registered($createUser));
+        Auth::login($createUser);
+
+
+        return redirect('Main');
+    }
 }

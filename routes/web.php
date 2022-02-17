@@ -22,7 +22,7 @@ Route::group(['namespace' => 'Main'], function () {
         Route::get('/urgency', 'UrgencyController')->name('performers.urgency');
         Route::get('/{performer}', 'ShowController')->name('performer.about');
         Route::get('/{currentPerformer}/checkout', 'CheckoutController')->name('performer.checkout');
-        Route::post('/{currentPerformer}/checkout/payment', 'CheckoutController@payment')->name('performer.checkout.payment');
+        Route::post('/{currentPerformer}/checkout/payment', ['middleware' => 'auth'], 'CheckoutController@payment')->name('performer.checkout.payment');
         Route::post('/{customer}/checkout/payment/{subscription}', 'CheckoutController@done')->name('performer.checkout.done');
     });
 });
@@ -46,6 +46,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::group(['namespace' => 'Telegram', 'prefix' => 'telegram'], function () {
         Route::get('/auth', 'SocialController@index')->name('tg.auth');
         Route::get('/auth/callback', 'SocialController@callback');
+        Route::post('/auth/email', 'SocialController@continueWithEmail')->name('tg.email');
     });
 });
 
@@ -68,7 +69,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         Route::get('/{user}', 'ShowController')->name('admin.user.show');
         Route::post('/{user}/subscription-add', 'SubscriptionAddController')->name('admin.user.subscription.add');
         Route::patch('/edit', 'EditController')->name('admin.user.edit');
-        Route::patch('/edit', 'EditController@performerEdit')->name('admin.performer.edit');
+        Route::patch('/edit-performer', 'EditController@performerEdit')->name('admin.performer.edit');
         Route::delete('/delete/{user}', 'DeleteController')->name('admin.user.delete');
         Route::delete('/delete/thumb/{user}', 'DeleteThumbController')->name('admin.user.deleteThumb');
     });
