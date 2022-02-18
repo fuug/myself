@@ -61,6 +61,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Role::class);
     }
 
+    public function performer_reviews(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Review::class, 'customer_id')->where('published', '1');
+    }
+
     public function hasCategory($category_id = null): bool
     {
         if ($this->categories()->count() < 1)

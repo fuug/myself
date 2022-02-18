@@ -50,274 +50,51 @@
                 <hr>
             </div>
 
-            <div class="carousel-review d-flex">
-                <div class="arrow arrow-to-left"><img src="{{ asset('img/arrow-to-left.svg') }}" alt=""></div>
-                <div class="carousel-container">
-                    <ul class="d-flex carousel-ul">
-                        <li>
-                            <div class="carousel-card">
-                                <div class="block">
-                                    <div class="carousel-card-content">
-                                        <div class="d-flex">
-                                            <div class="img-block"><img src="/img/review-img.png" alt="user photo"></div>
-                                            <div class="review">
-                                                <div class="reviewer-name">
-                                                    <h1>Александра Александрова</h1>
-                                                    <span class="date">05.08.2021</span>
-                                                </div>
-                                                <div class="review-description">
-                                                    <div class="review-title">Психолог помог!</div>
-                                                    <div class="review-article">
-                                                        <p>
-                                                            Я долго искала своего врача, потому что проблема у меня достаточно
-                                                            сложная. Я ипохондрик, причем со стажем. Постоянно намываю руки, не
-                                                            трогаю ручки дверей, избегаю людных мест, боюсь заразиться чем-то от
-                                                            других людей и все в этом духе. Была на приеме у 4 специалистов, по
-                                                            отзывам все отличные, но понять твой это врач или нет, можно только
-                                                            после личной беседы. Только тут мне смогли помочь. Теперь могу
-                                                            находиться в общественных местах и не переживать.
-                                                        </p>
+            @if(count($reviews) !== 0)
+                <div class="carousel-review d-flex">
+                    <div class="arrow arrow-to-left"><img src="{{ asset('img/arrow-to-left.svg') }}" alt=""></div>
+                    <div class="carousel-container">
+                        <ul class="d-flex carousel-ul">
+                            @foreach($reviews as $review)
+                                <li>
+                                    <div class="carousel-card">
+                                        <div class="block">
+                                            <div class="carousel-card-content">
+                                                <div class="d-flex">
+                                                    <div class="img-block"><img
+                                                            src="{{ $review->incognito ? '/img/guest.png' : url( 'storage/' . $review->getReviewer->thumbnail) }}"
+                                                            alt="user photo"></div>
+                                                    <div class="review">
+                                                        <div class="reviewer-name">
+                                                            <h1>{{ $review->incognito ? 'Анонимный отзыв' : $review->getReviewer->name }}</h1>
+                                                            <span class="date">{{ \Carbon\Carbon::create($review->created_at)->format('Y.m.d') }}</span>
+                                                        </div>
+                                                        <div class="review-description">
+                                                            <div class="review-title">{{ $review->title }}</div>
+                                                            <div class="review-article">
+                                                                <p>{{ $review->content }}</p>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                <div class="border"></div>
                                             </div>
                                         </div>
-                                        <div class="border"></div>
                                     </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="carousel-card">
-                                <div class="block">
-                                    <div class="carousel-card-content">
-                                        <div class="d-flex">
-                                            <div class="img-block"><img src="/img/review-img.png" alt="user photo"></div>
-                                            <div class="review">
-                                                <div class="reviewer-name">
-                                                    <h1>Александра Александрова</h1>
-                                                    <span class="date">05.08.2021</span>
-                                                </div>
-                                                <div class="review-description">
-                                                    <div class="review-title">Психолог помог!</div>
-                                                    <div class="review-article">
-                                                        <p>
-                                                            Я долго искала своего врача, потому что проблема у меня достаточно
-                                                            сложная. Я ипохондрик, причем со стажем. Постоянно намываю руки, не
-                                                            трогаю ручки дверей, избегаю людных мест, боюсь заразиться чем-то от
-                                                            других людей и все в этом духе. Была на приеме у 4 специалистов, по
-                                                            отзывам все отличные, но понять твой это врач или нет, можно только
-                                                            после личной беседы. Только тут мне смогли помочь. Теперь могу
-                                                            находиться в общественных местах и не переживать.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="border"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="carousel-card">
-                                <div class="block">
-                                    <div class="carousel-card-content">
-                                        <div class="d-flex">
-                                            <div class="img-block"><img src="/img/review-img.png" alt="user photo"></div>
-                                            <div class="review">
-                                                <div class="reviewer-name">
-                                                    <h1>Александра Александрова</h1>
-                                                    <span class="date">05.08.2021</span>
-                                                </div>
-                                                <div class="review-description">
-                                                    <div class="review-title">Психолог помог!</div>
-                                                    <div class="review-article">
-                                                        <p>
-                                                            Я долго искала своего врача, потому что проблема у меня достаточно
-                                                            сложная. Я ипохондрик, причем со стажем. Постоянно намываю руки, не
-                                                            трогаю ручки дверей, избегаю людных мест, боюсь заразиться чем-то от
-                                                            других людей и все в этом духе. Была на приеме у 4 специалистов, по
-                                                            отзывам все отличные, но понять твой это врач или нет, можно только
-                                                            после личной беседы. Только тут мне смогли помочь. Теперь могу
-                                                            находиться в общественных местах и не переживать.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="border"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="carousel-card">
-                                <div class="block">
-                                    <div class="carousel-card-content">
-                                        <div class="d-flex">
-                                            <div class="img-block"><img src="/img/review-img.png" alt="user photo"></div>
-                                            <div class="review">
-                                                <div class="reviewer-name">
-                                                    <h1>Александра Александрова</h1>
-                                                    <span class="date">05.08.2021</span>
-                                                </div>
-                                                <div class="review-description">
-                                                    <div class="review-title">Психолог помог!</div>
-                                                    <div class="review-article">
-                                                        <p>
-                                                            Я долго искала своего врача, потому что проблема у меня достаточно
-                                                            сложная. Я ипохондрик, причем со стажем. Постоянно намываю руки, не
-                                                            трогаю ручки дверей, избегаю людных мест, боюсь заразиться чем-то от
-                                                            других людей и все в этом духе. Была на приеме у 4 специалистов, по
-                                                            отзывам все отличные, но понять твой это врач или нет, можно только
-                                                            после личной беседы. Только тут мне смогли помочь. Теперь могу
-                                                            находиться в общественных местах и не переживать.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="border"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="carousel-card">
-                                <div class="block">
-                                    <div class="carousel-card-content">
-                                        <div class="d-flex">
-                                            <div class="img-block"><img src="/img/review-img.png" alt="user photo"></div>
-                                            <div class="review">
-                                                <div class="reviewer-name">
-                                                    <h1>Александра Александрова</h1>
-                                                    <span class="date">05.08.2021</span>
-                                                </div>
-                                                <div class="review-description">
-                                                    <div class="review-title">Психолог помог!</div>
-                                                    <div class="review-article">
-                                                        <p>
-                                                            Я долго искала своего врача, потому что проблема у меня достаточно
-                                                            сложная. Я ипохондрик, причем со стажем. Постоянно намываю руки, не
-                                                            трогаю ручки дверей, избегаю людных мест, боюсь заразиться чем-то от
-                                                            других людей и все в этом духе. Была на приеме у 4 специалистов, по
-                                                            отзывам все отличные, но понять твой это врач или нет, можно только
-                                                            после личной беседы. Только тут мне смогли помочь. Теперь могу
-                                                            находиться в общественных местах и не переживать.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="border"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="carousel-card">
-                                <div class="block">
-                                    <div class="carousel-card-content">
-                                        <div class="d-flex">
-                                            <div class="img-block"><img src="/img/review-img.png" alt="user photo"></div>
-                                            <div class="review">
-                                                <div class="reviewer-name">
-                                                    <h1>Александра Александрова</h1>
-                                                    <span class="date">05.08.2021</span>
-                                                </div>
-                                                <div class="review-description">
-                                                    <div class="review-title">Психолог помог!</div>
-                                                    <div class="review-article">
-                                                        <p>
-                                                            Я долго искала своего врача, потому что проблема у меня достаточно
-                                                            сложная. Я ипохондрик, причем со стажем. Постоянно намываю руки, не
-                                                            трогаю ручки дверей, избегаю людных мест, боюсь заразиться чем-то от
-                                                            других людей и все в этом духе. Была на приеме у 4 специалистов, по
-                                                            отзывам все отличные, но понять твой это врач или нет, можно только
-                                                            после личной беседы. Только тут мне смогли помочь. Теперь могу
-                                                            находиться в общественных местах и не переживать.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="border"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="carousel-card">
-                                <div class="block">
-                                    <div class="carousel-card-content">
-                                        <div class="d-flex">
-                                            <div class="img-block"><img src="/img/review-img.png" alt="user photo"></div>
-                                            <div class="review">
-                                                <div class="reviewer-name">
-                                                    <h1>Александра Александрова</h1>
-                                                    <span class="date">05.08.2021</span>
-                                                </div>
-                                                <div class="review-description">
-                                                    <div class="review-title">Психолог помог!</div>
-                                                    <div class="review-article">
-                                                        <p>
-                                                            Я долго искала своего врача, потому что проблема у меня достаточно
-                                                            сложная. Я ипохондрик, причем со стажем. Постоянно намываю руки, не
-                                                            трогаю ручки дверей, избегаю людных мест, боюсь заразиться чем-то от
-                                                            других людей и все в этом духе. Была на приеме у 4 специалистов, по
-                                                            отзывам все отличные, но понять твой это врач или нет, можно только
-                                                            после личной беседы. Только тут мне смогли помочь. Теперь могу
-                                                            находиться в общественных местах и не переживать.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="border"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="carousel-card">
-                                <div class="block">
-                                    <div class="carousel-card-content">
-                                        <div class="d-flex">
-                                            <div class="img-block"><img src="/img/review-img.png" alt="user photo"></div>
-                                            <div class="review">
-                                                <div class="reviewer-name">
-                                                    <h1>Александра Александрова</h1>
-                                                    <span class="date">05.08.2021</span>
-                                                </div>
-                                                <div class="review-description">
-                                                    <div class="review-title">Психолог помог!</div>
-                                                    <div class="review-article">
-                                                        <p>
-                                                            Я долго искала своего врача, потому что проблема у меня достаточно
-                                                            сложная. Я ипохондрик, причем со стажем. Постоянно намываю руки, не
-                                                            трогаю ручки дверей, избегаю людных мест, боюсь заразиться чем-то от
-                                                            других людей и все в этом духе. Была на приеме у 4 специалистов, по
-                                                            отзывам все отличные, но понять твой это врач или нет, можно только
-                                                            после личной беседы. Только тут мне смогли помочь. Теперь могу
-                                                            находиться в общественных местах и не переживать.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="border"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="page-ellipse">
-                        <i class="ellipse"></i>
+                                </li>
+                            @endforeach
+                        </ul>
+                        <div class="page-ellipse">
+                            <i class="ellipse"></i>
+                        </div>
                     </div>
+                    <div class="arrow arrow-to-right"><img src="{{ asset('img/arrow-to-right.svg') }}" alt=""></div>
                 </div>
-                <div class="arrow arrow-to-right"><img src="{{ asset('img/arrow-to-right.svg') }}" alt=""></div>
-
-            </div>
+            @else
+                <div class="title-section">
+                    <h1 class="text-center">Нет отзывов</h1>
+                </div>
+            @endif
 
             <div class="clear"></div>
         </div>
@@ -333,12 +110,15 @@
                 <h2>Вы можете оставить отзыв</h2>
                 <hr>
             </div>
-            <form action="">
+            <form action="{{ route('review.store', $performer->id) }}" method="POST">
+                @csrf
+                <input type="hidden" name="reviewer_id" value="{{ auth()->user()->id }}">
                 <h4>Все поля обязательны для заполнения</h4>
-                <input type="text" name="name" placeholder="Имя">
-                <textarea name="review-text" id="review-text" cols="30" rows="10" placeholder="Ваш отзыв"></textarea>
+                <input type="text" name="title" placeholder="Заголовок">
+                <textarea name="content" id="review-text" cols="30" rows="10" placeholder="Ваш отзыв"></textarea>
                 <div class="checkbox-control">
-                    <input type="checkbox" class="checkbox" name="incognito" id="incognito"><label for="incognito">Оставить анонимный отзыв</label>
+                    <input type="checkbox" class="checkbox" name="incognito" id="incognito">
+                    <label for="incognito" id="incognito_label">Оставить анонимный отзыв</label>
                 </div>
                 <button class="btn btn-primary" type="submit">Отправить</button>
             </form>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Main\Performer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Main\FilterRequest;
 use App\Models\Category;
+use App\Models\Review;
 use App\Models\User;
 use App\Service\ListUrgencyService;
 
@@ -24,9 +25,9 @@ class ShowController extends Controller
                 $experience_str = $experience . ' лет';
 
         }
-
+        $reviews = $performer->performer_reviews;
         $directionsArr = explode(';' ,$performer->performerDescription->activities);
-        return view('main.performer.performerAbout', compact('performer', 'experience_str', 'directionsArr'));
+        return view('main.performer.performerAbout', compact('performer','reviews', 'experience_str', 'directionsArr'));
     }
 
 }

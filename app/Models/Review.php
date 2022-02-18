@@ -11,4 +11,9 @@ class Review extends Model
 
     protected $table = 'reviews';
     protected $guarded = false;
+
+    public function getReviewer(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(User::class, 'id', 'reviewer_id');
+    }
 }

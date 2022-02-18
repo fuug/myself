@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Review;
 
 use App\Http\Controllers\Controller;
 use App\Models\Review;
+use function view;
 
 class IndexController extends Controller
 {

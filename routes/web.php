@@ -24,6 +24,10 @@ Route::group(['namespace' => 'Main'], function () {
         Route::get('/{currentPerformer}/checkout', 'CheckoutController')->name('performer.checkout');
         Route::post('/{currentPerformer}/checkout/payment', ['middleware' => 'auth'], 'CheckoutController@payment')->name('performer.checkout.payment');
         Route::post('/{customer}/checkout/payment/{subscription}', 'CheckoutController@done')->name('performer.checkout.done');
+        Route::group(['namespace' => 'Review', 'prefix' => 'reviews'], function () {
+            Route::post('/{performer}/store-review', 'StoreController')->name('review.store');
+        });
+
     });
 });
 
