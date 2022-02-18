@@ -79,6 +79,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         Route::get('/format', 'IndexController@formatByDate')->name('admin.statistic.format');
     });
 
+    Route::group(['namespace' => 'Review', 'prefix' => 'review'], function () {
+        Route::get('/', 'IndexController')->name('admin.review.index');
+        Route::get('/{review}', 'ShowController')->name('admin.review.show');
+        Route::patch('/{review}/edit', 'EditController')->name('admin.review.edit');
+    });
+
 });
 
 
