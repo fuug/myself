@@ -109,3 +109,44 @@
         <button type="submit" class="btn btn-primary">Сохранить</button>
     </div>
 </form>
+
+
+<div class="modal fade" id="modal-add" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Добавить абонемент</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('admin.user.subscription.add', $user->id) }}" method="POST" class="card-body">
+                    @csrf
+                    <div class="form-group">
+                        <label for="pricePerOnceSession">Ценна за разовый сеанс в $</label>
+                        <input id="pricePerOnceSession" name="countSessions" class="form-control form-control-lg"
+                               type="number"
+                               placeholder="Ценна за разовый сеанс" value="{{ $user->performerDescription->pricePerOnceSession }}"
+                               disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="countSessions">Количество сеансов</label>
+                        <input id="countSessions" name="countSessions" class="form-control form-control-lg"
+                               type="number"
+                               placeholder="Количество сеансов" value="4">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Стоимость абонемента в $</label>
+                        <input id="price" name="price" class="form-control form-control-lg" type="number"
+                               placeholder="Стоимость абонемента в $" value="{{ $user->performerDescription->pricePerOnceSession * 4 }}"
+                               required>
+                    </div>
+                    <div class="pt-4 d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">Создать</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -96,6 +96,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return true;
     }
 
+    public function hasSubscription(): bool
+    {
+        return $this->subscriptions_performer->where('customer_id', '')->count() > 0;
+    }
+
     public function subscriptions_performer(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Subscription::class, 'performer_id');
@@ -104,6 +109,12 @@ class User extends Authenticatable implements MustVerifyEmail
     public function subscriptions_customer(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Subscription::class, 'customer_id');
+    }
+
+    public function getCustomers()
+    {
+        $customer_ids = $this->subscriptions_performer->pluck('customer_id')->toArray();
+        return User::all()->whereIn('id', $customer_ids);
     }
 
     public function getSumPer($from = null, $to = null): int

@@ -2,7 +2,7 @@
     <ul>
         <li class="nav-li">
             <i class="nav-icon icon-edit-info"></i>
-            <p>Редактировать информацию</p>
+            <a href="{{ route('user.profile.edit', auth()->user()->id) }}">Редактировать информацию</a>
         </li>
         <li class="nav-li">
             <i class="nav-icon icon-edit"></i>
@@ -18,7 +18,7 @@
         </li>
         <li class="nav-li">
             <i class="nav-icon icon-clients"></i>
-            <p>Список клиентов</p>
+            <a href="{{ route('user.profile.customers', auth()->user()->id) }}">Список клиентов</a>
         </li>
         <li class="nav-li">
             <i class="nav-icon icon-material"></i>

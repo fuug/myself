@@ -87,7 +87,7 @@
                                     @endif
                         </div>
                         <div class="d-flex">
-                            @if($performer->getMinimumPrice())
+                            @if($performer->hasSubscription())
                                 <span>Абонемент</span>
                                 <span>от {{ $performer->getMinimumPrice() }}$
                                     @if(auth()->user() !== null)

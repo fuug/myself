@@ -22,23 +22,33 @@ Route::group(['namespace' => 'Main'], function () {
         Route::get('/urgency', 'UrgencyController')->name('performers.urgency');
         Route::get('/{performer}', 'ShowController')->name('performer.about');
         Route::get('/{currentPerformer}/checkout', 'CheckoutController')->name('performer.checkout');
-        Route::post('/{currentPerformer}/checkout/payment', ['middleware' => 'auth'], 'CheckoutController@payment')->name('performer.checkout.payment');
-        Route::post('/{customer}/checkout/payment/{subscription}', 'CheckoutController@done')->name('performer.checkout.done');
+        Route::group(['middleware' => 'auth'], function () {
+            Route::post('/{currentPerformer}/checkout/payment', 'CheckoutController@payment')->name('performer.checkout.payment');
+            Route::post('/{customer}/checkout/payment/{subscription}', 'CheckoutController@done')->name('performer.checkout.done');
+        });
         Route::group(['namespace' => 'Review', 'prefix' => 'reviews'], function () {
             Route::post('/{performer}/store-review', 'StoreController')->name('review.store');
         });
-
     });
 });
 
 Route::group(['namespace' => 'User', 'prefix' => 'profile', 'middleware' => ['auth', 'verified']], function () {
     Route::get('{user}', 'IndexController')->name('user.profile.index');
-    Route::get('{user}/video-room', 'IndexController@videoRoom')->name('user.profile.videoroom');
+
+    Route::get('{user}/video-room', 'VideoController')->name('user.profile.videoroom');
+    Route::post('{user}/video-room/new-peer', 'VideoController@newId')->name('user.profile.newPeerId');
+    Route::get('/video-room/new-peer', 'VideoController@getPeerId')->name('user.profile.getPeerId');
+
     Route::get('{user}/subscriptions', 'SubscriptionController')->name('user.profile.subscription');
     Route::get('{user}/subscriptions/{subscription}', 'SubscriptionController@sessions')->name('user.profile.sessionUpdate');
     Route::post('{customer}/confirm', 'SubscriptionController@confirmSession')->name('user.profile.confirmSession');
     Route::post('{user}/event', 'IndexController@storeSession')->name('user.profile.addSession');
     Route::delete('{user}/event/delete', 'IndexController@deleteEvent')->name('user.profile.deleteSession');
+    Route::group(['middleware' => \App\Http\Middleware\PerformerMiddleware::class], function () {
+        Route::get('{user}/customers', 'IndexController@customersList')->name('user.profile.customers');
+        Route::get('{user}/edit', 'EditController')->name('user.profile.edit');
+        Route::patch('{user}/edit/save', 'EditController@save')->name('user.profile.edit.save');
+    });
 });
 
 Route::group(['middleware' => 'guest'], function () {

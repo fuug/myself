@@ -1,0 +1,33 @@
+.center {
+  width: calc(75% - 4rem);
+  margin-left: 4rem;
+}
+
+.thumbnail {
+  width: 5.6rem;
+  height: 5.6rem;
+}
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 60px;
+}
+
+.name {
+  margin-left: 2rem;
+}
+.name h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1.3rem;
+}
+.name a {
+  font-size: 1.75rem;
+  color: #000;
+}
+
+.item {
+  margin-bottom: 2rem;
+}
+
+/*# sourceMappingURL=customer_list.css.map */

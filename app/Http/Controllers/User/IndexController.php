@@ -17,6 +17,12 @@ class IndexController extends Controller
         return view('user.index', compact('user', 'timeZoneList'));
     }
 
+    public function customersList(User $user)
+    {
+        $customers = $user->getCustomers();
+        return view('user.customersList', compact('user', 'customers'));
+    }
+
     public function storeSession(User $user, StoreRequest $request): \Illuminate\Http\RedirectResponse
     {
         //Конвертируем время пользователя в UTC, для представления пользователю в другом часовом поясе
@@ -37,11 +43,6 @@ class IndexController extends Controller
     {
         Session::all()->where('id', $request->eventId)->first()->delete();
         return redirect()->route('user.profile.index', compact('user'));
-    }
-
-    public function videoRoom(User $user)
-    {
-        return view('user.videoroom');
     }
 
     static public function getTimeZoneList()
