@@ -52,6 +52,18 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="activity_id">Выберите направления</label>
+            <select id="activity_id" name="activity_ids[]"
+                    class="select2 select2-hidden-accessible" multiple=""
+                    data-placeholder="Выберите направления" style="width: 100%;"
+                    data-select2-id="1001" tabindex="-1" aria-hidden="true">
+                @foreach($activities as $activity)
+                    <option
+                        {{ is_array($user->activities->pluck('id')->toArray() ) && in_array($activity->id, $user->activities->pluck('id')->toArray() ) ? 'selected' : '' }} value="{{ $activity->id }}">{{ $activity->title }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
             <div class="row">
                 <div class="col-3">
                     <label for="experience">Опыт работы</label>
