@@ -77,6 +77,7 @@ class EditController extends Controller
         ));
 
         $user->categories()->sync($data['category_ids'] ?? null);
+        $user->activities()->sync($data['activity_ids'] ?? null);
 
         return redirect()->route('admin.user.show', $data['user_id']);
     }

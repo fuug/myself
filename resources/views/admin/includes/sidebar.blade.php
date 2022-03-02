@@ -31,6 +31,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('admin.activity.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-list"></i>
+                        <p>Направления</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('admin.statistic.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-chart-bar"></i>
                         <p>Статистика</p>

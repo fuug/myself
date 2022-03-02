@@ -77,6 +77,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         Route::delete('/delete/{category}', 'DeleteController')->name('admin.category.delete');
     });
 
+    Route::group(['namespace' => 'Activity', 'prefix' => 'activities'], function () {
+        Route::get('/', 'IndexController')->name('admin.activity.index');
+        Route::post('/create', 'StoreController')->name('admin.activity.store');
+        Route::get('/{activity}', 'ShowController')->name('admin.activity.show');
+        Route::patch('/rename', 'RenameController')->name('admin.activity.rename');
+        Route::delete('/delete/{activity}', 'DeleteController')->name('admin.activity.delete');
+    });
+
     Route::group(['namespace' => 'User', 'prefix' => 'users'], function () {
         Route::get('/', 'IndexController')->name('admin.user.index');
         Route::post('/create', 'CreateController')->name('admin.user.store');

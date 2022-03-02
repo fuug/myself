@@ -50,6 +50,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Category::class, 'category_users', 'user_id', 'category_id');
     }
+    public function activities(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Category::class, 'activity_users', 'user_id', 'activity_id');
+    }
 
     public function performerDescription(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
