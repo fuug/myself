@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Role;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -16,8 +17,9 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-
-        if(in_array(auth()->user()->role->id, array(2, 3))) {
+        $admin_ids[] = Role::all()->where('title', 'admin')->first()->id;
+        $admin_ids[] += Role::all()->where('title', 'moderator')->first()->id;
+        if(in_array(auth()->user()->role->id, $admin_ids)) {
             return $next($request);
         }
 
