@@ -7,12 +7,15 @@
 @section('content')
 
     <p>
-    <h3>Мой ID: </h3><span id=myid></span></p>
-    <input id=otherPeerId type=text placeholder="otherPeerId">
-    <button onclick="callToNode(document.getElementById('otherPeerId').value)">Вызов</button>
+        {{--    <h3>Мой ID: </h3><span id=myid></span></p>--}}
+        {{--    <input id=otherPeerId type=text placeholder="otherPeerId">--}}
+        @foreach($callableUsers as $callableUser)
+            {{$callableUser->name}}
+            <button onclick="checkPeerAndCall('{{$callableUser->id}}')">Вызов</button>
+        @endforeach
 
-    <br>
-    <video id=myVideo muted="muted" width="400px" height="auto"></video>
+        <br>
+        <video id=myVideo muted="muted" width="400px" height="auto"></video>
     <div id=callinfo></div>
     <video id=remVideo width="400px" height="auto"></video>
 
@@ -58,14 +61,43 @@
 
         peer = new Peer({config: callOptions});
         peer.on('open', function (peerID) {
-            document.getElementById('myid').innerHTML = peerID;
+            sendId(peerID);
+            // document.getElementById('myid').innerHTML = peerID;
         });
         let peercall;
         peer.on('call', function (call) {
-            // Answer the call, providing our mediaStream
             peercall = call;
-            document.getElementById('callinfo').innerHTML = "Входящий звонок <button onclick='callanswer()' >Принять</button><button onclick='callcancel()' >Отклонить</button>";
+            // document.getElementById('callinfo').innerHTML = "Входящий звонок <button onclick='callanswer()' >Принять</button><button onclick='callcancel()' >Отклонить</button>";
+            callanswer();
         });
+
+        function sendId(peerID) {
+            $(function () {
+                $.ajax({
+                    url: '{{ route('user.profile.newPeerId', auth()->user()->id) }}',
+                    type: "POST",
+                    data: {peerId: peerID},
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+            })
+        }
+
+        function checkPeerAndCall(userId) {
+            $.ajax({
+                url: "{{ route('user.profile.getPeerId') }}",
+                type: "get",
+                data: {userId: userId},
+                dataType: "json",
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (data) {
+                    callToNode(data.peer_id)
+                }
+            })
+        }
 
         function callanswer() {
             navigator.mediaDevices.getUserMedia({audio: true, video: true}).then(function (mediaStream) {
@@ -73,7 +105,7 @@
                 peercall.answer(mediaStream); // отвечаем на звонок и передаем свой медиапоток собеседнику
                 //peercall.on ('close', onCallClose); //можно обработать закрытие-обрыв звонка
                 video.srcObject = mediaStream; //помещаем собственный медиапоток в объект видео (чтоб видеть себя)
-                document.getElementById('callinfo').innerHTML = "Звонок начат... <button onclick='callclose()' >Завершить звонок</button>"; //информируем, что звонок начат, и выводим кнопку Завершить
+                // document.getElementById('callinfo').innerHTML = "Звонок начат... <button onclick='callclose()' >Завершить звонок</button>"; //информируем, что звонок начат, и выводим кнопку Завершить
                 video.onloadedmetadata = function (e) {//запускаем воспроизведение, когда объект загружен
                     video.play();
                 };
@@ -104,7 +136,7 @@
                         };
                     }, 1500);
                 });
-                //  peercall.on('close', onCallClose);
+                // peer.on('close', function (call) {});
                 video.srcObject = mediaStream;
                 video.onloadedmetadata = function (e) {
                     video.play();
