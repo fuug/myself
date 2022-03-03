@@ -1,0 +1,85 @@
+ul.select2-selection__rendered {
+  display: flex !important;
+  flex-direction: column;
+}
+ul.select2-selection__rendered li.select2-selection__choice {
+  background-color: #fff !important;
+  border: none !important;
+}
+
+.fas.fa-solid.fa-check {
+  color: #4BAB10;
+  margin-left: 5px;
+}
+
+.flex-start {
+  align-items: flex-start !important;
+}
+
+.form-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.2rem;
+  justify-content: space-between;
+}
+.form-input label {
+  font-size: 1.75rem;
+  font-weight: 600;
+  width: 28%;
+}
+.form-input .select2-selection.select2-selection--multiple {
+  border: none;
+  color: #000000;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 1.3rem;
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.1), inset -10px -10px 10px rgba(255, 255, 255, 0.1);
+}
+.form-input textarea {
+  width: 100%;
+  font-size: 1.75rem;
+  border: none;
+  color: #000000;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 1.3rem;
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.1), inset -10px -10px 10px rgba(255, 255, 255, 0.1);
+}
+.form-input input {
+  color: #000000;
+  background: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 1.3rem;
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.1), inset -10px -10px 10px rgba(255, 255, 255, 0.1);
+  width: 100%;
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+.form-input input::placeholder {
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+.form-input .input-border {
+  background: #ffffff;
+  padding: 0.65rem;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1), -10px -10px 10px rgba(187, 187, 187, 0.1);
+  width: 70%;
+}
+
+.select2-selection__choice, .select2-search.select2-search--inline, .select2-results__option, .select2-results__option.select2-results__option--highlighted {
+  font-size: 1.7rem;
+}
+
+.button-group {
+  text-align: right;
+  padding: 6rem 0;
+}
+.button-group .btn-primary {
+  padding: 1rem 3rem;
+  margin-right: 3rem;
+}
+
+/*# sourceMappingURL=editprofile.css.map */
