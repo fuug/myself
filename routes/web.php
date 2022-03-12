@@ -36,6 +36,12 @@ Route::group(['namespace' => 'User', 'prefix' => 'profile', 'middleware' => ['au
     Route::get('{user}', 'IndexController')->name('user.profile.index');
 
     Route::get('{user}/video-room', 'VideoController')->name('user.profile.videoroom');
+
+    Route::post('file-upload', 'ChatController@upload')->name('file.upload');
+    Route::get('{user}/chats', 'ChatController')->name('user.profile.chats');
+    Route::get('{user}/chat/{second_user_id}', 'ChatController@chat')->name('user.profile.chats.chat');
+    Route::post('{user}/chat/{chat_id}/new-message', 'ChatController@newMessage')->name('user.profile.chats.chat.new');
+
     Route::post('{user}/video-room/new-peer', 'VideoController@newId')->name('user.profile.newPeerId');
     Route::get('/video-room/new-peer', 'VideoController@getPeerId')->name('user.profile.getPeerId');
 

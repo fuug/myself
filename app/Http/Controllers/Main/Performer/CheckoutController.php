@@ -17,23 +17,21 @@ class CheckoutController
         $subscriptions = $currentPerformer->subscriptions_performer->where('customer_id', '');
         $pricePerOne = $currentPerformer->performerDescription->pricePerOnceSession;
         $performers = Role::all()->where('title', 'performer')->first()->users;
-        return view('user.checkout', compact('performers' ,'currentPerformer', 'subscriptions', 'pricePerOne'));
+        return view('user.checkout', compact('performers', 'currentPerformer', 'subscriptions', 'pricePerOne'));
     }
 
-    public function payment (PaymentRequest $request)
+    public function payment(PaymentRequest $request)
     {
         $performer_id = $request->performer_id;
         $subscription_id = $request->subscription_id;
         $sum = $request->hiddenSum;
-        return view('user.payment', compact('performer_id', 'subscription_id', 'sum'));
+        return view('user.testPayment', compact('performer_id', 'subscription_id', 'sum'));
     }
 
-    public function done (User $customer, $subscription_id)
+    public function done(User $customer, $subscription_id)
     {
 
-        $string = "test_merchant;www.market.ua;DH783023;1415379863;1547.36;UAH;Процессор Intel Core i5-4670 3.4GHz;Память Kingston DDR3-1600 4096MB PC3-12800;1;1;1000;547.36";
-        $key = "dhkq3vUi94{Z!5frxs(02ML";
-        $hash = hash_hmac("md5",$string,$key);
+
         $res = Http::post('https://api.cloudpayments.ru/test');
         dd($res->reason());
 

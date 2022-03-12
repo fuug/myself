@@ -12,7 +12,7 @@
         </li>
         <li class="nav-li">
             <i class="nav-icon icon-chat"></i>
-            <p>Чат</p>
+            <a href="{{ route('user.profile.chats', auth()->user()->id) }}">Чат</a>
         </li>
         <li class="nav-li">
             <i class="nav-icon icon-consultation"></i>

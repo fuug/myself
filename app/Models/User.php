@@ -71,6 +71,14 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(PerformerDescription::class, 'user_id');
     }
 
+    public function chats()
+    {
+        $chats_ids = Chat::all()->where('user_id', $this->id)->pluck('id')->toArray();
+        $chats_ids += Chat::all()->where('second_user_id', $this->id)->pluck('id')->toArray();
+
+        return Chat::all()->whereIn('id', $chats_ids);
+    }
+
     public function role(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Role::class);
@@ -126,6 +134,15 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Subscription::class, 'customer_id');
     }
 
+    public function getChatWith($secondUser_id)
+    {
+        $chat = Chat::all()->where('user_id', $this->id)->where('second_user_id', $secondUser_id)->first();
+        if ($chat == null) {
+            $chat = Chat::all()->where('second_user_id', $this->id)->where('user_id', $secondUser_id)->first();
+        }
+        return $chat ?? Chat::create(array('user_id' => $this->id, 'second_user_id' => $secondUser_id));
+    }
+
     public function getCustomers()
     {
         $customer_ids = $this->subscriptions_performer->pluck('customer_id')->toArray();
@@ -176,4 +193,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return User::all()->where('role_id', Role::all()->where('title', 'performer')->first()->id);
     }
 
+    public function convertTime($time, $format = 'h:i'): string
+    {
+        return \Illuminate\Support\Carbon::parse($time)->timezone($this->timezone)->format($format);
+    }
 }

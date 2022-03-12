@@ -1,0 +1,213 @@
+.sidebar {
+  width: 30%;
+}
+
+.main {
+  padding-left: 4rem;
+}
+
+#image {
+  height: 4rem;
+}
+#image img {
+  height: 100%;
+}
+
+.item {
+  margin: 2.5rem 0;
+}
+.item a {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  color: #000;
+}
+.item .thumbnail {
+  width: 5rem;
+  height: 5rem;
+  margin-right: 2.5rem;
+}
+.item .thumbnail img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.chat-container {
+  width: 70%;
+  height: 100vh;
+}
+.chat-container .chat-head {
+  background: #FFC587;
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.chat-container .chat-head #call-btn {
+  border: none;
+  background: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.chat-container #message-container {
+  background: #FFF3E7;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  height: 75%;
+  overflow: scroll;
+}
+.chat-container #message-container .message {
+  display: flex;
+  margin: 2rem 0 0 2rem;
+}
+.chat-container #message-container .message .chat-thumb {
+  max-width: 200px;
+}
+.chat-container #message-container .message .text {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: 2rem;
+}
+.chat-container #message-container .message .text span {
+  margin-left: 3rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  font-size: 0.8rem;
+}
+.chat-container #message-container .message .message-thumbnail {
+  width: 4rem;
+  height: 4rem;
+  margin-right: 1rem;
+}
+.chat-container #message-container .message .message-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3rem;
+}
+.chat-container #message-container .reader {
+  background: #EBEBEB;
+}
+.chat-container #message-container .writer {
+  background: #A3E3FF;
+}
+.chat-container #message-container .writer .call-answer {
+  margin-left: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.fa-paperclip {
+  padding: 0.7rem;
+  background: #E4E4E4;
+  font-size: 1.5rem;
+  border-radius: 50%;
+}
+
+#file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+#file + label {
+  display: inline-block;
+  cursor: pointer;
+}
+
+form {
+  background: #FFC587;
+}
+form #image {
+  display: none;
+  text-align: center;
+}
+form .chat-form {
+  display: flex;
+  padding: 2rem 1.5rem;
+  align-items: center;
+}
+form .chat-form #file-input {
+  width: 10%;
+}
+form .chat-form #file-input img {
+  width: 100%;
+}
+form .chat-form #file-input textarea {
+  width: 100%;
+  height: 100%;
+  resize: vertical;
+}
+form .chat-form .form-submit {
+  width: 15%;
+  margin-left: 1rem;
+}
+form .chat-form .form-submit button {
+  font-size: 2rem;
+  border: none;
+  background: none;
+  height: 100%;
+  color: #0292A3;
+  cursor: pointer;
+}
+
+.video {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 100;
+}
+
+#myVideo {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  border-radius: 3rem;
+}
+
+#remVideo {
+  height: 100%;
+  width: auto;
+  margin: auto;
+}
+
+input {
+  color: #ffffff;
+  background: #FFC587;
+  border: none;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.1), inset -10px -10px 10px rgba(255, 255, 255, 0.1);
+  width: 100%;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+input::placeholder {
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.form-message {
+  background: #FFC587;
+  padding: 0.65rem;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1), -10px -10px 10px rgba(187, 187, 187, 0.1);
+  width: 100%;
+}
+
+/*# sourceMappingURL=chat.css.map */
