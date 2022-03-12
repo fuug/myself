@@ -9,7 +9,7 @@ class PerformersFilterService
 {
     public static function getPerformers($request)
     {
-        $performers = Role::all()->where('title', 'performer')->first()->users;
+        $performers = Role::all()->where('title', 'performer')->first()->users()->paginate(9);
 
         if ($request['category'] != 'default') {
             foreach ($performers as $key => $performer) {

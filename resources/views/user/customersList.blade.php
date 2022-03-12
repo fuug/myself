@@ -42,7 +42,7 @@
                         </div>
                         <div class="name">
                             <h2>{{ $customer->name }}</h2>
-                            <a href="">Написать</a>
+                            <a href="{{ route('user.profile.chats.chat', [$user->id, $customer->id]) }}">Написать</a>
                         </div>
 
                     </div>
