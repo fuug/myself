@@ -81,18 +81,20 @@
                     <div class="item-price">
                         <div class="d-flex">
                             <span>1 консультация</span>
-                            <span>{{ $performer->performerDescription->pricePerOnceSession }}$
-                                    @if(auth()->user() !== null)
-                                        {{ auth()->user()->role->title !== 'customer' && auth()->user()->role->title !== 'performer' ? '(' . $performer->performerDescription->pricePerOnceSession / 2 . '$)' : ''}}</span>
-                                    @endif
+                            @if(auth()->user() !== null)
+                                <span>{{ auth()->user()->echoAmount($performer->performerDescription->pricePerOnceSession) }}</span>
+                            @else
+                                <span>{{ $performer->performerDescription->pricePerOnceSession }}$</span>
+                            @endif
                         </div>
                         <div class="d-flex">
                             @if($performer->hasSubscription())
                                 <span>Абонемент</span>
-                                <span>от {{ $performer->getMinimumPrice() }}$
-                                    @if(auth()->user() !== null)
-                                        {{ auth()->user()->role->title !== 'customer' && auth()->user()->role->title !== 'performer' ? '(' . $performer->getMinimumPrice() / 2 . '$)' : ''}}</span>
-                                    @endif
+                                @if(auth()->user() !== null)
+                                    <span>от {{ auth()->user()->echoAmount($performer->getMinimumPrice()) }}</span>
+                                @else
+                                    <span>от {{ $performer->getMinimumPrice() }}$ </span>
+                                @endif
                             @else
                                 <span>Нет свободных абонементов</span>
                             @endif

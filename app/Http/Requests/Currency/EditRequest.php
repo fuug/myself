@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Currency;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,15 +24,10 @@ class EditRequest extends FormRequest
     public function rules()
     {
         return [
-            'firstname' => 'required|string',
-            'surname' => 'nullable|string',
-            'email' => 'required|string',
-            'about' => 'nullable|string',
-            'experience' => 'nullable|string',
-            'category_ids' => 'nullable|array',
-            'activity_ids' => 'nullable|array',
-            'currency_id' => 'nullable',
-            'timezone' => 'nullable',
+            'id' => 'required',
+            'name' => 'required|string',
+            'amount' => 'required|string',
+            'title' => 'required|string|unique:currencies',
         ];
     }
 }

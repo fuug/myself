@@ -1,3 +1,4 @@
+
 ul.select2-selection__rendered
     display: flex !important
     flex-direction: column
@@ -11,7 +12,7 @@ ul.select2-selection__rendered
     margin-left: 5px
 
 .flex-start
-    align-items: flex-start!important
+    align-items: flex-start !important
 
 .form-input
     display: flex
@@ -24,7 +25,15 @@ ul.select2-selection__rendered
         font-weight: 600
         width: 28%
 
-    .select2-selection.select2-selection--multiple
+    .select2-selection.select2-selection--single
+        padding-bottom: 2.6rem
+        padding-top: 1rem
+
+        .select2-selection__arrow
+            padding-bottom: 2.6rem
+            padding-top: 1rem
+
+    .select2-selection
         border: none
         color: #000000
         background: #ffffff
@@ -71,6 +80,7 @@ ul.select2-selection__rendered
 .button-group
     text-align: right
     padding: 6rem 0
+
     .btn-primary
         padding: 1rem 3rem
         margin-right: 3rem

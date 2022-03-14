@@ -25,6 +25,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'role_id',
         'thumbnail',
+        'timezone',
+        'currency_id',
     ];
 
     /**
@@ -54,6 +56,23 @@ class User extends Authenticatable implements MustVerifyEmail
     public function activities(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Category::class, 'activity_users', 'user_id', 'activity_id');
+    }
+
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class);
+    }
+
+    public function echoAmount($amountUsd)
+    {
+        $currency = $this->currency;
+        $currencyTitle = $currency->title == 'usd' ? '$' : strtoupper($currency->title);
+        $currencyAmount = $currency->amount * $amountUsd;
+        if (!in_array($currency, array('performer', 'customer'))) {
+            $amountAdmin = $currencyAmount / 2;
+            return $currencyAmount . ' (' . $amountAdmin . ')' . $currencyTitle;
+        }
+        return $currencyAmount . ' ' . $currencyTitle;
     }
 
     public function firstname()

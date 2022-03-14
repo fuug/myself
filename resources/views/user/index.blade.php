@@ -10,11 +10,6 @@
 
 @section('footer')
     <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
-    <script>
-        $(function () {
-            $('#timeZoneSelect').select2()
-        });
-    </script>
     <script src="{{ asset('js/calendar.js') }}"></script>
 
     <script src="{{ asset('plugins/fullcalendar/main.js') }}"></script>
@@ -101,27 +96,27 @@
         </div>
     </div>
 
-    <div id="timeZone" class="modal">
-        <div class="modalContent">
-            <div class="closeModal">
-                <button type="button" class="close" onclick="$('#timeZone').fadeOut()">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modalBody">
-                <div class="form-select">
-                    <label for="timeZoneSelect">Ваш часовой пояс</label>
-                    <select name="timeZoneSelect" id="timeZoneSelect" style="width:100%;" class="select2 select2-hidden-accessible"
-                            data-select2-id="1"
-                            tabindex="-1" aria-hidden="true">
-                        @foreach($timeZoneList as $timeZone => $timezone_gmt_diff)
-                            <option value="{{ $timeZone }}">{{ $timezone_gmt_diff }} </option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--    <div id="timeZone" class="modal">--}}
+{{--        <div class="modalContent">--}}
+{{--            <div class="closeModal">--}}
+{{--                <button type="button" class="close" onclick="$('#timeZone').fadeOut()">--}}
+{{--                    <span aria-hidden="true">×</span>--}}
+{{--                </button>--}}
+{{--            </div>--}}
+{{--            <div class="modalBody">--}}
+{{--                <div class="form-select">--}}
+{{--                    <label for="timeZoneSelect">Ваш часовой пояс</label>--}}
+{{--                    <select name="timeZoneSelect" id="timeZoneSelect" style="width:100%;" class="select2 select2-hidden-accessible"--}}
+{{--                            data-select2-id="1"--}}
+{{--                            tabindex="-1" aria-hidden="true">--}}
+{{--                        @foreach($timeZoneList as $timeZone => $timezone_gmt_diff)--}}
+{{--                            <option value="{{ $timeZone }}">{{ $timezone_gmt_diff }} </option>--}}
+{{--                        @endforeach--}}
+{{--                    </select>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
     @include('user.calendar')
 @endsection

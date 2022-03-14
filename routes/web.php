@@ -107,6 +107,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         Route::get('/format', 'IndexController@formatByDate')->name('admin.statistic.format');
     });
 
+    Route::group(['namespace' => 'Currency', 'prefix' => 'currencies'], function () {
+        Route::post('/create', 'IndexController')->name('admin.currency.store');
+        Route::patch('/edit', 'IndexController@saveEdits')->name('admin.currency.edit');
+        Route::delete('/destroy', 'IndexController@destroy')->name('admin.currency.destroy');
+    });
+
     Route::group(['namespace' => 'Review', 'prefix' => 'review'], function () {
         Route::get('/', 'IndexController')->name('admin.review.index');
         Route::get('/{review}', 'ShowController')->name('admin.review.show');

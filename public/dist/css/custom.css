@@ -17,3 +17,9 @@
 input[type=checkbox] {
     width: calc(2.25rem + 2px)
 }
+
+
+.fas.fa-solid.fa-plus {
+    font-size: 1.3rem;
+    color: #00bb00;
+}

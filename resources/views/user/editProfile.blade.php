@@ -66,6 +66,33 @@
                             <input type="text" id="email" name="email" value="{{ $user->email }}">
                         </div>
                     </div>
+                    <div class="form-input">
+                        <label for="timezone">Часовой пояс</label>
+                        <div class="input-border">
+                            <select id="timezone" name="timezone"
+                                    class="select2 select2-hidden-accessible"
+                                    data-placeholder="Выберите категории" style="width: 100%;"
+                                    data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                @foreach($timeZoneList as $timeZone => $timezone_gmt_diff)
+                                    <option
+                                        value="{{ $timeZone }}" {{ $user->timezone == $timeZone ? 'selected' : '' }}>
+                                        {{ $timezone_gmt_diff }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-input">
+                        <label for="timezone">Валюта</label>
+                        <div class="input-border">
+                            <select name="currency_id" id="currency_id">
+                                @foreach(\App\Models\Currency::all() as $currency)
+                                    <option
+                                        value="{{ $currency->id }}" {{ $user->currency_id == $currency->id ? 'selected' : '' }}>{{ $currency->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     @if($user->role->title == 'performer')
                         @include('user.includes.editPerformer')
                     @endif

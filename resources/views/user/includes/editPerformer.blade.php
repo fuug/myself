@@ -13,7 +13,10 @@
                 data-select2-id="1000" tabindex="-1" aria-hidden="true">
             @foreach($categories as $category)
                 <option
-                    {{ is_array($user->categories->pluck('id')->toArray() ) && in_array($category->id, $user->categories->pluck('id')->toArray() ) ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->title }}</option>
+                    {{ is_array($user->categories->pluck('id')->toArray() ) && in_array($category->id, $user->categories->pluck('id')->toArray() ) ? 'selected' : '' }}
+                    value="{{ $category->id }}">
+                        {{ $category->title }}
+                </option>
             @endforeach
         </select>
     </div>
