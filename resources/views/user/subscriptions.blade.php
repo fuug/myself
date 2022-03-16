@@ -5,13 +5,7 @@
     <link rel="stylesheet" href="{{ asset('sass/subscriptions.css') }}">
 @endsection
 
-@section('footer')
-
-@endsection
-
-
 @section('content')
-
     <div class="main">
         @foreach($subscriptions as $subscription)
             Абонемент на {{ $subscription->session_count }} консультаций

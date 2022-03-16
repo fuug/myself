@@ -63,12 +63,42 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Currency::class);
     }
 
+    public function getNearUsers()
+    {
+        $ids = $this->subscriptions_performer->pluck('customer_id')->toArray();
+        $ids += $this->subscriptions_customer->pluck('performer_id')->toArray();
+        return User::all()->whereIn('id', $ids);
+    }
+
+    public function convertAmount($amountUsd)
+    {
+        if ($this->currency === null) {
+            return $amountUsd;
+        }
+        return $this->currency->amount * $amountUsd;
+    }
+
+    public function getCurrencyTitle()
+    {
+        if ($this->currency === null) {
+            return '$';
+        }
+        return $this->currency->title == 'usd' ? '$' : strtoupper($this->currency->title);
+    }
+
     public function echoAmount($amountUsd)
     {
         $currency = $this->currency;
-        $currencyTitle = $currency->title == 'usd' ? '$' : strtoupper($currency->title);
+        if ($currency === null) {
+            if (!in_array($this->role->title, array('performer', 'customer'))) {
+                $amountAdmin = $amountUsd / 2;
+                return $amountUsd . ' (' . $amountAdmin . ') $';
+            }
+            return $amountUsd . ' $';
+        }
+        $currencyTitle = $this->getCurrencyTitle();
         $currencyAmount = $currency->amount * $amountUsd;
-        if (!in_array($currency, array('performer', 'customer'))) {
+        if (!in_array($this->role->title, array('performer', 'customer'))) {
             $amountAdmin = $currencyAmount / 2;
             return $currencyAmount . ' (' . $amountAdmin . ')' . $currencyTitle;
         }

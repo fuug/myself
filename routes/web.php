@@ -30,6 +30,7 @@ Route::group(['namespace' => 'Main'], function () {
             Route::post('/{performer}/store-review', 'StoreController')->name('review.store');
         });
     });
+    Route::post('restore-email', 'RestoreEmailController')->name('user.restoreEmail');
 });
 
 Route::group(['namespace' => 'User', 'prefix' => 'profile', 'middleware' => ['auth', 'verified']], function () {
@@ -50,10 +51,10 @@ Route::group(['namespace' => 'User', 'prefix' => 'profile', 'middleware' => ['au
     Route::post('{customer}/confirm', 'SubscriptionController@confirmSession')->name('user.profile.confirmSession');
     Route::post('{user}/event', 'IndexController@storeSession')->name('user.profile.addSession');
     Route::delete('{user}/event/delete', 'IndexController@deleteEvent')->name('user.profile.deleteSession');
+    Route::get('{user}/edit', 'EditController')->name('user.profile.edit');
+    Route::patch('{user}/edit/save', 'EditController@save')->name('user.profile.edit.save');
     Route::group(['middleware' => \App\Http\Middleware\PerformerMiddleware::class], function () {
         Route::get('{user}/customers', 'IndexController@customersList')->name('user.profile.customers');
-        Route::get('{user}/edit', 'EditController')->name('user.profile.edit');
-        Route::patch('{user}/edit/save', 'EditController@save')->name('user.profile.edit.save');
     });
 });
 

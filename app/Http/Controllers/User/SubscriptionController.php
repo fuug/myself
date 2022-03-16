@@ -15,7 +15,7 @@ class SubscriptionController extends Controller
 {
     public function __invoke(User $user)
     {
-        $subscriptions = $user->subscriptions_customer->where('customer_id', $user->id);
+        $subscriptions = $user->subscriptions_customer;
         return view('user.subscriptions', compact('user', 'subscriptions'));
     }
 

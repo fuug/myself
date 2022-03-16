@@ -12,13 +12,14 @@ class ChatController extends Controller
 {
     public function __invoke(User $user)
     {
-        $users = User::all()->whereNotIn('id', $user->id);
+        $users = $user->getNearUsers();
+
         return view('user.chat', compact('user', 'users'));
     }
 
     public function chat(User $user, $second_user_id)
     {
-        $users = User::all()->whereNotIn('id', $user->id);
+        $users = $user->getNearUsers();
         $second_user = User::all()->where('id', $second_user_id)->first();
         $chat = $user->getChatWith($second_user_id);
         if ($chat == null) {
