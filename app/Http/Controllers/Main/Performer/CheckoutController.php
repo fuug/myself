@@ -22,10 +22,11 @@ class CheckoutController
 
     public function payment(PaymentRequest $request)
     {
+        $user = auth()->user();
         $performer_id = $request->performer_id;
         $subscription_id = $request->subscription_id;
         $sum = $request->hiddenSum;
-        return view('user.testPayment', compact('performer_id', 'subscription_id', 'sum'));
+        return view('user.testPayment', compact('performer_id', 'subscription_id', 'sum', 'user'));
     }
 
     public function done(User $customer, $subscription_id)

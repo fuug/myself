@@ -6,9 +6,9 @@
 @endsection
 
 @section('footer')
-    <script src="https://checkout.cloudpayments.ru/checkout.js"></script>
-    <script id="widget-wfp-script" language="javascript" type="text/javascript"
-            src="https://secure.wayforpay.com/server/pay-widget.js"></script>
+{{--        <script src="https://checkout.cloudpayments.ru/checkout.js"></script>--}}
+        <script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
+{{--    <script id="widget-wfp-script" language="javascript" type="text/javascript" src="https://secure.wayforpay.com/server/pay-widget.js"></script>--}}
     <script>
         function pay_with_clouds() {
             const checkout = new cp.Checkout({
@@ -29,16 +29,15 @@
                     fetch('https://api.cloudpayments.ru/payments/cards/charge', {
                         // mode: 'no-cors', // no-cors, *cors, same-origin
                         headers: {
-
                             // 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
                         },
                         method: 'POST',
                         body: {
-                            "Amount": 10,
-                            "Currency": {{ $user->currency->title }},
+                            "Amount": '{{ $sum }}',
+                            "Currency": "{{ $user->currency === null ? 'usd' : $user->currency->title }}",
                             "InvoiceId": "1234567",
                             "IpAddress": "123.123.123.123",
-                            "Description": "Оплата товаров в example.com",
+                            "Description": "Оплата товаров в myself-psy.com",
                             "AccountId": "user_x",
                             "Name": "CARDHOLDER NAME", // CardCryptogramPacket Обязательный параметр
                             "CardCryptogramPacket": cryptogram,
@@ -67,36 +66,32 @@
             });
 
         }
-        {{--function pay_with_clouds() {--}}
-        {{--    const widget = new cp.CloudPayments();--}}
-        {{--    widget.pay('auth', // или 'charge'--}}
-        {{--        { //options--}}
-        {{--            publicId: 'test_api_00000000000000000000001', //id из личного кабинета--}}
-        {{--            description: 'Оплата абонемента', //назначение--}}
-        {{--            amount: {{ $sum }}, //сумма--}}
-        {{--            currency: 'usd', //валюта--}}
-        {{--            // accountId: 'user@example.com', //идентификатор плательщика (необязательно)--}}
-        {{--            // invoiceId: '1234567', //номер заказа  (необязательно)--}}
-        {{--            // email: 'user@example.com', //email плательщика (необязательно)--}}
-        {{--            skin: "mini", //дизайн виджета (необязательно)--}}
-        {{--            data: {--}}
-        {{--                myProp: 'myProp value'--}}
-        {{--            }--}}
-        {{--        },--}}
-        {{--        {--}}
-        {{--            onSuccess: function (options) {--}}
-        {{--                // success--}}
-        {{--                //действие при успешной оплате--}}
-        {{--            },--}}
-        {{--            onFail: function (reason, options) { // fail--}}
-        {{--                //действие при неуспешной оплате--}}
-        {{--            },--}}
-        {{--            onComplete: function (paymentResult, options) {--}}
-        {{--                --}}
-        {{--            }--}}
-        {{--        }--}}
-        {{--    )--}}
-        {{--}--}}
+
+        function pay_with_clouds_widget() {
+            const widget = new cp.CloudPayments();
+            widget.pay('charge', // или 'charge'
+                { //options
+                    publicId: 'pk_9fe5782b644ae3e86403a1dd16309', //id из личного кабинета
+                    description: 'Оплата абонемента', //назначение
+                    amount: {{ $sum }}, //сумма
+                    currency: '{{ $user->currency === null ? 'usd' : $user->currency->title }}', //валюта
+                    skin: "mini",
+                },
+                {
+                    onSuccess: function (options) {
+                        // success
+                        //действие при успешной оплате
+                    },
+                    onFail: function (reason, options) { // fail
+                        //действие при неуспешной оплате
+                    },
+                    onComplete: function (paymentResult, options) {
+
+                    }
+                }
+            )
+        }
+
         function pay_with_wayforpay() {
             var wayforpay = new Wayforpay();
             wayforpay.run({
@@ -129,6 +124,41 @@
             );
 
         }
+
+        function test_way_for_pay() {
+            fetch('https://secure.wayforpay.com/pay', {
+                mode: 'no-cors',
+                method: 'POST',
+                headers: {
+                    // 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                body: {
+                    "merchantAccount": "test_merchant",
+                    "orderReference": "DH783023",
+                    "merchantSignature": "",
+                    "amount": 1547.36,
+                    "currency": "UAH",
+                    "authCode": "541963",
+                    "email": "client@mail.ua",
+                    "phone": "380501234567",
+                    "createdDate": 12345678,
+                    "processingDate": 12345678,
+                    "cardPan": "41****8217",
+                    "cardType": "visa",
+                    "issuerBankCountry": "980",
+                    "issuerBankName": "Privatbank",
+                    "recToken": "",
+                    "transactionStatus": "Approved",
+                    "reason": "ok",
+                    "reasonCode": "1100",
+                    "fee": 0,
+                    "paymentSystem": "card"
+                }
+            }).then((res) => {
+                console.log(res);
+            })
+        }
+
     </script>
 @endsection
 
@@ -185,11 +215,16 @@
 
             </div>
             <div class="end">
-                <span>Итого: <b>{{ $sum }}$</b></span>
+                @if(in_array($user->role->title, array('performer', 'admin')))
+                    <span>Итого: <b>{{ $sum . ' (' . $sum / 2 . ') ' . $user->getCurrencyTitle() }}</b></span>
+                @else
+                    <span>Итого: <b>{{ $sum . ' ' . $user->getCurrencyTitle() }}</b></span>
+                @endif
                 {{--                <form action="{{ route('performer.checkout.done', [auth()->user(), $subscription_id]) }}" method="POST">--}}
                 {{--                    @csrf--}}
-                <button class="btn btn-primary" onclick="pay_with_clouds()">Оплатить</button>
-                <button class="btn btn-primary" onclick="pay_with_wayforpay()">pay_with_wayforpay</button>
+                <button class="btn btn-primary" onclick="pay_with_clouds_widget()">pay_with_clouds_widget</button>
+{{--                <button class="btn btn-primary" onclick="pay_with_clouds()">pay_with_clouds</button>--}}
+{{--                <button class="btn btn-primary" onclick="test_way_for_pay()">pay_with_wayforpay</button>--}}
                 {{--                </form>--}}
             </div>
 
