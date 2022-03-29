@@ -37,7 +37,7 @@
         <hr>
         <div class="form-group">
             <label for="summernote">Описание пользователя</label>
-            <textarea name="description" id="summernote">{{ $user->performerDescription->about }}</textarea>
+            <textarea name="description" id="summernote">{{ $user->performerDescription->about ?? '' }}</textarea>
         </div>
         <div class="form-group">
             <label for="category_id">Выберите категории</label>
@@ -68,23 +68,23 @@
                 <div class="col-3">
                     <label for="experience">Опыт работы</label>
                     <input type="number" class="form-control" id="experience" placeholder=""
-                           name="experience" autocomplete="false" value="{{ $user->performerDescription->experience }}">
+                           name="experience" autocomplete="false" value="{{ $user->performerDescription->experience ?? '' }}">
                 </div>
                 <div class="col-3">
                     <label for="pricePerOnceSession">Стоимость одного приёма</label>
                     <input type="number" class="form-control" id="pricePerOnceSession" placeholder=""
                            name="pricePerOnceSession" autocomplete="false"
-                           value="{{ $user->performerDescription->pricePerOnceSession }}">
+                           value="{{ $user->performerDescription->pricePerOnceSession ?? '' }}">
                 </div>
                 <div class="col-3">
                     <label for="gender">Пол пользователя</label>
                     <select name="gender" id="gender" class="select2 select2-hidden-accessible" style="width: 100%;"
                             data-select2-id="2"
                             tabindex="-1" aria-hidden="true">
-                        <option {{ $user->performerDescription->gender == 'male' ? 'selected' : '' }} value="male">
+                        <option {{ $user->performerDescription != null && $user->performerDescription->gender == 'male' ? 'selected' : '' }} value="male">
                             Мужчина
                         </option>
-                        <option {{ $user->performerDescription->gender == 'female' ? 'selected' : '' }} value="female">
+                        <option {{ $user->performerDescription != null && $user->performerDescription->gender == 'female' ? 'selected' : '' }} value="female">
                             Женщина
                         </option>
                     </select>
@@ -93,7 +93,7 @@
                     <label for="highestCategory">Имеет высшую категорию</label>
                     <input type="checkbox" class="form-control" id="highestCategory" placeholder=""
                            name="highestCategory"
-                           autocomplete="false" {{ $user->performerDescription->hasHighestCategory ? 'checked' : '' }}>
+                           autocomplete="false" {{ $user->performerDescription != null && $user->performerDescription->hasHighestCategory ? 'checked' : '' }}>
                 </div>
 
             </div>
@@ -102,7 +102,7 @@
             <label for="activities">Основные направления деятельности <br/><span style="font-size: 0.8rem;color: #666666;">Указывать через ";". Например "Нарушения привязанности;Травма брошенности, абъюза, потери"</span></label>
 
             <input type="text" class="form-control" id="activities" placeholder=""
-                   name="activities" autocomplete="false" value="{{ $user->performerDescription->activities }}">
+                   name="activities" autocomplete="false" value="{{ $user->performerDescription->activities ?? '' }}">
         </div>
 
         <div class="form-group">
@@ -139,7 +139,7 @@
                         <label for="pricePerOnceSession">Ценна за разовый сеанс в $</label>
                         <input id="pricePerOnceSession" name="countSessions" class="form-control form-control-lg"
                                type="number"
-                               placeholder="Ценна за разовый сеанс" value="{{ $user->performerDescription->pricePerOnceSession }}"
+                               placeholder="Ценна за разовый сеанс" value="{{ $user->performerDescription->pricePerOnceSession ?? '' }}"
                                disabled>
                     </div>
                     <div class="form-group">
@@ -151,7 +151,7 @@
                     <div class="form-group">
                         <label for="price">Стоимость абонемента в $</label>
                         <input id="price" name="price" class="form-control form-control-lg" type="number"
-                               placeholder="Стоимость абонемента в $" value="{{ $user->performerDescription->pricePerOnceSession * 4 }}"
+                               placeholder="Стоимость абонемента в $" value="{{ $user->performerDescription == null ? 0 : $user->performerDescription->pricePerOnceSession * 4}}"
                                required>
                     </div>
                     <div class="pt-4 d-flex justify-content-end">

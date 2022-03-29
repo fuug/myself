@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Main'], function () {
     Route::get('/', 'IndexController');
+    Route::post('/currency', 'IndexController@currency')->name('currency');
+    Route::post('/timezone', 'IndexController@timezone')->name('timezone');
+    Route::post('/privacy', 'IndexController@privacy')->name('privacy');
+    Route::post('/urgency', 'IndexController@urgency')->name('urgency');
+
     Route::group(['namespace' => 'Performer', 'prefix' => 'performers'], function () {
         Route::get('/', 'IndexController')->name('performers.list');
         Route::post('/', 'IndexController@filtered')->name('performers.list.filters');

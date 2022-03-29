@@ -606,19 +606,19 @@
 
 @section('footer')
 
-    <div id="modalUrgency">
-        <div class="modalContent">
-            <div class="closeModal">
-                <button type="button" class="close" onclick="$('#modalUrgency').fadeOut()">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modalBody">
-                <h1>Нужна срочная консультация?</h1>
-                <a href="{{ route('performers.urgency') }}">Ближайшие свободные записи</a>
-            </div>
-        </div>
-    </div>
+{{--    <div id="modalUrgency">--}}
+{{--        <div class="modalContent">--}}
+{{--            <div class="closeModal">--}}
+{{--                <button type="button" class="close" onclick="$('#modalUrgency').fadeOut()">--}}
+{{--                    <span aria-hidden="true">×</span>--}}
+{{--                </button>--}}
+{{--            </div>--}}
+{{--            <div class="modalBody">--}}
+{{--                <h1>Нужна срочная консультация?</h1>--}}
+{{--                <a href="{{ route('performers.urgency') }}">Ближайшие свободные записи</a>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
     <footer>
         <div class="title-section">
@@ -657,12 +657,6 @@
     </footer>
     <script src="{{ asset('js/index.js') }}"></script>
     <script src="{{ asset('js/slider.js') }}"></script>
-{{--    <script>--}}
-{{--        setTimeout(--}}
-{{--            showUrgency,--}}
-{{--            3000--}}
-{{--        )--}}
-{{--    </script>--}}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone-with-data.min.js"></script>

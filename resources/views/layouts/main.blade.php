@@ -20,6 +20,14 @@
 
 
     <link rel="stylesheet" href="{{ asset('sass/style.css') }}">
+
+    @if(auth()->user() === null)
+        @if(Illuminate\Support\Facades\Cookie::get('timezone') === null)
+            <link rel="stylesheet" href="{{ asset('css/select2.client.min.css') }}">
+        @endif
+    @endif
+
+
     @hasSection('styles')
         @yield('styles')
     @endif
@@ -40,8 +48,11 @@
             @else
                 <li>
                     <div class="user">
-                        <div class="user-thumb"><img src="{{ url( 'storage/' . auth()->user()->thumbnail) }}" alt="user photo"></div>
-                        <div class="user-name"><span><a href="{{ route('user.profile.index', auth()->user()->id) }}">{{ auth()->user()->name }}</a></span></div>
+                        <div class="user-thumb"><img src="{{ url( 'storage/' . auth()->user()->thumbnail) }}"
+                                                     alt="user photo"></div>
+                        <div class="user-name"><span><a
+                                    href="{{ route('user.profile.index', auth()->user()->id) }}">{{ auth()->user()->name }}</a></span>
+                        </div>
                     </div>
                 </li>
             @endif
@@ -57,6 +68,40 @@
 @hasSection('footer')
     @yield('footer')
 @endif
+
+
+@if(auth()->user() === null)
+    @if(Illuminate\Support\Facades\Cookie::get('currency_id') === null)
+        @include('main.includes.currencyModal')
+    @endif
+
+    @if(Illuminate\Support\Facades\Cookie::get('timezone') === null)
+        @include('main.includes.timezoneModal')
+    @endif
+
+    @if(Illuminate\Support\Facades\Cookie::get('privacy') === null)
+        @include('main.includes.privacyModal')
+    @endif
+
+    @if(Illuminate\Support\Facades\Cookie::get('show_urgency') === null)
+        @include('main.includes.urgencyModal')
+    @endif
+@else
+    @if(auth()->user()->timezone === null)
+        @include('main.includes.timezoneModal')
+    @endif
+    @if(auth()->user()->currency_id === null)
+        @include('main.includes.currencyModal')
+    @endif
+    @if(auth()->user()->privacy === null || auth()->user()->privacy === false)
+        @include('main.includes.privacyModal')
+    @endif
+    @if(auth()->user()->show_urgency === null || auth()->user()->show_urgency === true)
+        @include('main.includes.urgencyModal')
+    @endif
+@endif
+
+
 
 </body>
 </html>
