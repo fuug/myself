@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -27,7 +28,7 @@ class SocialService
             'name' => $user->name,
             'email' => $user->email,
             'role_id' => Role::all()->where('title', 'customer')->first()->id,
-            'password' => $password
+            'password' => Hash::make($password)
         ]);
         Mail::to($user->email)->send(new PasswordMail($password));
         event(new Registered($user));
@@ -51,7 +52,7 @@ class SocialService
             'name' => $user['name'],
             'email' => $user['email'],
             'role_id' => Role::all()->where('title', 'customer')->first()->id,
-            'password' => $password
+            'password' => Hash::make($password)
         ]);
         Mail::to($createUser->email)->send(new PasswordMail($password));
         event(new Registered($createUser));
